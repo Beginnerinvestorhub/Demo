@@ -16,7 +16,7 @@ export default function UserStatsCard({
   compact = false,
   className = '',
 }: UserStatsCardProps) {
-  const { totalPoints, level, badges, streaks, stats } = userProgress;
+  const { totalPoints, level, badges, streaks = {}, stats = {} } = userProgress;
 
   // Calculate level progress
   const currentLevelPoints =
@@ -110,14 +110,14 @@ export default function UserStatsCard({
 
         <div className="text-center p-3 bg-purple-50 rounded-lg">
           <div className="text-2xl font-bold text-purple-600">
-            {streaks.loginStreak}
+            {streaks?.loginStreak || 0}
           </div>
           <div className="text-sm text-purple-500">Login Streak</div>
         </div>
 
         <div className="text-center p-3 bg-yellow-50 rounded-lg">
           <div className="text-2xl font-bold text-yellow-600">
-            {stats.toolsUsed.length}
+            {stats?.toolsUsed?.length || 0}
           </div>
           <div className="text-sm text-yellow-500">Tools Used</div>
         </div>
@@ -147,19 +147,19 @@ export default function UserStatsCard({
         <div className="grid grid-cols-2 gap-4 text-sm text-gray-600">
           <div>
             <span className="font-medium">Risk Assessments:</span>{' '}
-            {stats.assessmentsCompleted}
+            {stats?.assessmentsCompleted || 0}
           </div>
           <div>
             <span className="font-medium">Portfolios Created:</span>{' '}
-            {stats.portfoliosCreated}
+            {stats?.portfoliosCreated || 0}
           </div>
           <div>
             <span className="font-medium">Learning Streak:</span>{' '}
-            {streaks.learningStreak} days
+            {streaks?.learningStreak || 0} days
           </div>
           <div>
             <span className="font-medium">Education Modules:</span>{' '}
-            {stats.educationModulesCompleted}
+            {stats?.educationModulesCompleted || 0}
           </div>
         </div>
       </div>

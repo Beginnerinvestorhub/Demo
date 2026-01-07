@@ -50,7 +50,7 @@ interface UseNudgeApiReturn {
   ) => Promise<NudgeResponse>;
 }
 
-import { apiClient } from '@/services/apiClient';
+import { apiClient } from '../services/apiClient';
 
 // ... imports
 

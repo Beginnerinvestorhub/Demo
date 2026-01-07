@@ -96,7 +96,7 @@ const VarkAssessment: React.FC<{ userId: string; onComplete: (result: VarkAssess
     return (
       <UgearsCard variant="mechanical" className="p-6 text-center">
         <UgearsGear size="large" color="copper" speed="fast" className="mx-auto mb-4" />
-        <p className="text-red-600 ugears-text-technical">Error loading questions: {(questionsError as Error).message}</p>
+        <p className="text-red-600 ugears-text-technical">Error loading questions: {typeof questionsError === 'object' && questionsError !== null && 'message' in questionsError ? (questionsError as any).message : String(questionsError)}</p>
         <UgearsButton variant="mechanical" onClick={() => window.location.reload()} className="mt-4">
           Retry
         </UgearsButton>
@@ -126,7 +126,7 @@ const VarkAssessment: React.FC<{ userId: string; onComplete: (result: VarkAssess
 
       {submitError && (
         <UgearsCard variant="wood" className="p-4 mb-4 border-red-300 bg-red-50">
-          <p className="text-red-700 ugears-text-technical">Error submitting assessment: {(submitError as Error).message}</p>
+          <p className="text-red-700 ugears-text-technical">Error submitting assessment: {typeof submitError === 'object' && submitError !== null && 'message' in submitError ? (submitError as any).message : String(submitError)}</p>
         </UgearsCard>
       )}
 

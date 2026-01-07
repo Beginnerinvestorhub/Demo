@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useNudgeApi } from '../hooks/useNudgeApi';
-import { FiAlertCircle, FiRefreshCw, FiX } from 'react-icons/fi';
 
 type Message = {
   id: string;
@@ -159,10 +158,7 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({ onClose }) => {
         <div className="bg-red-50 border-l-4 border-red-400 p-4">
           <div className="flex">
             <div className="flex-shrink-0">
-              <FiAlertCircle
-                className="h-5 w-5 text-red-400"
-                aria-hidden="true"
-              />
+              <span className="text-red-400 text-lg">⚠️</span>
             </div>
             <div className="ml-3">
               <p className="text-sm text-red-700">{error}</p>
@@ -175,7 +171,7 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({ onClose }) => {
                   className="inline-flex rounded-md p-1.5 text-red-500 hover:bg-red-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-red-50 focus:ring-red-600"
                 >
                   <span className="sr-only">Dismiss</span>
-                  <FiX className="h-5 w-5" aria-hidden="true" />
+                  <span className="text-lg">✕</span>
                 </button>
               </div>
             </div>
@@ -231,7 +227,7 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({ onClose }) => {
                     className="ml-2 p-1 rounded-full hover:bg-red-100 text-red-600"
                     aria-label="Retry sending message"
                   >
-                    <FiRefreshCw className="h-3.5 w-3.5" />
+                    <span className="text-sm">🔄</span>
                   </button>
                 )}
               </div>
@@ -248,7 +244,7 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({ onClose }) => {
               )}
               {message.status === 'error' && message.from === 'user' && (
                 <div className="absolute -bottom-2 -right-2 text-xs text-red-500 flex items-center">
-                  <FiAlertCircle className="h-3.5 w-3.5 mr-0.5" />
+                  <span className="text-sm mr-0.5">⚠️</span>
                   Failed
                 </div>
               )}

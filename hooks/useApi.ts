@@ -1,6 +1,6 @@
 import { useState, useCallback, useEffect } from 'react';
 import { AxiosRequestConfig, AxiosResponse } from 'axios';
-import { apiClient } from '@/services/apiClient';
+import { apiClient } from '../services/apiClient';
 
 interface ApiState<T> {
   data: T | null;
@@ -49,9 +49,8 @@ export function useApi<T = unknown>(
       setState(prev => ({ ...prev, loading: true, error: null }));
 
       try {
-        const response: AxiosResponse<T> = await apiClient({
-          url,
-          baseURL, // Optional override
+        const response: AxiosResponse<T> = await apiClient.get(url, {
+          baseURL,
           headers: {
             ...headers,
             ...config.headers,

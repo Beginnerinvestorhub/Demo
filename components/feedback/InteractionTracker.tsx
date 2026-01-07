@@ -32,12 +32,14 @@ const InteractionTracker: React.FC<InteractionTrackerProps> = ({ userId, session
       }
     };
 
-    const handleContentView = (event: CustomEvent) => {
-      logInteraction('content_view', { contentId: event.detail.contentId, timeSpent: event.detail.timeSpent });
+    const handleContentView = (event: Event) => {
+      const customEvent = event as CustomEvent;
+      logInteraction('content_view', { contentId: customEvent.detail.contentId, timeSpent: customEvent.detail.timeSpent });
     };
 
-    const handleNudgeClick = (event: CustomEvent) => {
-      logInteraction('nudge_click', { nudgeId: event.detail.nudgeId });
+    const handleNudgeClick = (event: Event) => {
+      const customEvent = event as CustomEvent;
+      logInteraction('nudge_click', { nudgeId: customEvent.detail.nudgeId });
     };
 
     // Add event listeners for custom events dispatched from other components

@@ -111,7 +111,7 @@ const NotificationItem: React.FC<{ notification: Notification }> = ({
                 <button
                   key={index}
                   onClick={() => {
-                    action.action();
+                    action.onClick();
                     dismissNotification(notification.id);
                   }}
                   className={`text-sm font-medium underline hover:no-underline ${getTitleStyles(notification.type)}`}
@@ -137,7 +137,7 @@ const NotificationItem: React.FC<{ notification: Notification }> = ({
 };
 
 export const NotificationSystem: React.FC = () => {
-  const notifications = useNotifications();
+  const { notifications } = useNotifications();
 
   return (
     <div

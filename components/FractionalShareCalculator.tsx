@@ -1,5 +1,5 @@
 import React, { useState, Suspense, useEffect } from 'react';
-import { isDemo } from '@/lib/env';
+import { isDemo } from '../lib/env';
 
 const Pie = React.lazy(() =>
   import('react-chartjs-2').then(mod => ({ default: mod.Pie }))

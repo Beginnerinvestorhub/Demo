@@ -11,7 +11,7 @@ interface StatsProviderProps {
   children: (stats: StatsData) => React.ReactNode;
 }
 
-import { apiClient } from '@/services/apiClient';
+import { apiClient } from '../services/apiClient';
 
 // ... imports
 

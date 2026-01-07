@@ -8,7 +8,7 @@ import {
   ACHIEVEMENT_DEFINITIONS,
 } from '../config/badges';
 import { useAuth } from './useAuth';
-import { apiClient } from '@/services/apiClient';
+import { apiClient } from '../services/apiClient';
 
 // Utility to ensure consistent date strings for streak tracking
 const getTodayDateString = (): string => new Date().toDateString();
@@ -137,7 +137,7 @@ export function useGamification(userId: string): UseGamificationReturn {
         const newBadge: Badge = {
           ...badgeDefinition,
           isUnlocked: true,
-          unlockedAt: new Date().toISOString(), 
+          unlockedAt: new Date(), 
         };
 
         const updatedProgress: UserProgress = {
@@ -189,8 +189,9 @@ export function useGamification(userId: string): UseGamificationReturn {
           ...currentProgress,
           totalPoints: newTotalPoints,
           level: newLevel,
-          experiencePoints: newTotalPoints,
-          experienceToNextLevel:
+          currentLevel: newLevel,
+          currentPoints: newTotalPoints,
+          pointsToNextLevel:
             LEVEL_THRESHOLDS[newLevel] ||
             LEVEL_THRESHOLDS[LEVEL_THRESHOLDS.length - 1],
         };
@@ -218,8 +219,8 @@ export function useGamification(userId: string): UseGamificationReturn {
         
         const lastDate =
           streakType === 'login'
-            ? currentProgress.streaks.lastLoginDate
-            : currentProgress.streaks.lastLearningDate;
+            ? currentProgress.streaks?.lastLoginDate
+            : currentProgress.streaks?.lastLearningDate;
 
         let newStreak = 1;
 
@@ -227,8 +228,8 @@ export function useGamification(userId: string): UseGamificationReturn {
           if (lastDate === yesterday) {
             newStreak =
               (streakType === 'login'
-                ? currentProgress.streaks.loginStreak
-                : currentProgress.streaks.learningStreak) + 1;
+                ? currentProgress.streaks?.loginStreak
+                : currentProgress.streaks?.learningStreak) || 0 + 1;
           } else if (lastDate === today) {
             return currentProgress;
           }
@@ -269,20 +270,20 @@ export function useGamification(userId: string): UseGamificationReturn {
 
         switch (achievementDef.id) {
           case 'first_risk_assessment':
-            progress = currentStats.assessmentsCompleted;
+            progress = currentStats.assessmentsCompleted || 0;
             break;
           case 'tools_explorer':
-            progress = currentStats.toolsUsed.length;
+            progress = currentStats.toolsUsed?.length || 0;
             break;
           case 'portfolio_creator':
-            progress = currentStats.portfoliosCreated;
+            progress = currentStats.portfoliosCreated || 0;
             break;
           case 'login_streak_7':
             // Direct access is safe now because UserProgress is available via closure
-            progress = userProgress.streaks.loginStreak; 
+            progress = userProgress.streaks?.loginStreak || 0; 
             break;
           case 'esg_user':
-            progress = currentStats.toolsUsed.includes('esg-screener') ? 1 : 0;
+            progress = currentStats.toolsUsed?.includes('esg-screener') ? 1 : 0;
             break;
           default:
             continue;
@@ -290,7 +291,7 @@ export function useGamification(userId: string): UseGamificationReturn {
 
         if (progress >= achievementDef.target) {
           // Assuming achievementDef.reward is a complete definition object
-          const reward = achievementDef.reward as { badge?: Badge, points?: number };
+          const reward = achievementDef.reward as unknown as { badge?: Badge, points?: number };
           const badge = reward.badge || BADGE_DEFINITIONS[achievementDef.id];
           
           if (!badge) {
@@ -301,13 +302,13 @@ export function useGamification(userId: string): UseGamificationReturn {
           const achievement: Achievement = {
             id: achievementDef.id,
             name: achievementDef.name,
-            title: achievementDef.title,
+            title: achievementDef.name,
             description: achievementDef.description,
             points: reward.points || badge.points || 0,
             reward: reward.points || badge.points || 0,
             badge: badge,
-            unlockedAt: new Date().toISOString(),
-          };
+            unlockedAt: new Date(),
+          } as Achievement;
 
           newAchievements.push(achievement);
         }
@@ -327,17 +328,17 @@ export function useGamification(userId: string): UseGamificationReturn {
         const updatedStats: UserStats = {
           ...userProgress.stats,
           // Direct access is safe after UserStats is fixed
-          pageViews: { ...userProgress.stats.pageViews }, 
-          events: { ...userProgress.stats.events }
+          pageViews: { ...userProgress.stats?.pageViews }, 
+          events: { ...userProgress.stats?.events }
         };
         
         // Handle different event types
         if (eventType === 'page_view') {
           const page = (data.page as string) || 'unknown';
-          updatedStats.pageViews[page] = (updatedStats.pageViews[page] || 0) + 1;
+          updatedStats.pageViews![page] = (updatedStats.pageViews![page] || 0) + 1;
         } else {
            // Track custom events
-           updatedStats.events[eventType] = (updatedStats.events[eventType] || 0) + 1;
+           updatedStats.events![eventType] = (updatedStats.events![eventType] || 0) + 1;
         }
 
         let updatedProgress: UserProgress = {
@@ -401,9 +402,12 @@ export function useGamification(userId: string): UseGamificationReturn {
               userId,
               totalPoints: 0,
               level: 1,
-              experiencePoints: 0,
-              experienceToNextLevel: LEVEL_THRESHOLDS[0] || 100,
+              currentLevel: 1,
+              currentPoints: 0,
+              pointsToNextLevel: LEVEL_THRESHOLDS[0] || 100,
               badges: [],
+              achievements: [],
+              streak: 0,
               streaks: {
                 loginStreak: 0,
                 learningStreak: 0,

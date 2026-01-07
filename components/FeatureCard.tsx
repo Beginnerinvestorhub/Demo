@@ -33,7 +33,7 @@ export default function FeatureCard({
   linkText,
 }: FeatureCardProps) {
   const sizedIcon = isValidElement(icon)
-    ? cloneElement(icon, {
+    ? cloneElement(icon as React.ReactElement<any>, {
         className: `h-5 w-5 ${iconColorClasses[color]}`,
         'aria-hidden': true,
       })

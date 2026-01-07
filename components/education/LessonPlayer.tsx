@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import ReactPlayer from 'react-player/lazy';
 import Quiz from './Quiz';
 import axios from 'axios';
 import { useAuth } from '../../hooks/useAuth';
@@ -49,13 +48,16 @@ export default function LessonPlayer({
     <div className="space-y-6">
       {videoUrl && (
         <div className="w-full aspect-video rounded-lg overflow-hidden shadow">
-          <ReactPlayer
-            url={videoUrl}
-            controls
+          <video
+            src={videoUrl}
+            controls={true}
             width="100%"
             height="400px"
             onEnded={() => setQuizUnlocked(true)}
-          />
+            className="rounded-lg"
+          >
+            Your browser does not support the video tag.
+          </video>
         </div>
       )}
 

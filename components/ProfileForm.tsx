@@ -1,15 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { profileValidationSchema } from '../lib/validationSchemas';
+import { simpleProfileValidationSchema } from '../lib/validationSchemas';
 import { useAuth } from '../hooks/useAuth'; // Assuming a hook that provides the Firebase user
 import axios from 'axios'; // Using axios as in the original component
 
 interface ProfileFormData {
   firstName: string;
   lastName: string;
-  riskTolerance: 'conservative' | 'moderate' | 'aggressive' | '';
-  goals?: string;
+  email: string;
+  phone?: string;
+  bio?: string;
+  riskTolerance: 'conservative' | 'moderate' | 'aggressive';
+  investmentGoals?: string[];
+  timeHorizon?: 'short_term' | 'medium_term' | 'long_term';
 }
 
 const riskOptions = [
@@ -31,13 +35,17 @@ export default function ProfileForm() {
     reset,
     formState: { errors, isSubmitting, isValid },
   } = useForm<ProfileFormData>({
-    resolver: yupResolver(profileValidationSchema),
+    resolver: yupResolver(simpleProfileValidationSchema),
     mode: 'onChange', // Validate on change for immediate feedback
     defaultValues: {
       firstName: '',
       lastName: '',
-      riskTolerance: '',
-      goals: '',
+      email: user?.email || '',
+      phone: '',
+      bio: '',
+      riskTolerance: 'conservative',
+      investmentGoals: [],
+      timeHorizon: undefined,
     },
   });
 
@@ -57,8 +65,12 @@ export default function ProfileForm() {
         reset({
           firstName: data.firstName || '',
           lastName: data.lastName || '',
-          riskTolerance: data.riskTolerance || '',
-          goals: data.goals || '',
+          email: data.email || user?.email || '',
+          phone: data.phone || '',
+          bio: data.bio || '',
+          riskTolerance: data.riskTolerance || 'conservative',
+          investmentGoals: data.investmentGoals || [],
+          timeHorizon: data.timeHorizon,
         });
       } catch (error) {
         setStatusMessage({ type: 'error', message: 'Failed to load profile.' });
@@ -87,8 +99,8 @@ export default function ProfileForm() {
       // No need to reset(data) here as formState.isDirty will be reset by react-hook-form automatically
     } catch (error: unknown) {
       const message =
-        error instanceof Error && 'response' in error && error.response?.data?.message
-          ? (error.response.data as { message: string }).message
+        error instanceof Error && 'response' in error && (error as any).response?.data?.message
+          ? ((error as any).response.data as { message: string }).message
           : 'An unexpected error occurred.';
       setStatusMessage({ type: 'error', message });
     }
@@ -171,20 +183,20 @@ export default function ProfileForm() {
         </div>
         <div>
           <label
-            htmlFor="goals"
+            htmlFor="investmentGoals"
             className="block text-sm font-medium text-gray-700"
           >
             Investment Goals (Optional)
           </label>
           <textarea
-            id="goals"
-            {...register('goals')}
+            id="investmentGoals"
+            {...register('investmentGoals')}
             rows={3}
-            className={`mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 ${errors.goals ? 'border-red-500' : ''}`}
+            className={`mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 ${errors.investmentGoals ? 'border-red-500' : ''}`}
             disabled={isSubmitting}
           />
-          {errors.goals && (
-            <p className="mt-1 text-sm text-red-600">{errors.goals.message}</p>
+          {errors.investmentGoals && (
+            <p className="mt-1 text-sm text-red-600">{errors.investmentGoals.message}</p>
           )}
         </div>
         <button

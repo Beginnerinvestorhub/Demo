@@ -13,7 +13,7 @@ import {
   useLearningStats,
   useLearningLoading,
   useLearningError,
-} from '../../store/learningStore';
+  } from '../../store/learningStore';
 import {
   PlayIcon,
   ClockIcon,
@@ -374,7 +374,7 @@ const PersonalizedLearningDashboard: React.FC = () => {
                 <div className="space-y-3">
                   {aiRecommendations.recommendedContent
                     .slice(0, 3)
-                    .map(content => (
+                    .map((content: any) => (
                       <div
                         key={content.id}
                         className="p-3 border border-gray-200 rounded-lg hover:border-indigo-300 transition-colors"

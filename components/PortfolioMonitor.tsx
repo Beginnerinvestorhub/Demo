@@ -192,7 +192,7 @@ const PortfolioMonitor = React.memo(function PortfolioMonitor() {
               <div>
                 <div className="text-gray-600">Volatility</div>
                 <div className="font-semibold text-blue-900">
-                  {(riskMetrics.volatility * 100).toFixed(2)}%
+                  {(Number(riskMetrics.volatility) * 100).toFixed(2)}%
                 </div>
               </div>
             )}
@@ -200,7 +200,7 @@ const PortfolioMonitor = React.memo(function PortfolioMonitor() {
               <div>
                 <div className="text-gray-600">VaR (95%)</div>
                 <div className="font-semibold text-blue-900">
-                  ${riskMetrics.var_95.toFixed(2)}
+                  ${Number(riskMetrics.var_95).toFixed(2)}
                 </div>
               </div>
             )}
@@ -208,7 +208,7 @@ const PortfolioMonitor = React.memo(function PortfolioMonitor() {
               <div>
                 <div className="text-gray-600">Sharpe Ratio</div>
                 <div className="font-semibold text-blue-900">
-                  {riskMetrics.sharpe_ratio.toFixed(2)}
+                  {Number(riskMetrics.sharpe_ratio).toFixed(2)}
                 </div>
               </div>
             )}
@@ -216,7 +216,7 @@ const PortfolioMonitor = React.memo(function PortfolioMonitor() {
               <div>
                 <div className="text-gray-600">Max Drawdown</div>
                 <div className="font-semibold text-blue-900">
-                  {(riskMetrics.max_drawdown * 100).toFixed(2)}%
+                  ${(Number(riskMetrics.max_drawdown) * 100).toFixed(2)}%
                 </div>
               </div>
             )}

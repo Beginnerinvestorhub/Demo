@@ -1,5 +1,5 @@
 import { useEffect, useState, useCallback } from 'react';
-import { isDemo } from '@/lib/env';
+import { isDemo } from '../lib/env';
 import {
   User,
   onAuthStateChanged,
@@ -35,6 +35,9 @@ export function useAuth(): AuthState {
         providerData: [],
         refreshToken: '',
         tenantId: null,
+        phoneNumber: null,
+        photoURL: null,
+        providerId: 'demo',
         delete: async () => {},
         getIdToken: async () => 'demo-token',
         getIdTokenResult: async () => ({
@@ -43,16 +46,17 @@ export function useAuth(): AuthState {
           issuedAtTime: new Date().toISOString(),
           expirationTime: new Date().toISOString(),
           signInProvider: 'demo',
+          signInSecondFactor: null,
           claims: { role: 'user' }
-        }),
+        } as any),
         reload: async () => {},
         toJSON: () => ({})
       } as User,
       loading: false,
       role: 'user',
       error: null,
-      login: async () => ({ user: null } as UserCredential),
-      signup: async () => ({ user: null } as UserCredential),
+      login: async () => ({ user: null, providerId: 'demo', operationType: 'signIn' } as unknown as UserCredential),
+      signup: async () => ({ user: null, providerId: 'demo', operationType: 'signIn' } as unknown as UserCredential),
       logout: async () => {}
     };
   }

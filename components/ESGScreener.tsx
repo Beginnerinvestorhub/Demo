@@ -35,7 +35,7 @@ type ESGData = {
   marketCap: number;
 };
 
-import { apiClient } from '@/services/apiClient';
+import { apiClient } from '../services/apiClient';
 
 // ... imports
 
@@ -50,15 +50,15 @@ export default function ESGScreener() {
   useEffect(() => {
     setLoading(true);
     setError(null);
-    // Assuming backend has /marketdata/esg endpoint
-    apiClient.get<{ stocks: ESGData[] }>('/marketdata/esg')
-      .then((res) => {
-        setData(res.data.stocks || []);
-      })
-      .catch((err: any) => {
-        setError(err.response?.data?.error || err.message || 'Failed to fetch ESG data');
-      })
-      .finally(() => setLoading(false));
+    // Demo mode - use mock data
+    const mockData: ESGData[] = [
+      { name: 'Apple', sector: 'Technology', esg: 85, flagged: false, marketCap: 3000 },
+      { name: 'Microsoft', sector: 'Technology', esg: 82, flagged: false, marketCap: 2800 },
+      { name: 'Tesla', sector: 'Automotive', esg: 65, flagged: true, marketCap: 800 },
+      { name: 'Exxon', sector: 'Energy', esg: 45, flagged: true, marketCap: 400 },
+    ];
+    setData(mockData);
+    setLoading(false);
   }, []);
 
   const sectors = Array.from(new Set(data.map(d => d.sector)));

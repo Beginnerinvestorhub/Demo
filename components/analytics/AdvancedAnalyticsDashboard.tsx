@@ -4,7 +4,7 @@
  */
 
 import React, { useState, useEffect, useCallback } from 'react';
-import { isDemo } from '@/lib/env';
+import { isDemo } from '../../lib/env';
 import {
   ChartBarIcon,
   UserGroupIcon,

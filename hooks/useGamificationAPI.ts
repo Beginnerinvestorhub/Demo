@@ -1,7 +1,7 @@
 // Simplified gamification hook with backend API integration
 import { useState, useEffect, useCallback } from 'react';
 import { useAuth } from './useAuth';
-import { apiClient } from '@/services/apiClient';
+import { apiClient } from '../services/apiClient';
 
 // Types
 interface UserProgress {

@@ -4,8 +4,8 @@
  */
 
 import React, { useEffect, useRef, ReactNode } from 'react';
-import { initializeStores, resetAllStores, checkStoreHealth } from '../store';
-import { useAuth, useUI, showErrorNotification } from '../store';
+import { initializeStores, resetAllStores, checkStoreHealth, useUI, showErrorNotification } from '../store';
+import { useAuth } from '../hooks/useAuth';
 
 interface StateProviderProps {
   children: ReactNode;
@@ -29,7 +29,7 @@ export const useStateProvider = () => {
 
 export const StateProvider: React.FC<StateProviderProps> = ({ children }) => {
   const cleanupRef = useRef<(() => void) | null>(null);
-  const { isAuthenticated, error: authError } = useAuth();
+  const { user, error: authError } = useAuth();
   const { showNotification } = useUI();
 
   // Initialize stores on mount
@@ -43,16 +43,7 @@ export const StateProvider: React.FC<StateProviderProps> = ({ children }) => {
       }
     } catch (error) {
       console.error('Failed to initialize stores:', error);
-      showErrorNotification(
-        'Initialization Error',
-        'Failed to initialize application state. Please refresh the page.',
-        [
-          {
-            label: 'Refresh',
-            action: () => window.location.reload(),
-          },
-        ]
-      );
+      showErrorNotification('Failed to initialize application state. Please refresh the page.');
     }
 
     // Cleanup on unmount
@@ -67,21 +58,16 @@ export const StateProvider: React.FC<StateProviderProps> = ({ children }) => {
   // Handle authentication errors
   useEffect(() => {
     if (authError) {
-      showErrorNotification('Authentication Error', authError, [
-        {
-          label: 'Retry',
-          action: () => window.location.reload(),
-        },
-      ]);
+      showErrorNotification(typeof authError === 'string' ? authError : 'Authentication error occurred');
     }
   }, [authError, showNotification]);
 
   // Handle authentication state changes
   useEffect(() => {
     if (process.env.NODE_ENV === 'development') {
-      console.log('🔐 Authentication state changed:', { isAuthenticated });
+      console.log('🔐 Authentication state changed:', { isAuthenticated: !!user });
     }
-  }, [isAuthenticated]);
+  }, [user]);
 
   // Context value
   const contextValue: StateProviderContextValue = {

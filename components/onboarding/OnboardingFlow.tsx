@@ -5,7 +5,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { useLearningStore } from '../../src/store/learningStore';
+import { useLearningStore } from '../../store/learningStore';
 import { useAuth } from '../../hooks/useAuth';
 import VarkAssessment from './VarkAssessment';
 import VarkResultDisplay from './VarkResultDisplay'; // Import VarkResultDisplay
@@ -75,13 +75,13 @@ const OnboardingFlow: React.FC<OnboardingFlowProps> = ({ onComplete }) => {
 
   const handleNext = () => {
     if (onboardingStep < 5) {
-      completeOnboardingStep(onboardingStep);
+      completeOnboardingStep();
     }
   };
 
   const handleBack = () => {
     if (onboardingStep > 1) {
-      completeOnboardingStep(onboardingStep - 2);
+      completeOnboardingStep('back');
     }
   };
 
@@ -382,11 +382,11 @@ const OnboardingFlow: React.FC<OnboardingFlowProps> = ({ onComplete }) => {
       case 5:
         return (
           <VarkAssessment
-            userId={user.id}
+            userId={user?.uid || 'demo-user'}
             onComplete={(result) => {
               setVarkResult(result); // Store the full result
               updateFormData('learningStyle', result.primary_vark_preference); // Store primary preference
-              completeOnboardingStep(5); // Move to next step (VARK results display)
+              completeOnboardingStep(); // Move to next step (VARK results display)
             }}
           />
         );

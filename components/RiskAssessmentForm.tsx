@@ -32,9 +32,9 @@ interface RiskAssessmentData {
   primary_goal: string;
 }
 
-const initialState = {
+const initialState: Partial<RiskAssessmentData> = {
   // Step 1: Personal Details
-  age: '',
+  age: 0,
   gender: '',
   marital_status: '',
   employment_status: '',
@@ -42,18 +42,18 @@ const initialState = {
   region: '',
   is_immigrant: false,
   // Step 2: Financial Profile
-  income: '',
-  assets: '',
-  liabilities: '',
-  expenses: '',
-  credit_score: '',
+  income: 0,
+  assets: 0,
+  liabilities: 0,
+  expenses: 0,
+  credit_score: 0,
   // Step 3: Behavior & Goals
   investment_experience: 5,
   risk_tolerance: 5,
   market_volatility: 0,
   industry_risk: 0,
   economic_outlook: 0,
-  dependents: '',
+  dependents: 0,
   education_level: '',
   primary_goal: '',
 };
@@ -84,23 +84,7 @@ export default function RiskAssessmentForm({
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onSubmit({
-      ...form,
-      age: Number(form.age),
-      income: Number(form.income),
-      assets: Number(form.assets),
-      liabilities: Number(form.liabilities),
-      expenses: Number(form.expenses),
-      credit_score: Number(form.credit_score),
-      investment_experience: Number(form.investment_experience),
-      risk_tolerance: Number(form.risk_tolerance),
-      market_volatility: Number(form.market_volatility),
-      industry_risk: Number(form.industry_risk),
-      economic_outlook: Number(form.economic_outlook),
-      dependents: Number(form.dependents),
-      is_retired: Boolean(form.is_retired),
-      is_immigrant: Boolean(form.is_immigrant),
-    });
+    onSubmit(form as RiskAssessmentData);
   };
 
   return (
