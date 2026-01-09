@@ -2,9 +2,9 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { useAuth } from '../hooks/useAuth';
 import { useOnboardingCompleted } from '../src/store/learningStore';
-import { mechanicaLayout } from '../components/layout/mechanicaLayout';
-import { mechanicaCard } from '../components/ui/mechanicaCard';
-import { mechanicaGear } from '../components/ui/mechanicaGear';
+import { MechanicaLayout } from '../components/layout/mechanicaLayout';
+import { MechanicaCard } from '../components/ui/mechanicaCard';
+import { MechanicaGear } from '../components/ui/mechanicaGear';
 import OnboardingFlow from '../components/onboarding/OnboardingFlow';
 
 export default function OnboardingPage() {
@@ -37,10 +37,10 @@ export default function OnboardingPage() {
   // Show loading while checking auth state
   if (loading || isRedirecting) {
     return (
-      <mechanicaLayout title="Loading Onboarding | Beginner Investor Hub">
+      <MechanicaLayout title="Loading Onboarding | Beginner Investor Hub">
         <div className="min-h-screen flex items-center justify-center">
           <div className="text-center space-y-4">
-            <mechanicaGear size="large" color="steel" speed="medium" />
+            <MechanicaGear size="large" color="steel" speed="medium" />
             <p className="mechanica-text-technical text-gray-600">
               {isRedirecting
                 ? 'Redirecting...'
@@ -48,7 +48,7 @@ export default function OnboardingPage() {
             </p>
           </div>
         </div>
-      </mechanicaLayout>
+      </MechanicaLayout>
     );
   }
 
@@ -58,7 +58,7 @@ export default function OnboardingPage() {
   }
 
   return (
-    <mechanicaLayout 
+    <MechanicaLayout
       title="Welcome - Set Up Your Learning Path | Beginner Investor Hub"
       description="Personalize your investment learning journey with our AI-powered onboarding process."
     >
@@ -68,7 +68,7 @@ export default function OnboardingPage() {
           <div className="container mx-auto px-4">
             <div className="flex justify-between items-center">
               <div className="flex items-center space-x-4">
-                <mechanicaGear size="large" color="brass" speed="slow" />
+                <MechanicaGear size="large" color="brass" speed="slow" />
                 <div>
                   <div className="text-2xl font-bold mechanica-heading-professional text-mechanica-moonlight-blue">
                     BeginnerInvestorHub
@@ -78,11 +78,11 @@ export default function OnboardingPage() {
                   </div>
                 </div>
               </div>
-              
+
               <div className="flex items-center space-x-2">
-                <mechanicaGear size="small" color="steel" />
+                <MechanicaGear size="small" color="steel" />
                 <span className="text-sm text-gray-500 mechanica-text-technical">Onboarding</span>
-                <mechanicaGear size="small" color="copper" speed="reverse" />
+                <MechanicaGear size="small" color="copper" speed="reverse" />
               </div>
             </div>
           </div>
@@ -91,24 +91,24 @@ export default function OnboardingPage() {
         {/* Onboarding Flow */}
         <main className="py-12 bg-gray-100">
           <div className="container mx-auto px-4">
-            <mechanicaCard variant="mechanical" animated className="max-w-4xl mx-auto">
+            <MechanicaCard variant="mechanical" animated className="max-w-4xl mx-auto">
               <div className="p-8">
                 <div className="text-center mb-8">
                   <div className="flex justify-center items-center space-x-4 mb-6">
-                    <mechanicaGear size="large" color="brass" speed="slow" />
+                    <MechanicaGear size="large" color="brass" speed="slow" />
                     <h2 className="text-3xl font-bold mechanica-heading-professional">
                       Set Up Your Precision Learning Path
                     </h2>
-                    <mechanicaGear size="large" color="brass" speed="reverse" />
+                    <MechanicaGear size="large" color="brass" speed="reverse" />
                   </div>
                   <p className="text-gray-600 mechanica-text-technical">
                     Let&apos;s personalize your investment education journey with our mechanically-engineered approach
                   </p>
                 </div>
-                
+
                 <OnboardingFlow onComplete={handleOnboardingComplete} />
               </div>
-            </mechanicaCard>
+            </MechanicaCard>
           </div>
         </main>
 
@@ -117,16 +117,16 @@ export default function OnboardingPage() {
           <div className="container mx-auto px-4">
             <div className="text-center">
               <div className="flex items-center justify-center space-x-4 mb-4">
-                <mechanicaGear size="small" color="steel" speed="medium" />
+                <MechanicaGear size="small" color="steel" speed="medium" />
                 <p className="text-gray-600 mechanica-text-technical">
                   You can always update these preferences later in your account settings
                 </p>
-                <mechanicaGear size="small" color="steel" speed="reverse" />
+                <MechanicaGear size="small" color="steel" speed="reverse" />
               </div>
             </div>
           </div>
         </footer>
       </div>
-    </mechanicaLayout>
+    </MechanicaLayout>
   );
 }

@@ -1,10 +1,10 @@
 import React from 'react';
 import Link from 'next/link';
 import { useAuth } from '../hooks/useAuth';
-import { mechanicaLayout } from '../components/layout/mechanicaLayout';
-import { mechanicaCard } from '../components/ui/mechanicaCard';
-import { mechanicaButton } from '../components/ui/mechanicaButton';
-import { mechanicaGear } from '../components/ui/mechanicaGear';
+import { MechanicaLayout } from '../components/layout/mechanicaLayout';
+import { MechanicaCard } from '../components/ui/mechanicaCard';
+import { MechanicaButton } from '../components/ui/mechanicaButton';
+import { MechanicaGear } from '../components/ui/mechanicaGear';
 
 const tools = [
   {
@@ -117,7 +117,7 @@ export default function ToolsOverview() {
       : tools.filter(tool => tool.category === activeCategory);
 
   return (
-    <mechanicaLayout 
+    <MechanicaLayout
       title="Investment Tools | Beginner Investor Hub"
       description="Explore our comprehensive suite of investment tools: portfolio simulation, AI coaching, risk analysis, market data, and more."
     >
@@ -128,15 +128,15 @@ export default function ToolsOverview() {
             <Link href="/" className="inline-block text-blue-100 hover:text-white mb-6 transition-colors mechanica-text-technical">
               ← Back to Home
             </Link>
-            
+
             <div className="flex justify-center items-center space-x-6 mb-8">
-              <mechanicaGear size="xl" color="brass" speed="slow" />
+              <MechanicaGear size="xl" color="brass" speed="slow" />
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mechanica-heading-professional text-white">
                 Investment Tools
               </h1>
-              <mechanicaGear size="xl" color="brass" speed="reverse" />
+              <MechanicaGear size="xl" color="brass" speed="reverse" />
             </div>
-            
+
             <p className="text-xl md:text-2xl text-blue-100 mb-8 max-w-3xl mx-auto font-light mechanica-text-technical">
               Precision-engineered tools to accelerate your investing mastery
             </p>
@@ -145,7 +145,7 @@ export default function ToolsOverview() {
       </section>
 
       {/* Content */}
-      <section className="Ordinatus-section Ordinatus-section-light py-12">
+      <section className="py-12 bg-white">
         <div className="container mx-auto px-4">
           {/* Category Filter */}
           <div className="flex justify-center mb-12">
@@ -154,11 +154,10 @@ export default function ToolsOverview() {
                 <button
                   key={category}
                   onClick={() => setActiveCategory(category)}
-                  className={`px-6 py-3 rounded-md font-medium transition-all ${
-                    activeCategory === category
-                      ? 'bg-mechanica-moonlight-blue text-white shadow-lg'
-                      : 'text-gray-600 hover:text-mechanica-moonlight-blue mechanica-text-technical'
-                  }`}
+                  className={`px-6 py-3 rounded-md font-medium transition-all ${activeCategory === category
+                    ? 'bg-mechanica-moonlight-blue text-white shadow-lg'
+                    : 'text-gray-600 hover:text-mechanica-moonlight-blue mechanica-text-technical'
+                    }`}
                 >
                   {category}
                 </button>
@@ -169,10 +168,10 @@ export default function ToolsOverview() {
           {/* Tools Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
             {filteredTools.map(tool => (
-              <mechanicaCard 
-                key={tool.name} 
-                variant={tool.category === 'Core Tools' ? 'mechanical' : tool.category === 'Research' ? 'wood' : 'brass'} 
-                animated 
+              <MechanicaCard
+                key={tool.name}
+                variant={tool.category === 'Core Tools' ? 'mechanical' : tool.category === 'Research' ? 'wood' : 'brass'}
+                animated
                 gearDecoration
                 className="relative"
               >
@@ -186,9 +185,9 @@ export default function ToolsOverview() {
 
                 <div className="p-6">
                   <div className="flex justify-center mb-6">
-                    <mechanicaGear size="large" color={tool.gearColor} speed="medium" />
+                    <MechanicaGear size="large" color={tool.gearColor} speed="medium" />
                   </div>
-                  
+
                   <div className="text-center mb-4">
                     <div className="text-4xl mb-4">{tool.icon}</div>
                     <h3 className="text-2xl font-bold mb-3 mechanica-heading-professional">
@@ -213,62 +212,62 @@ export default function ToolsOverview() {
                     {tool.status === 'active' ? (
                       user ? (
                         <Link href={tool.href}>
-                          <mechanicaButton variant="mechanical" size="lg" className="w-full">
+                          <MechanicaButton variant="mechanical" size="lg" className="w-full">
                             Launch Tool
-                          </mechanicaButton>
+                          </MechanicaButton>
                         </Link>
                       ) : (
                         <Link href="/signup">
-                          <mechanicaButton variant="wood" size="lg" className="w-full">
+                          <MechanicaButton variant="wood" size="lg" className="w-full">
                             Sign Up to Access
-                          </mechanicaButton>
+                          </MechanicaButton>
                         </Link>
                       )
                     ) : (
-                      <mechanicaButton variant="wood" size="lg" className="w-full" disabled>
+                      <MechanicaButton variant="wood" size="lg" className="w-full" disabled>
                         Coming Soon
-                      </mechanicaButton>
+                      </MechanicaButton>
                     )}
                   </div>
                 </div>
-              </mechanicaCard>
+              </MechanicaCard>
             ))}
           </div>
 
           {/* CTA Section */}
           {!user && (
-            <mechanicaCard variant="mechanical" className="text-center">
+            <MechanicaCard variant="mechanical" className="text-center">
               <div className="p-12">
                 <div className="flex justify-center items-center space-x-6 mb-8">
-                  <mechanicaGear size="large" color="brass" speed="slow" />
+                  <MechanicaGear size="large" color="brass" speed="slow" />
                   <h2 className="text-3xl font-bold mechanica-heading-professional text-mechanica-text-primary">
                     Ready to Start Building?
                   </h2>
-                  <mechanicaGear size="large" color="brass" speed="reverse" />
+                  <MechanicaGear size="large" color="brass" speed="reverse" />
                 </div>
-                
+
                 <p className="text-xl text-mechanica-moonlight-blue mb-8 mechanica-text-technical">
                   Create a free account to access all our investment tools and
                   start your learning journey.
                 </p>
-                
+
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Link href="/signup">
-                    <mechanicaButton variant="mechanical" size="lg">
+                    <MechanicaButton variant="mechanical" size="lg">
                       Create Free Account
-                    </mechanicaButton>
+                    </MechanicaButton>
                   </Link>
                   <Link href="/login">
-                    <mechanicaButton variant="wood" size="lg">
+                    <MechanicaButton variant="wood" size="lg">
                       Sign In
-                    </mechanicaButton>
+                    </MechanicaButton>
                   </Link>
                 </div>
               </div>
-            </mechanicaCard>
+            </MechanicaCard>
           )}
         </div>
       </section>
-    </mechanicaLayout>
+    </MechanicaLayout>
   );
 }

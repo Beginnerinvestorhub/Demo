@@ -1,12 +1,12 @@
 import React from 'react';
 import FractionalShareCalculator from '../components/FractionalShareCalculator';
-import { OrdinatusLayout } from '../components/layout/OrdinatusLayout';
-import { OrdinatusCard } from '../components/ui/OrdinatusCard';
-import { OrdinatusGear } from '../components/ui/OrdinatusGear';
+import { MechanicaLayout } from '../components/layout/mechanicaLayout';
+import { MechanicaCard } from '../components/ui/mechanicaCard';
+import { MechanicaGear } from '../components/ui/mechanicaGear';
 
 export default function FractionalShareCalculatorPage() {
   return (
-    <OrdinatusLayout 
+    <MechanicaLayout
       title="Fractional Share Calculator | BeginnerInvestorHub"
       description="Calculate how much of a stock you can buy with any amount."
     >
@@ -21,31 +21,31 @@ export default function FractionalShareCalculatorPage() {
           }}
         ></div>
 
-        <div className="Ordinatus-container relative z-10 max-w-5xl mx-auto py-12">
+        <div className="container mx-auto px-4 relative z-10 max-w-5xl mx-auto py-12">
           {/* Hero Section with Mechanical Elements */}
           <div className="text-center mb-12 relative">
             {/* Decorative Mechanical Gears */}
             <div className="absolute -top-6 left-8">
-              <OrdinatusGear size="lg" color="steel" speed="slow" />
+              <MechanicaGear size="lg" color="steel" speed="slow" />
             </div>
             <div className="absolute top-0 right-12">
-              <OrdinatusGear size="xl" color="brass" speed="reverse" />
+              <MechanicaGear size="xl" color="brass" speed="reverse" />
             </div>
             <div className="absolute top-16 right-2">
-              <OrdinatusGear size="md" color="copper" speed="medium" />
+              <MechanicaGear size="md" color="copper" speed="medium" />
             </div>
 
             <div className="flex justify-center items-center space-x-6 mb-8">
-              <OrdinatusGear size="xl" color="steel" speed="slow" />
-              <h1 className="text-4xl md:text-5xl font-bold Ordinatus-heading-primary text-Ordinatus-moonlight-blue">
+              <MechanicaGear size="xl" color="steel" speed="slow" />
+              <h1 className="text-4xl md:text-5xl font-bold mechanica-heading-professional text-mechanica-moonlight-blue">
                 Fractional Share Calculator
               </h1>
-              <OrdinatusGear size="xl" color="steel" speed="reverse" />
+              <MechanicaGear size="xl" color="steel" speed="reverse" />
             </div>
-            
-            <div className="w-24 h-1 bg-Ordinatus-brass-gold mx-auto mb-6"></div>
-            <p className="text-lg text-gray-700 max-w-3xl mx-auto leading-relaxed Ordinatus-text-body">
-              <span className="font-semibold text-Ordinatus-moonlight-blue">
+
+            <div className="w-24 h-1 bg-mechanica-polished-brass mx-auto mb-6"></div>
+            <p className="text-lg text-gray-700 max-w-3xl mx-auto leading-relaxed mechanica-text-technical">
+              <span className="font-semibold text-mechanica-moonlight-blue">
                 Precision Engineering Tool:
               </span>{' '}
               Enter an investment amount and stock price to construct your
@@ -56,34 +56,34 @@ export default function FractionalShareCalculatorPage() {
 
           {/* Calculator Feature Badges */}
           <div className="mb-8 flex flex-wrap items-center justify-center gap-4">
-            <OrdinatusCard variant="default" className="inline-flex items-center px-4 py-2">
-              <div className="w-5 h-5 text-Ordinatus-moonlight-blue mr-2">🧮</div>
-              <span className="text-sm text-gray-700 font-medium Ordinatus-text-technical">Precision Calculator</span>
-            </OrdinatusCard>
+            <MechanicaCard variant="default" className="inline-flex items-center px-4 py-2">
+              <div className="w-5 h-5 text-mechanica-moonlight-blue mr-2">🧮</div>
+              <span className="text-sm text-gray-700 font-medium mechanica-text-technical">Precision Calculator</span>
+            </MechanicaCard>
 
-            <OrdinatusCard variant="metallic" className="inline-flex items-center px-4 py-2">
+            <MechanicaCard variant="mechanical" className="inline-flex items-center px-4 py-2">
               <div className="w-5 h-5 text-green-600 mr-2">💰</div>
-              <span className="text-sm text-gray-700 font-medium Ordinatus-text-technical">Broker Comparison</span>
-            </OrdinatusCard>
+              <span className="text-sm text-gray-700 font-medium mechanica-text-technical">Broker Comparison</span>
+            </MechanicaCard>
 
-            <OrdinatusCard variant="wood" className="inline-flex items-center px-4 py-2">
-              <div className="w-5 h-5 text-Ordinatus-brass-gold mr-2">📊</div>
-              <span className="text-sm text-gray-700 font-medium Ordinatus-text-technical">Visual Analytics</span>
-            </OrdinatusCard>
+            <MechanicaCard variant="wood" className="inline-flex items-center px-4 py-2">
+              <div className="w-5 h-5 text-mechanica-polished-brass mr-2">📊</div>
+              <span className="text-sm text-gray-700 font-medium mechanica-text-technical">Visual Analytics</span>
+            </MechanicaCard>
           </div>
 
           {/* Main Calculator Card */}
-          <OrdinatusCard variant="professional" animated>
+          <MechanicaCard variant="default" animated className="bg-gray-900 border-gray-800">
             <div className="p-8">
               {/* Calculator Header */}
-              <div className="mb-8 pb-6 border-b border-gray-200">
+              <div className="mb-8 pb-6 border-b border-gray-700">
                 <div className="flex items-center space-x-3 mb-4">
-                  <OrdinatusGear size="md" color="brass" speed="slow" />
-                  <h2 className="text-2xl font-bold Ordinatus-heading-secondary text-white">
+                  <MechanicaGear size="md" color="brass" speed="slow" />
+                  <h2 className="text-2xl font-bold mechanica-heading-professional text-white">
                     🔧 Component Calculation Engine
                   </h2>
                 </div>
-                <p className="text-blue-100 Ordinatus-text-body">
+                <p className="text-blue-100 mechanica-text-technical">
                   Configure your investment parameters below to construct your
                   fractional share specifications.
                 </p>
@@ -92,19 +92,19 @@ export default function FractionalShareCalculatorPage() {
               {/* Calculator Component */}
               <FractionalShareCalculator />
             </div>
-          </OrdinatusCard>
+          </MechanicaCard>
 
           {/* How It Works - Assembly Instructions */}
-          <OrdinatusCard variant="wood" animated className="mt-12 bg-gradient-to-br from-blue-50 to-white">
+          <MechanicaCard variant="wood" animated className="mt-12 bg-gradient-to-br from-blue-50 to-white">
             <div className="p-8">
               <div className="mb-6">
                 <div className="flex items-center space-x-3 mb-4">
-                  <OrdinatusGear size="md" color="steel" speed="medium" />
-                  <h3 className="text-xl font-bold Ordinatus-heading-secondary text-Ordinatus-moonlight-blue">
+                  <MechanicaGear size="md" color="steel" speed="medium" />
+                  <h3 className="text-xl font-bold mechanica-heading-professional text-mechanica-moonlight-blue">
                     📐 Assembly Instructions
                   </h3>
                 </div>
-                <p className="text-gray-600 Ordinatus-text-body">
+                <p className="text-gray-600 mechanica-text-technical">
                   Follow these steps to construct your fractional share
                   calculation:
                 </p>
@@ -112,18 +112,18 @@ export default function FractionalShareCalculatorPage() {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 {/* Step 1 */}
                 <div className="relative pl-8">
-                  <div className="absolute left-0 top-0 w-6 h-6 bg-Ordinatus-moonlight-blue text-white rounded-full flex items-center justify-center text-sm font-bold">1</div>
+                  <div className="absolute left-0 top-0 w-6 h-6 bg-mechanica-moonlight-blue text-white rounded-full flex items-center justify-center text-sm font-bold">1</div>
                   <div className="font-semibold text-gray-900 mb-1">Input Specifications</div>
-                  <p className="text-sm text-gray-600 Ordinatus-text-body">
+                  <p className="text-sm text-gray-600 mechanica-text-technical">
                     Enter your investment amount and target stock price into the
                     calculation engine.
                   </p>
                 </div>
                 {/* Step 2 */}
                 <div className="relative pl-8">
-                  <div className="absolute left-0 top-0 w-6 h-6 bg-Ordinatus-brass-gold text-white rounded-full flex items-center justify-center text-sm font-bold">2</div>
+                  <div className="absolute left-0 top-0 w-6 h-6 bg-mechanica-polished-brass text-white rounded-full flex items-center justify-center text-sm font-bold">2</div>
                   <div className="font-semibold text-gray-900 mb-1">Process Components</div>
-                  <p className="text-sm text-gray-600 Ordinatus-text-body">
+                  <p className="text-sm text-gray-600 mechanica-text-technical">
                     System calculates precise fractional shares and compares
                     broker fee structures.
                   </p>
@@ -132,48 +132,48 @@ export default function FractionalShareCalculatorPage() {
                 <div className="relative pl-8">
                   <div className="absolute left-0 top-0 w-6 h-6 bg-green-600 text-white rounded-full flex items-center justify-center text-sm font-bold">3</div>
                   <div className="font-semibold text-gray-900 mb-1">Deploy Results</div>
-                  <p className="text-sm text-gray-600 Ordinatus-text-body">
+                  <p className="text-sm text-gray-600 mechanica-text-technical">
                     Review visual blueprints and detailed cost analysis for
                     informed decision-making.
                   </p>
                 </div>
               </div>
             </div>
-          </OrdinatusCard>
+          </MechanicaCard>
 
           {/* Technical Specifications Footer */}
           <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
-            <OrdinatusCard variant="default" hover>
+            <MechanicaCard variant="default" animated>
               <div className="p-6">
                 <div className="flex justify-center mb-4">
-                  <OrdinatusGear size="lg" color="steel" speed="medium" />
+                  <MechanicaGear size="lg" color="steel" speed="medium" />
                 </div>
-                <div className="text-lg font-bold Ordinatus-heading-secondary text-Ordinatus-moonlight-blue mb-2">∞ Unlimited Precision</div>
-                <div className="text-sm text-gray-600 Ordinatus-text-body">Calculate any fractional amount</div>
+                <div className="text-lg font-bold mechanica-heading-professional text-mechanica-moonlight-blue mb-2">∞ Unlimited Precision</div>
+                <div className="text-sm text-gray-600 mechanica-text-technical">Calculate any fractional amount</div>
               </div>
-            </OrdinatusCard>
-            <OrdinatusCard variant="metallic" hover>
+            </MechanicaCard>
+            <MechanicaCard variant="mechanical" animated>
               <div className="p-6">
                 <div className="flex justify-center mb-4">
-                  <OrdinatusGear size="lg" color="brass" speed="slow" />
+                  <MechanicaGear size="lg" color="brass" speed="slow" />
                 </div>
-                <div className="text-lg font-bold Ordinatus-heading-secondary text-Ordinatus-moonlight-blue mb-2">💰 Cost Optimization</div>
-                <div className="text-sm text-gray-600 Ordinatus-text-body">Compare broker fee structures</div>
+                <div className="text-lg font-bold mechanica-heading-professional text-mechanica-moonlight-blue mb-2">💰 Cost Optimization</div>
+                <div className="text-sm text-gray-600 mechanica-text-technical">Compare broker fee structures</div>
               </div>
-            </OrdinatusCard>
-            <OrdinatusCard variant="wood" hover>
+            </MechanicaCard>
+            <MechanicaCard variant="wood" animated>
               <div className="p-6">
                 <div className="flex justify-center mb-4">
-                  <OrdinatusGear size="lg" color="copper" speed="reverse" />
+                  <MechanicaGear size="lg" color="copper" speed="reverse" />
                 </div>
-                <div className="text-lg font-bold Ordinatus-heading-secondary text-Ordinatus-moonlight-blue mb-2">📊 Visual Blueprints</div>
-                <div className="text-sm text-gray-600 Ordinatus-text-body">Interactive data visualization</div>
+                <div className="text-lg font-bold mechanica-heading-professional text-mechanica-moonlight-blue mb-2">📊 Visual Blueprints</div>
+                <div className="text-sm text-gray-600 mechanica-text-technical">Interactive data visualization</div>
               </div>
-            </OrdinatusCard>
+            </MechanicaCard>
           </div>
         </div>
       </div>
-    </OrdinatusLayout>
+    </MechanicaLayout>
   );
 }
 // Note: You would need to create the AnimatedGrid and DecorativeGear components 

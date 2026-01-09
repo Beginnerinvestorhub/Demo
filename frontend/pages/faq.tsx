@@ -1,8 +1,8 @@
 import React from 'react';
-import { mechanicaLayout } from '../components/layout/mechanicaLayout';
-import { mechanicaCard } from '../components/ui/mechanicaCard';
-import { mechanicaGear } from '../components/ui/mechanicaGear';
-import { mechanicaButton } from '../components/ui/mechanicaButton';
+import { MechanicaLayout } from '../components/layout/mechanicaLayout';
+import { MechanicaCard } from '../components/ui/mechanicaCard';
+import { MechanicaGear } from '../components/ui/mechanicaGear';
+import { MechanicaButton } from '../components/ui/mechanicaButton';
 
 export default function FAQ() {
   const faqs = [
@@ -41,7 +41,7 @@ export default function FAQ() {
   ];
 
   return (
-    <mechanicaLayout 
+    <MechanicaLayout
       title="Frequently Asked Questions | Beginner Investor Hub"
       description="Find answers to common questions about our investment education platform, portfolio simulation, and AI coaching features."
     >
@@ -61,20 +61,20 @@ export default function FAQ() {
           <div className="text-center mb-12 relative">
             {/* Decorative Gears */}
             <div className="absolute -top-6 left-0">
-              <mechanicaGear size="large" color="steel" speed="slow" />
+              <MechanicaGear size="large" color="steel" speed="slow" />
             </div>
             <div className="absolute top-2 right-8">
-              <mechanicaGear size="medium" color="brass" speed="reverse" />
+              <MechanicaGear size="medium" color="brass" speed="reverse" />
             </div>
 
             <div className="flex justify-center items-center space-x-6 mb-8">
-              <mechanicaGear size="xl" color="steel" speed="slow" />
+              <MechanicaGear size="xl" color="steel" speed="slow" />
               <h1 className="text-4xl md:text-5xl font-bold mechanica-heading-mechanical text-mechanica-moonlight-blue">
                 Frequently Asked Questions
               </h1>
-              <mechanicaGear size="xl" color="steel" speed="reverse" />
+              <MechanicaGear size="xl" color="steel" speed="reverse" />
             </div>
-            
+
             <div className="w-24 h-1 bg-mechanica-polished-brass mx-auto mb-6"></div>
             <p className="text-lg text-gray-700 max-w-3xl mx-auto leading-relaxed mechanica-text-technical">
               Everything you need to know about mastering investing with our precision
@@ -85,14 +85,14 @@ export default function FAQ() {
           <div className="mb-12">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {faqs.map((faq, index) => (
-                <mechanicaCard 
-                  key={index} 
+                <MechanicaCard
+                  key={index}
                   variant={index % 3 === 0 ? 'mechanical' : index % 3 === 1 ? 'brass' : 'wood'}
                   className="p-6"
                 >
                   <div className="flex items-start space-x-3">
                     <div className="flex-shrink-0 mt-1">
-                      <mechanicaGear size="small" color={index % 3 === 0 ? 'steel' : index % 3 === 1 ? 'brass' : 'copper'} speed="medium" />
+                      <MechanicaGear size="small" color={index % 3 === 0 ? 'steel' : index % 3 === 1 ? 'brass' : 'copper'} speed="medium" />
                     </div>
                     <div>
                       <h3 className="font-bold text-lg mb-3 mechanica-heading-professional text-gray-900">
@@ -103,31 +103,31 @@ export default function FAQ() {
                       </p>
                     </div>
                   </div>
-                </mechanicaCard>
+                </MechanicaCard>
               ))}
             </div>
           </div>
 
           {/* Contact CTA */}
-          <mechanicaCard variant="mechanical" animated className="text-center">
+          <MechanicaCard variant="mechanical" animated className="text-center">
             <div className="p-8">
               <div className="flex justify-center items-center space-x-3 mb-6">
-                <mechanicaGear size="medium" color="brass" speed="slow" />
+                <MechanicaGear size="medium" color="brass" speed="slow" />
                 <h2 className="text-2xl font-bold mechanica-heading-professional text-mechanica-text-primary">
                   Still have questions?
                 </h2>
-                <mechanicaGear size="medium" color="brass" speed="reverse" />
+                <MechanicaGear size="medium" color="brass" speed="reverse" />
               </div>
               <p className="text-mechanica-text-secondary mechanica-text-technical mb-6">
                 Our support team is here to help you succeed in your investing journey.
               </p>
-              <mechanicaButton variant="mechanical" className="inline-flex">
+              <MechanicaButton variant="mechanical" className="inline-flex">
                 Contact Support
-              </mechanicaButton>
+              </MechanicaButton>
             </div>
-          </mechanicaCard>
+          </MechanicaCard>
         </div>
       </div>
-    </mechanicaLayout>
+    </MechanicaLayout>
   );
 }

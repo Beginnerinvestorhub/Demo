@@ -1,9 +1,9 @@
 import React, { useState, useMemo, useCallback, useEffect } from 'react';
-import { mechanicaLayout } from '../components/layout/mechanicaLayout';
-import { mechanicaCard } from '../components/ui/mechanicaCard';
-import { mechanicaButton } from '../components/ui/mechanicaButton';
-import { mechanicaGear } from '../components/ui/mechanicaGear';
-import { mechanicaInput } from '../components/ui/mechanicaInput';
+import { MechanicaLayout } from '../components/layout/mechanicaLayout';
+import { MechanicaCard } from '../components/ui/mechanicaCard';
+import { MechanicaButton } from '../components/ui/mechanicaButton';
+import { MechanicaGear } from '../components/ui/mechanicaGear';
+import { MechanicaInput } from '../components/ui/mechanicaInput';
 import { useApiPost, useApiGet } from '../hooks/useApi'; // Import useApiGet
 
 // --- Interface/Type Definitions (kept as is) ---
@@ -24,55 +24,55 @@ interface ProfileFormData {
 }
 
 interface UserProfile extends ProfileFormData {
-    primary_vark_preference: 'visual' | 'aural' | 'read_write' | 'kinesthetic' | null;
-    vark_profile_data: {
-      visual: number;
-      aural: number;
-      read_write: number;
-      kinesthetic: number;
-    } | null;
+  primary_vark_preference: 'visual' | 'aural' | 'read_write' | 'kinesthetic' | null;
+  vark_profile_data: {
+    visual: number;
+    aural: number;
+    read_write: number;
+    kinesthetic: number;
+  } | null;
 }
 
 // --- Extracted Component Interfaces (for type safety) ---
 
 // Placeholder for an extracted component to handle a single form field group
 interface FormGroupProps extends React.PropsWithChildren {
-    label: string;
-    htmlFor?: string;
-    description?: string;
-    className?: string;
+  label: string;
+  htmlFor?: string;
+  description?: string;
+  className?: string;
 }
 
 // --- Extracted Components (defined for completeness, would be in separate files) ---
 
 const FormGroup: React.FC<FormGroupProps> = ({ label, htmlFor, description, children, className = '' }) => (
-    <div className={`flex flex-col space-y-2 ${className}`}>
-        <label htmlFor={htmlFor} className="text-sm font-medium text-gray-700 mechanica-text-technical">
-            {label}
-        </label>
-        {children}
-        {description && <p className="text-xs text-gray-500 mt-1 mechanica-text-technical">{description}</p>}
-    </div>
+  <div className={`flex flex-col space-y-2 ${className}`}>
+    <label htmlFor={htmlFor} className="text-sm font-medium text-gray-700 mechanica-text-technical">
+      {label}
+    </label>
+    {children}
+    {description && <p className="text-xs text-gray-500 mt-1 mechanica-text-technical">{description}</p>}
+  </div>
 );
 
 const ProgressHeader: React.FC<{ progress: number }> = ({ progress }) => (
-    <mechanicaCard variant="mechanical" className="mb-8">
-        <div className="p-6">
-            <div className="flex justify-between items-center mb-4">
-                <div className="flex items-center space-x-3">
-                    <mechanicaGear size="medium" color="steel" speed="medium" />
-                    <span className="text-sm font-semibold text-gray-700 mechanica-text-technical">Profile Completion</span>
-                </div>
-                <span className="text-sm font-bold text-mechanica-moonlight-blue mechanica-text-technical">{progress}%</span>
-            </div>
-            <div className="w-full bg-gray-200 rounded-full h-3">
-                <div
-                    className="bg-mechanica-moonlight-blue h-3 rounded-full transition-all duration-500 ease-out"
-                    style={{ width: `${progress}%` }}
-                ></div>
-            </div>
+  <MechanicaCard variant="mechanical" className="mb-8">
+    <div className="p-6">
+      <div className="flex justify-between items-center mb-4">
+        <div className="flex items-center space-x-3">
+          <MechanicaGear size="medium" color="steel" speed="medium" />
+          <span className="text-sm font-semibold text-gray-700 mechanica-text-technical">Profile Completion</span>
         </div>
-    </mechanicaCard>
+        <span className="text-sm font-bold text-mechanica-moonlight-blue mechanica-text-technical">{progress}%</span>
+      </div>
+      <div className="w-full bg-gray-200 rounded-full h-3">
+        <div
+          className="bg-mechanica-moonlight-blue h-3 rounded-full transition-all duration-500 ease-out"
+          style={{ width: `${progress}%` }}
+        ></div>
+      </div>
+    </div>
+  </MechanicaCard>
 );
 
 // --- Main Refactored Component ---
@@ -111,7 +111,7 @@ const getStyleDetails = (style: string | null | undefined) => { // Adjusted type
 export default function ProfileForm() {
   const [formData, setFormData] = useState<ProfileFormData>(initialFormData);
   const [success, setSuccess] = useState(false);
-  
+
   // Fetch initial profile data
   const { data: initialProfileData, loading: isLoadingInitial, error: initialLoadError } = useApiGet<UserProfile>('/api/profile');
 
@@ -143,15 +143,15 @@ export default function ProfileForm() {
     // A slightly more realistic calculation: count personal info (4) + 4 profile questions
     const relevantFields = 8;
     const personalInfoFilled = [formData.firstName, formData.lastName, formData.email, formData.phone].filter(v => v.trim() !== '').length;
-    const profileFieldsFilled = (formData.investmentGoals.length > 0 ? 1 : 0) + 
-                                (formData.experienceLevel !== 'beginner' ? 1 : 0) + 
-                                (formData.riskTolerance !== 'moderate' ? 1 : 0) + 
-                                (formData.initialCapital > 0 ? 1 : 0);
+    const profileFieldsFilled = (formData.investmentGoals.length > 0 ? 1 : 0) +
+      (formData.experienceLevel !== 'beginner' ? 1 : 0) +
+      (formData.riskTolerance !== 'moderate' ? 1 : 0) +
+      (formData.initialCapital > 0 ? 1 : 0);
 
     const calculatedProgress = Math.round(((personalInfoFilled + profileFieldsFilled) / relevantFields) * 100);
 
     // Clamp the value, or return the hardcoded 30 if you prefer static progress
-    return Math.min(100, calculatedProgress || 30); 
+    return Math.min(100, calculatedProgress || 30);
   }, [formData]);
 
 
@@ -168,16 +168,16 @@ export default function ProfileForm() {
       console.error("Profile update failed:", err);
     }
   };
-  
+
   // Use useCallback for handler functions for performance and stability
   const handleInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value, type } = e.target;
-    
+
     if (type === 'checkbox') {
       const checked = (e.target as HTMLInputElement).checked;
       const key = name as keyof ProfileFormData;
       const currentValues = [...formData[key] as string[]];
-      
+
       setFormData(prevData => ({
         ...prevData,
         [name]: checked
@@ -196,44 +196,44 @@ export default function ProfileForm() {
   // Display loading state for initial data fetch
   if (isLoadingInitial) {
     return (
-      <mechanicaLayout 
+      <MechanicaLayout
         title="Loading Profile | Beginner Investor Hub"
         description="Loading user profile and preferences"
       >
         <div className="min-h-screen flex items-center justify-center">
-          <mechanicaCard variant="mechanical" className="p-8 text-center">
-            <mechanicaGear size="xl" color="steel" speed="slow" className="mx-auto mb-4" />
+          <MechanicaCard variant="mechanical" className="p-8 text-center">
+            <MechanicaGear size="xl" color="steel" speed="slow" className="mx-auto mb-4" />
             <h2 className="text-xl font-bold mechanica-heading-professional">Loading Profile...</h2>
             <p className="mechanica-text-technical">Please wait while we fetch your data.</p>
-          </mechanicaCard>
+          </MechanicaCard>
         </div>
-      </mechanicaLayout>
+      </MechanicaLayout>
     );
   }
 
   // Display error state for initial data fetch
   if (initialLoadError) {
     return (
-      <mechanicaLayout 
+      <MechanicaLayout
         title="Error Loading Profile | Beginner Investor Hub"
         description="Error fetching user profile"
       >
         <div className="min-h-screen flex items-center justify-center">
-          <mechanicaCard variant="mechanical" className="p-8 text-center">
-            <mechanicaGear size="xl" color="copper" speed="fast" className="mx-auto mb-4" />
+          <MechanicaCard variant="mechanical" className="p-8 text-center">
+            <MechanicaGear size="xl" color="copper" speed="fast" className="mx-auto mb-4" />
             <h2 className="text-xl font-bold text-red-600 mechanica-heading-professional">Error Loading Profile</h2>
             <p className="text-red-600 mechanica-text-technical">{(initialLoadError as Error).message}</p>
-            <mechanicaButton variant="mechanical" onClick={() => window.location.reload()} className="mt-4">
+            <MechanicaButton variant="mechanical" onClick={() => window.location.reload()} className="mt-4">
               Retry
-            </mechanicaButton>
-          </mechanicaCard>
+            </MechanicaButton>
+          </MechanicaCard>
         </div>
-      </mechanicaLayout>
+      </MechanicaLayout>
     );
   }
 
   return (
-    <mechanicaLayout 
+    <MechanicaLayout
       title="Investor Profile Setup | Beginner Investor Hub"
       description="Set up your investment profile and preferences"
     >
@@ -242,37 +242,37 @@ export default function ProfileForm() {
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-8">
               <div className="flex justify-center items-center space-x-6 mb-6">
-                <mechanicaGear size="xl" color="brass" speed="slow" />
+                <MechanicaGear size="xl" color="brass" speed="slow" />
                 <h1 className="text-4xl md:text-5xl font-bold mechanica-heading-professional text-mechanica-moonlight-blue">
                   Investor Profile Setup
                 </h1>
-                <mechanicaGear size="xl" color="brass" speed="reverse" />
+                <MechanicaGear size="xl" color="brass" speed="reverse" />
               </div>
               <p className="text-gray-600 mechanica-text-technical">
                 Configure your precision investment profile for personalized recommendations
               </p>
             </div>
 
-            <mechanicaCard variant="mechanical" animated className="shadow-xl">
+            <MechanicaCard variant="mechanical" animated className="shadow-xl">
               <div className="p-8">
 
                 {/* Extracted Progress Bar */}
                 <ProgressHeader progress={progress} />
 
                 <form onSubmit={handleSubmit} className="space-y-10">
-                  
+
                   {/* Personal Information Section */}
                   <section className="p-6 border border-gray-200 rounded-lg bg-gray-50/50">
                     <div className="flex items-center space-x-3 mb-6">
-                      <mechanicaGear size="medium" color="steel" speed="medium" />
+                      <MechanicaGear size="medium" color="steel" speed="medium" />
                       <h2 className="text-xl font-semibold mechanica-heading-professional text-mechanica-moonlight-blue">
                         1. Personal Information 📝
                       </h2>
                     </div>
-          
+
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <FormGroup label="First Name" htmlFor="firstName">
-                        <mechanicaInput
+                        <MechanicaInput
                           type="text"
                           id="firstName"
                           name="firstName"
@@ -283,7 +283,7 @@ export default function ProfileForm() {
                       </FormGroup>
 
                       <FormGroup label="Last Name" htmlFor="lastName">
-                        <mechanicaInput
+                        <MechanicaInput
                           type="text"
                           id="lastName"
                           name="lastName"
@@ -296,7 +296,7 @@ export default function ProfileForm() {
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
                       <FormGroup label="Email" htmlFor="email">
-                        <mechanicaInput
+                        <MechanicaInput
                           type="email"
                           id="email"
                           name="email"
@@ -307,7 +307,7 @@ export default function ProfileForm() {
                       </FormGroup>
 
                       <FormGroup label="Phone" htmlFor="phone" description="Optional: Used for important account alerts.">
-                        <mechanicaInput
+                        <MechanicaInput
                           type="tel"
                           id="phone"
                           name="phone"
@@ -321,7 +321,7 @@ export default function ProfileForm() {
                   {/* Investment Profile Section */}
                   <section className="p-6 border border-gray-200 rounded-lg bg-gray-50/50">
                     <div className="flex items-center space-x-3 mb-6">
-                      <mechanicaGear size="medium" color="brass" speed="slow" />
+                      <MechanicaGear size="medium" color="brass" speed="slow" />
                       <h2 className="text-xl font-semibold mechanica-heading-professional text-mechanica-moonlight-blue">
                         2. Investment Profile 📊
                       </h2>
@@ -379,10 +379,9 @@ export default function ProfileForm() {
                               onChange={handleInputChange}
                               className="h-4 w-4 text-mechanica-moonlight-blue border-gray-300 focus:ring-mechanica-moonlight-blue"
                             />
-                            <span className={`px-3 py-1 rounded-full text-xs font-medium ${
-                                formData.riskTolerance === option.value ? 'bg-mechanica-moonlight-blue text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-                            }`}>
-                                {option.label}
+                            <span className={`px-3 py-1 rounded-full text-xs font-medium ${formData.riskTolerance === option.value ? 'bg-mechanica-moonlight-blue text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                              }`}>
+                              {option.label}
                             </span>
                           </label>
                         ))}
@@ -395,7 +394,7 @@ export default function ProfileForm() {
                           <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                             <span className="text-gray-500 sm:text-sm">$</span>
                           </div>
-                          <mechanicaInput
+                          <MechanicaInput
                             type="number"
                             id="initialCapital"
                             name="initialCapital"
@@ -414,7 +413,7 @@ export default function ProfileForm() {
                           <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                             <span className="text-gray-500 sm:text-sm">$</span>
                           </div>
-                          <mechanicaInput
+                          <MechanicaInput
                             type="number"
                             id="monthlyContribution"
                             name="monthlyContribution"
@@ -434,7 +433,7 @@ export default function ProfileForm() {
                   {initialProfileData?.primary_vark_preference && initialProfileData?.vark_profile_data && (
                     <section className="p-6 border border-gray-200 rounded-lg bg-gray-50/50">
                       <div className="flex items-center space-x-3 mb-6">
-                        <mechanicaGear size="medium" color="steel" speed="medium" />
+                        <MechanicaGear size="medium" color="steel" speed="medium" />
                         <h2 className="text-xl font-semibold mechanica-heading-professional text-mechanica-moonlight-blue">
                           3. VARK Learning Style 📚
                         </h2>
@@ -450,11 +449,11 @@ export default function ProfileForm() {
                           {Object.entries(initialProfileData.vark_profile_data).map(([style, score]) => {
                             const details = getStyleDetails(style);
                             return (
-                              <mechanicaCard key={style} variant="mechanical" className="p-3 text-center">
+                              <MechanicaCard key={style} variant="mechanical" className="p-3 text-center">
                                 <span className={`text-2xl ${details.color}`}>{details.icon}</span>
                                 <p className="font-semibold mechanica-text-technical">{details.label}</p>
                                 <p className="text-xl font-bold mechanica-heading-mechanical">{score}</p>
-                              </mechanicaCard>
+                              </MechanicaCard>
                             );
                           })}
                         </div>
@@ -467,27 +466,27 @@ export default function ProfileForm() {
 
                   {/* Success/Error Messages */}
                   <div className="min-h-[40px] flex justify-center items-center">
-                      {success && (
-                          <mechanicaCard variant="mechanical" className="border-green-200 bg-green-50">
-                              <div className="p-4 flex items-center justify-center">
-                                  <div className="w-5 h-5 mr-2 text-green-600">✓</div>
-                                  <span className="text-green-700 mechanica-text-technical">Profile updated successfully!</span>
-                              </div>
-                          </mechanicaCard>
-                      )}
-                      {submitError && (
-                          <mechanicaCard variant="mechanical" className="border-red-200 bg-red-50">
-                              <div className="p-4 flex items-center justify-center">
-                                  <div className="w-5 h-5 mr-2 text-red-600">✕</div>
-                                  <span className="text-red-700 mechanica-text-technical">{submitError.message || 'An error occurred'}</span>
-                              </div>
-                          </mechanicaCard>
-                      )}
+                    {success && (
+                      <MechanicaCard variant="mechanical" className="border-green-200 bg-green-50">
+                        <div className="p-4 flex items-center justify-center">
+                          <div className="w-5 h-5 mr-2 text-green-600">✓</div>
+                          <span className="text-green-700 mechanica-text-technical">Profile updated successfully!</span>
+                        </div>
+                      </MechanicaCard>
+                    )}
+                    {submitError && (
+                      <MechanicaCard variant="mechanical" className="border-red-200 bg-red-50">
+                        <div className="p-4 flex items-center justify-center">
+                          <div className="w-5 h-5 mr-2 text-red-600">✕</div>
+                          <span className="text-red-700 mechanica-text-technical">{submitError.message || 'An error occurred'}</span>
+                        </div>
+                      </MechanicaCard>
+                    )}
                   </div>
 
 
                   <div className="flex justify-between gap-4 pt-4 border-t border-gray-200">
-                    <mechanicaButton
+                    <MechanicaButton
                       variant="wood"
                       size="lg"
                       className="flex-1"
@@ -495,8 +494,8 @@ export default function ProfileForm() {
                       disabled={isSubmitting}
                     >
                       Cancel
-                    </mechanicaButton>
-                    <mechanicaButton
+                    </MechanicaButton>
+                    <MechanicaButton
                       variant="mechanical"
                       size="lg"
                       className="flex-1"
@@ -504,21 +503,21 @@ export default function ProfileForm() {
                       disabled={isSubmitting}
                     >
                       {isSubmitting ? (
-                          <span className="flex items-center">
-                              <mechanicaGear size="small" color="steel" speed="fast" className="mr-2" />
-                              Saving...
-                          </span>
+                        <span className="flex items-center">
+                          <MechanicaGear size="small" color="steel" speed="fast" className="mr-2" />
+                          Saving...
+                        </span>
                       ) : (
-                          'Save Changes'
+                        'Save Changes'
                       )}
-                    </mechanicaButton>
+                    </MechanicaButton>
                   </div>
                 </form>
               </div>
-            </mechanicaCard>
+            </MechanicaCard>
           </div>
         </div>
       </div>
-    </mechanicaLayout>
+    </MechanicaLayout>
   );
 }

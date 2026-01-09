@@ -1,10 +1,10 @@
 import { useAuth } from '../hooks/useAuth';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import { mechanicaLayout } from '../components/layout/mechanicaLayout';
-import { mechanicaCard } from '../components/ui/mechanicaCard';
-import { mechanicaGear } from '../components/ui/mechanicaGear';
-import { mechanicaButton } from '../components/ui/mechanicaButton';
+import { MechanicaLayout } from '../components/layout/mechanicaLayout';
+import { MechanicaCard } from '../components/ui/mechanicaCard';
+import { MechanicaGear } from '../components/ui/mechanicaGear';
+import { MechanicaButton } from '../components/ui/mechanicaButton';
 import { useApiGet } from '../hooks/useApi'; // Import useApiGet
 
 interface AdminDashboardData {
@@ -38,7 +38,7 @@ export default function AdminPage() {
   // Loading state
   if (authLoading || isRedirecting || adminDataLoading) {
     return (
-      <mechanicaLayout 
+      <MechanicaLayout
         title="Loading | Admin Dashboard"
         description="Admin dashboard loading"
       >
@@ -47,10 +47,10 @@ export default function AdminPage() {
             {/* Mechanical Loading Gears */}
             <div className="relative w-24 h-24 mx-auto mb-6">
               <div className="absolute inset-0">
-                <mechanicaGear size="xl" color="steel" speed="slow" />
+                <MechanicaGear size="xl" color="steel" speed="slow" />
               </div>
               <div className="absolute inset-0 flex items-center justify-center">
-                <mechanicaGear size="large" color="brass" speed="reverse" />
+                <MechanicaGear size="large" color="brass" speed="reverse" />
               </div>
             </div>
             <p className="text-lg font-semibold text-gray-900 mb-2 mechanica-heading-professional">
@@ -59,27 +59,27 @@ export default function AdminPage() {
             <p className="text-sm text-gray-600 mechanica-text-technical">Loading admin dashboard...</p>
           </div>
         </div>
-      </mechanicaLayout>
+      </MechanicaLayout>
     );
   }
 
   // Handle error fetching admin data
   if (adminDataError) {
     return (
-      <mechanicaLayout 
+      <MechanicaLayout
         title="Error | Admin Dashboard"
         description="Error loading admin dashboard"
       >
         <div className="min-h-screen flex items-center justify-center">
-          <mechanicaCard variant="mechanical" className="p-8 text-center">
+          <MechanicaCard variant="mechanical" className="p-8 text-center">
             <h2 className="text-xl font-bold text-red-600 mb-4">Error Loading Admin Data</h2>
             <p className="text-gray-700 mb-6">There was an issue fetching the dashboard information. Please try again later.</p>
-            <mechanicaButton variant="mechanical" onClick={() => window.location.reload()}>
+            <MechanicaButton variant="mechanical" onClick={() => window.location.reload()}>
               Reload Page
-            </mechanicaButton>
-          </mechanicaCard>
+            </MechanicaButton>
+          </MechanicaCard>
         </div>
-      </mechanicaLayout>
+      </MechanicaLayout>
     );
   }
 
@@ -89,7 +89,7 @@ export default function AdminPage() {
   }
 
   return (
-    <mechanicaLayout 
+    <MechanicaLayout
       title="System Control Panel | Admin Dashboard"
       description="Admin control panel for system management"
     >
@@ -109,27 +109,27 @@ export default function AdminPage() {
           <div className="text-center mb-12 relative">
             {/* Decorative Mechanical Gears */}
             <div className="absolute -top-6 left-0">
-              <mechanicaGear size="large" color="steel" speed="slow" />
+              <MechanicaGear size="large" color="steel" speed="slow" />
             </div>
             <div className="absolute top-2 right-8">
-              <mechanicaGear size="medium" color="brass" speed="reverse" />
+              <MechanicaGear size="medium" color="brass" speed="reverse" />
             </div>
 
-            <mechanicaCard variant="mechanical" className="inline-flex items-center px-4 py-2 mb-4">
+            <MechanicaCard variant="mechanical" className="inline-flex items-center px-4 py-2 mb-4">
               <div className="w-5 h-5 text-gray-700 mr-2">🔒</div>
               <span className="text-sm text-gray-700 font-medium mechanica-text-technical">
                 Restricted Access - Admin Only
               </span>
-            </mechanicaCard>
+            </MechanicaCard>
 
             <div className="flex justify-center items-center space-x-6 mb-8">
-              <mechanicaGear size="xl" color="steel" speed="slow" />
+              <MechanicaGear size="xl" color="steel" speed="slow" />
               <h1 className="text-4xl md:text-5xl font-bold mechanica-heading-mechanical text-mechanica-moonlight-blue">
                 System Control Panel
               </h1>
-              <mechanicaGear size="xl" color="steel" speed="reverse" />
+              <MechanicaGear size="xl" color="steel" speed="reverse" />
             </div>
-            
+
             <div className="w-24 h-1 bg-red-600 mx-auto mb-6"></div>
             <p className="text-lg text-gray-700 max-w-3xl mx-auto leading-relaxed mechanica-text-technical">
               <span className="font-semibold text-mechanica-moonlight-blue">
@@ -142,39 +142,37 @@ export default function AdminPage() {
 
           {/* System Status Bar */}
           <div className="mb-8 flex flex-wrap items-center justify-center gap-4">
-            <mechanicaCard 
+            <MechanicaCard
               variant={adminData.systemHealth === 'healthy' ? 'mechanical' : 'wood'}
               className="inline-flex items-center px-4 py-2"
             >
               <div
-                className={`w-2 h-2 rounded-full mr-2 animate-pulse ${
-                  adminData.systemHealth === 'healthy'
+                className={`w-2 h-2 rounded-full mr-2 animate-pulse ${adminData.systemHealth === 'healthy'
                     ? 'bg-green-500'
                     : 'bg-red-500'
-                }`}
+                  }`}
               ></div>
               <span
-                className={`text-sm font-medium mechanica-text-technical ${
-                  adminData.systemHealth === 'healthy'
+                className={`text-sm font-medium mechanica-text-technical ${adminData.systemHealth === 'healthy'
                     ? 'text-gray-700'
                     : 'text-gray-700'
-                }`}
+                  }`}
               >
                 System{' '}
                 {adminData.systemHealth === 'healthy' ? 'Operational' : 'Alert'}
               </span>
-            </mechanicaCard>
-            <mechanicaCard variant="brass" className="inline-flex items-center px-4 py-2">
+            </MechanicaCard>
+            <MechanicaCard variant="brass" className="inline-flex items-center px-4 py-2">
               <div className="w-5 h-5 text-gray-700 mr-2">👤</div>
               <span className="text-sm text-gray-700 font-medium mechanica-text-technical">
                 Admin: {user?.email || 'Administrator'}
               </span>
-            </mechanicaCard>
+            </MechanicaCard>
           </div>
 
           {/* Metrics Grid */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-            <mechanicaCard variant="mechanical">
+            <MechanicaCard variant="mechanical">
               <div className="p-6">
                 <div className="flex items-center justify-between mb-4">
                   <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
@@ -192,13 +190,13 @@ export default function AdminPage() {
                   Registered components
                 </div>
               </div>
-            </mechanicaCard>
+            </MechanicaCard>
 
-            <mechanicaCard variant="brass">
+            <MechanicaCard variant="brass">
               <div className="p-6">
                 <div className="flex items-center justify-between mb-4">
                   <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
-                    <mechanicaGear size="medium" color="steel" speed="medium" />
+                    <MechanicaGear size="medium" color="steel" speed="medium" />
                   </div>
                   <div className="text-right">
                     <div className="text-3xl font-bold mechanica-heading-professional text-mechanica-moonlight-blue">
@@ -212,13 +210,13 @@ export default function AdminPage() {
                   Portfolio assemblies
                 </div>
               </div>
-            </mechanicaCard>
+            </MechanicaCard>
 
-            <mechanicaCard variant="wood">
+            <MechanicaCard variant="wood">
               <div className="p-6">
                 <div className="flex items-center justify-between mb-4">
                   <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
-                    <mechanicaGear size="medium" color="brass" speed="slow" />
+                    <MechanicaGear size="medium" color="brass" speed="slow" />
                   </div>
                   <div className="text-right">
                     <div className="text-3xl font-bold mechanica-heading-professional text-mechanica-moonlight-blue">
@@ -232,15 +230,15 @@ export default function AdminPage() {
                   Tests executed (24h)
                 </div>
               </div>
-            </mechanicaCard>
+            </MechanicaCard>
           </div>
 
           {/* Administrative Controls */}
-          <mechanicaCard variant="mechanical" animated>
+          <MechanicaCard variant="mechanical" animated>
             <div className="p-8">
               <div className="mb-8 pb-6 border-b border-gray-200">
                 <div className="flex items-center space-x-3 mb-4">
-                  <mechanicaGear size="medium" color="brass" speed="slow" />
+                  <MechanicaGear size="medium" color="brass" speed="slow" />
                   <h2 className="text-2xl font-bold mechanica-heading-professional text-mechanica-text-primary">
                     ⚙️ Administrative Controls
                   </h2>
@@ -251,7 +249,7 @@ export default function AdminPage() {
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <mechanicaButton variant="wood" className="text-left p-6 flex items-start space-x-4 h-auto">
+                <MechanicaButton variant="wood" className="text-left p-6 flex items-start space-x-4 h-auto">
                   <div className="flex-shrink-0 w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
                     <div className="w-5 h-5 text-blue-700">👥</div>
                   </div>
@@ -263,11 +261,11 @@ export default function AdminPage() {
                       Manage user accounts and permissions
                     </p>
                   </div>
-                </mechanicaButton>
+                </MechanicaButton>
 
-                <mechanicaButton variant="wood" className="text-left p-6 flex items-start space-x-4 h-auto">
+                <MechanicaButton variant="wood" className="text-left p-6 flex items-start space-x-4 h-auto">
                   <div className="flex-shrink-0 w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
-                    <mechanicaGear size="medium" color="steel" speed="medium" />
+                    <MechanicaGear size="medium" color="steel" speed="medium" />
                   </div>
                   <div>
                     <div className="font-bold text-gray-900 mb-1 mechanica-heading-professional">
@@ -277,11 +275,11 @@ export default function AdminPage() {
                       View detailed usage statistics
                     </p>
                   </div>
-                </mechanicaButton>
+                </MechanicaButton>
 
-                <mechanicaButton variant="wood" className="text-left p-6 flex items-start space-x-4 h-auto">
+                <MechanicaButton variant="wood" className="text-left p-6 flex items-start space-x-4 h-auto">
                   <div className="flex-shrink-0 w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center">
-                    <mechanicaGear size="medium" color="brass" speed="slow" />
+                    <MechanicaGear size="medium" color="brass" speed="slow" />
                   </div>
                   <div>
                     <div className="font-bold text-gray-900 mb-1 mechanica-heading-professional">
@@ -291,9 +289,9 @@ export default function AdminPage() {
                       Adjust system settings and parameters
                     </p>
                   </div>
-                </mechanicaButton>
+                </MechanicaButton>
 
-                <mechanicaButton variant="wood" className="text-left p-6 flex items-start space-x-4 h-auto">
+                <MechanicaButton variant="wood" className="text-left p-6 flex items-start space-x-4 h-auto">
                   <div className="flex-shrink-0 w-10 h-10 bg-amber-100 rounded-lg flex items-center justify-center">
                     <div className="w-5 h-5 text-amber-700">⚠️</div>
                   </div>
@@ -305,11 +303,11 @@ export default function AdminPage() {
                       Review system security events
                     </p>
                   </div>
-                </mechanicaButton>
+                </MechanicaButton>
 
-                <mechanicaButton variant="wood" className="text-left p-6 flex items-start space-x-4 h-auto">
+                <MechanicaButton variant="wood" className="text-left p-6 flex items-start space-x-4 h-auto">
                   <div className="flex-shrink-0 w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center">
-                    <mechanicaGear size="medium" color="copper" speed="reverse" />
+                    <MechanicaGear size="medium" color="copper" speed="reverse" />
                   </div>
                   <div>
                     <div className="font-bold text-gray-900 mb-1 mechanica-heading-professional">
@@ -319,9 +317,9 @@ export default function AdminPage() {
                       Backup and maintenance operations
                     </p>
                   </div>
-                </mechanicaButton>
+                </MechanicaButton>
 
-                <mechanicaButton variant="wood" className="text-left p-6 flex items-start space-x-4 h-auto">
+                <MechanicaButton variant="wood" className="text-left p-6 flex items-start space-x-4 h-auto">
                   <div className="flex-shrink-0 w-10 h-10 bg-indigo-100 rounded-lg flex items-center justify-center">
                     <div className="w-5 h-5 text-indigo-700">📄</div>
                   </div>
@@ -333,24 +331,24 @@ export default function AdminPage() {
                       Generate and export system reports
                     </p>
                   </div>
-                </mechanicaButton>
+                </MechanicaButton>
               </div>
             </div>
-          </mechanicaCard>
+          </MechanicaCard>
 
           {/* Security Notice */}
           <div className="mt-12 text-center">
-            <mechanicaCard variant="wood" className="inline-flex items-center px-6 py-3">
+            <MechanicaCard variant="wood" className="inline-flex items-center px-6 py-3">
               <div className="flex items-center space-x-3">
-                <mechanicaGear size="small" color="steel" speed="medium" />
+                <MechanicaGear size="small" color="steel" speed="medium" />
                 <span className="text-sm text-gray-700 font-medium mechanica-text-technical">
                   All administrative actions are logged and monitored for security compliance
                 </span>
               </div>
-            </mechanicaCard>
+            </MechanicaCard>
           </div>
         </div>
       </div>
-    </mechanicaLayout>
+    </MechanicaLayout>
   );
 }

@@ -1,16 +1,16 @@
 import React from 'react';
 import Link from 'next/link';
-import { mechanicaLayout } from '../components/layout/mechanicaLayout';
+import { MechanicaLayout } from '../components/layout/mechanicaLayout';
 
 export default function TermsOfService() {
   return (
-    <mechanicaLayout
+    <MechanicaLayout
       title="Terms of Service | Beginner Investor Hub"
       description="Read the Terms of Service for Beginner Investor Hub - Educational investment tools and portfolio simulation platform."
     >
       {/* Root Container */}
       <div className="min-h-screen bg-[var(--mechanica-bg-metallic)] text-[var(--mechanica-text-primary)]">
-        
+
         {/* HEADER SECTION */}
         <header className="bg-[var(--mechanica-moonlight-blue-metallic)] text-white py-16 md:py-24 shadow-lg border-b border-[var(--mechanica-moonlight-blue-dark)]">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -27,10 +27,10 @@ export default function TermsOfService() {
         {/* MAIN CONTENT AREA */}
         <main className="py-16 md:py-24">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            
+
             {/* CENTRAL CARD */}
             <div className="max-w-4xl mx-auto bg-white p-6 sm:p-12 lg:p-16 rounded-lg shadow-xl border border-[var(--mechanica-moonlight-blue)] relative overflow-hidden">
-              
+
               {/* Top Accent Bar (Brass Gradient replacing yellow) */}
               <div className="absolute top-0 left-0 right-0 h-1.5 bg-[var(--mechanica-brass-gradient)]"></div>
 
@@ -160,7 +160,7 @@ export default function TermsOfService() {
                     <strong className="text-red-700 uppercase tracking-widest text-xs">To the maximum extent permitted by law:</strong>
                   </p>
                   <p className="text-gray-700 leading-relaxed">
-                    The platform, its operators, and affiliates are not liable for investment losses or inaccuracies in data. 
+                    The platform, its operators, and affiliates are not liable for investment losses or inaccuracies in data.
                     You acknowledge that investing involves risk and you are solely responsible for your decisions.
                   </p>
                 </div>
@@ -200,6 +200,6 @@ export default function TermsOfService() {
           </div>
         </main>
       </div>
-    </mechanicaLayout>
+    </MechanicaLayout>
   );
 }

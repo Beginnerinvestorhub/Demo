@@ -1,8 +1,8 @@
 import React from 'react';
 import Link from 'next/link';
-import { mechanicaLayout } from '../components/layout/mechanicaLayout';
-import { mechanicaCard } from '../components/ui/mechanicaCard';
-import { mechanicaGear } from '../components/ui/mechanicaGear';
+import { MechanicaLayout } from '../components/layout/mechanicaLayout';
+import { MechanicaCard } from '../components/ui/mechanicaCard';
+import { MechanicaGear } from '../components/ui/mechanicaGear';
 import { useAuth } from '../hooks/useAuth';
 import AuthForm from '../components/AuthForm';
 
@@ -12,64 +12,64 @@ export default function SignupPage() {
   // Don't show signup form if already authenticated
   if (loading || user) {
     return (
-      <mechanicaLayout title="Loading | Beginner Investor Hub">
+      <MechanicaLayout title="Loading | Beginner Investor Hub">
         <div className="min-h-screen flex items-center justify-center">
           <div className="text-center space-y-4">
-            <mechanicaGear size="large" color="steel" speed="medium" />
+            <MechanicaGear size="large" color="steel" speed="medium" />
             <p className="mechanica-text-technical text-gray-600">Loading...</p>
           </div>
         </div>
-      </mechanicaLayout>
+      </MechanicaLayout>
     );
   }
 
   return (
-    <mechanicaLayout title="Sign Up | Beginner Investor Hub">
+    <MechanicaLayout title="Sign Up | Beginner Investor Hub">
       <div className="min-h-screen flex items-center justify-center p-4 sm:p-8 bg-gradient-to-br from-gray-50 to-amber-50">
         <div className="grid grid-cols-1 lg:grid-cols-2 max-w-6xl w-full">
-          
+
           {/* Left Panel - Professional Branding */}
-          <mechanicaCard variant="wood" className="p-12 flex items-center justify-center">
+          <MechanicaCard variant="wood" className="p-12 flex items-center justify-center">
             <div className="text-center space-y-6">
               <div className="flex justify-center items-center space-x-4">
-                <mechanicaGear size="large" color="brass" speed="slow" />
+                <MechanicaGear size="large" color="brass" speed="slow" />
                 <div className="text-3xl font-bold mechanica-heading-professional text-mechanica-moonlight-blue">
                   BeginnerInvestorHub
                 </div>
-                <mechanicaGear size="large" color="brass" speed="reverse" />
+                <MechanicaGear size="large" color="brass" speed="reverse" />
               </div>
-              
+
               <h2 className="text-2xl font-bold mechanica-heading-professional">
                 Start Your Investment Journey
               </h2>
               <p className="text-gray-600 mechanica-text-technical">
-                Join thousands of investors mastering the art of portfolio management 
+                Join thousands of investors mastering the art of portfolio management
                 with our precision-engineered learning platform.
               </p>
-              
+
               <div className="space-y-4">
                 <div className="flex items-center space-x-3">
-                  <mechanicaGear size="small" color="steel" />
+                  <MechanicaGear size="small" color="steel" />
                   <span className="mechanica-text-technical">Real-time market simulations</span>
                 </div>
                 <div className="flex items-center space-x-3">
-                  <mechanicaGear size="small" color="copper" />
+                  <MechanicaGear size="small" color="copper" />
                   <span className="mechanica-text-technical">AI-powered behavioral coaching</span>
                 </div>
                 <div className="flex items-center space-x-3">
-                  <mechanicaGear size="small" color="brass" />
+                  <MechanicaGear size="small" color="brass" />
                   <span className="mechanica-text-technical">Professional risk analytics</span>
                 </div>
                 <div className="flex items-center space-x-3">
-                  <mechanicaGear size="small" color="steel" />
+                  <MechanicaGear size="small" color="steel" />
                   <span className="mechanica-text-technical">Personalized learning paths</span>
                 </div>
               </div>
             </div>
-          </mechanicaCard>
+          </MechanicaCard>
 
           {/* Right Panel - Signup Form */}
-          <mechanicaCard variant="mechanical" className="p-12 flex items-center justify-center">
+          <MechanicaCard variant="mechanical" className="p-12 flex items-center justify-center">
             <div className="w-full max-w-md">
               <div className="mb-8">
                 <h2 className="text-3xl font-bold mechanica-heading-professional mb-2">
@@ -85,15 +85,15 @@ export default function SignupPage() {
               <div className="mt-6 text-center text-sm">
                 <p className="text-gray-700 mechanica-text-technical">
                   Already have an account?{' '}
-                  <Link 
-                    href="/login" 
+                  <Link
+                    href="/login"
                     className="text-mechanica-moonlight-blue font-semibold hover:text-mechanica-moonlight-blue-dark transition-colors"
                   >
                     Sign in
                   </Link>
                 </p>
               </div>
-              
+
               {/* Divider */}
               <div className="relative my-8">
                 <div className="absolute inset-0 flex items-center">
@@ -106,8 +106,8 @@ export default function SignupPage() {
                 </div>
               </div>
 
-              <Link 
-                href="/" 
+              <Link
+                href="/"
                 className="block text-center text-sm text-gray-500 hover:text-mechanica-moonlight-blue transition-colors mechanica-text-technical"
               >
                 ← Back to home
@@ -121,9 +121,9 @@ export default function SignupPage() {
                 </p>
               </div>
             </div>
-          </mechanicaCard>
+          </MechanicaCard>
         </div>
       </div>
-    </mechanicaLayout>
+    </MechanicaLayout>
   );
 }

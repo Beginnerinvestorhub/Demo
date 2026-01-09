@@ -1,11 +1,11 @@
 import React, { useRef, useEffect, useState } from 'react';
 import Link from 'next/link';
-import { mechanicaLayout } from '../components/layout/mechanicaLayout';
-import { mechanicaHeader } from '../components/layout/mechanicaHeader';
-import { mechanicaCard } from '../components/ui/mechanicaCard';
-import { mechanicaButton } from '../components/ui/mechanicaButton';
-import { mechanicaGear } from '../components/ui/mechanicaGear';
-import { mechanicaInput } from '../components/ui/mechanicaInput';
+import { MechanicaLayout } from '../components/layout/mechanicaLayout';
+import { MechanicaHeader } from '../components/layout/mechanicaHeader';
+import { MechanicaCard } from '../components/ui/mechanicaCard';
+import { MechanicaButton } from '../components/ui/mechanicaButton';
+import { MechanicaGear } from '../components/ui/mechanicaGear';
+import { MechanicaInput } from '../components/ui/mechanicaInput';
 
 interface PlatformStats {
   portfoliosBuilt: number;
@@ -129,13 +129,13 @@ export default function HomePage() {
   ];
 
   return (
-    <mechanicaLayout
+    <MechanicaLayout
       // Updated Title
       title="Beginner Investor Hub - Financial Education & Strategy"
       // Updated Description
       description="Master investing with our structured, data-driven platform featuring real-time simulations and AI-powered coaching"
     >
-      <mechanicaHeader />
+      <MechanicaHeader />
 
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-mechanica-moonlight-blue via-mechanica-moonlight-blue-light to-mechanica-moonlight-blue-dark text-white overflow-hidden">
@@ -154,27 +154,27 @@ export default function HomePage() {
 
         {/* Animated gears */}
         <div className="absolute top-20 left-10 opacity-30">
-          <mechanicaGear size="xl" color="brass" speed="slow" />
+          <MechanicaGear size="xl" color="brass" speed="slow" />
         </div>
         <div className="absolute top-40 right-20 opacity-30">
-          <mechanicaGear size="large" color="steel" speed="reverse" />
+          <MechanicaGear size="large" color="steel" speed="reverse" />
         </div>
         <div className="absolute bottom-20 left-20 opacity-30">
-          <mechanicaGear size="medium" color="copper" speed="medium" />
+          <MechanicaGear size="medium" color="copper" speed="medium" />
         </div>
         <div className="absolute bottom-40 right-10 opacity-30">
-          <mechanicaGear size="small" color="brass" speed="fast" />
+          <MechanicaGear size="small" color="brass" speed="fast" />
         </div>
 
         <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
             {/* Mechanical logo */}
             <div className="flex justify-center items-center space-x-6 mb-8">
-              <mechanicaGear size="large" color="brass" speed="slow" />
+              <MechanicaGear size="large" color="brass" speed="slow" />
               <div className="text-6xl font-bold font-serif text-yellow-400">
                 BeginnerInvestorHub
               </div>
-              <mechanicaGear size="large" color="brass" speed="reverse" />
+              <MechanicaGear size="large" color="brass" speed="reverse" />
             </div>
 
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 font-serif">
@@ -193,14 +193,14 @@ export default function HomePage() {
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Link href="/signup">
-                <mechanicaButton variant="mechanical" size="lg">
+                <MechanicaButton variant="mechanical" size="lg">
                   Start Your Investment Journey
-                </mechanicaButton>
+                </MechanicaButton>
               </Link>
               <Link href="/tools">
-                <mechanicaButton variant="wood" size="lg">
+                <MechanicaButton variant="wood" size="lg">
                   Explore Learning Tools
-                </mechanicaButton>
+                </MechanicaButton>
               </Link>
             </div>
           </div>
@@ -223,10 +223,10 @@ export default function HomePage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <mechanicaCard variant="mechanical" animated gearDecoration>
+            <MechanicaCard variant="mechanical" animated gearDecoration>
               <div className="text-center">
                 <div className="flex justify-center mb-4">
-                  <mechanicaGear size="medium" color="steel" speed="medium" />
+                  <MechanicaGear size="medium" color="steel" speed="medium" />
                 </div>
                 <div className="text-4xl font-bold text-mechanica-moonlight-blue mb-2 font-mono">
                   {statsAnimated ? stats.portfoliosBuilt.toLocaleString() : '0'}
@@ -235,12 +235,12 @@ export default function HomePage() {
                   Portfolio Blueprints Created
                 </div>
               </div>
-            </mechanicaCard>
+            </MechanicaCard>
 
-            <mechanicaCard variant="wood" animated gearDecoration>
+            <MechanicaCard variant="wood" animated gearDecoration>
               <div className="text-center">
                 <div className="flex justify-center mb-4">
-                  <mechanicaGear size="medium" color="brass" speed="slow" />
+                  <MechanicaGear size="medium" color="brass" speed="slow" />
                 </div>
                 <div className="text-4xl font-bold text-mechanica-moonlight-blue mb-2 font-mono">
                   {statsAnimated ? stats.simulationsRun.toLocaleString() : '0'}
@@ -249,12 +249,12 @@ export default function HomePage() {
                   Learning Simulations Run
                 </div>
               </div>
-            </mechanicaCard>
+            </MechanicaCard>
 
-            <mechanicaCard variant="brass" animated gearDecoration>
+            <MechanicaCard variant="brass" animated gearDecoration>
               <div className="text-center">
                 <div className="flex justify-center mb-4">
-                  <mechanicaGear size="medium" color="copper" speed="fast" />
+                  <MechanicaGear size="medium" color="copper" speed="fast" />
                 </div>
                 <div className="text-4xl font-bold text-mechanica-moonlight-blue mb-2 font-mono">
                   ${statsAnimated ? (stats.simulatedValue / 1000000).toFixed(1) : '0'}M
@@ -263,12 +263,12 @@ export default function HomePage() {
                   Total Simulated AUM
                 </div>
               </div>
-            </mechanicaCard>
+            </MechanicaCard>
 
-            <mechanicaCard variant="steel" animated gearDecoration>
+            <MechanicaCard variant="steel" animated gearDecoration>
               <div className="text-center">
                 <div className="flex justify-center mb-4">
-                  <mechanicaGear size="medium" color="steel" speed="reverse" />
+                  <MechanicaGear size="medium" color="steel" speed="reverse" />
                 </div>
                 <div className="text-4xl font-bold text-mechanica-moonlight-blue mb-2 font-mono">
                   {statsAnimated ? stats.userSatisfaction : '0'}%
@@ -277,7 +277,7 @@ export default function HomePage() {
                   Learner Confidence Rating
                 </div>
               </div>
-            </mechanicaCard>
+            </MechanicaCard>
           </div>
         </div>
       </section>
@@ -296,7 +296,7 @@ export default function HomePage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {features.map((feature, index) => (
-              <mechanicaCard
+              <MechanicaCard
                 key={index}
                 variant="mechanical"
                 animated
@@ -305,7 +305,7 @@ export default function HomePage() {
               >
                 <div className="flex items-start space-x-4">
                   <div className="flex-shrink-0">
-                    <mechanicaGear size="large" color={feature.gearColor} speed="medium" />
+                    <MechanicaGear size="large" color={feature.gearColor} speed="medium" />
                   </div>
                   <div className="flex-1">
                     <h3 className="text-2xl font-bold mb-3 text-mechanica-moonlight-blue font-serif">
@@ -315,13 +315,13 @@ export default function HomePage() {
                       {feature.description}
                     </p>
                     <Link href={feature.href}>
-                      <mechanicaButton variant="mechanical" size="sm">
+                      <MechanicaButton variant="mechanical" size="sm">
                         Launch Tool
-                      </mechanicaButton>
+                      </MechanicaButton>
                     </Link>
                   </div>
                 </div>
-              </mechanicaCard>
+              </MechanicaCard>
             ))}
           </div>
         </div>
@@ -341,7 +341,7 @@ export default function HomePage() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {learningPaths.map((path, index) => (
-              <mechanicaCard
+              <MechanicaCard
                 key={index}
                 variant="wood"
                 animated
@@ -349,7 +349,7 @@ export default function HomePage() {
                 className="text-center group hover:scale-105 transition-transform duration-300"
               >
                 <div className="mb-6">
-                  <mechanicaGear size="large" color={path.gearColor} speed="slow" />
+                  <MechanicaGear size="large" color={path.gearColor} speed="slow" />
                 </div>
                 <h3 className="text-2xl font-bold mb-3 text-mechanica-moonlight-blue font-serif">
                   {path.title}
@@ -365,10 +365,10 @@ export default function HomePage() {
                 <p className="text-gray-600 mb-6 leading-relaxed">
                   {path.description}
                 </p>
-                <mechanicaButton variant="wood" size="sm">
+                <MechanicaButton variant="wood" size="sm">
                   Start Path
-                </mechanicaButton>
-              </mechanicaCard>
+                </MechanicaButton>
+              </MechanicaCard>
             ))}
           </div>
         </div>
@@ -392,11 +392,11 @@ export default function HomePage() {
         <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
             <div className="flex justify-center items-center space-x-6 mb-8">
-              <mechanicaGear size="large" color="brass" speed="slow" />
+              <MechanicaGear size="large" color="brass" speed="slow" />
               <div className="text-5xl font-bold font-serif text-yellow-400">
                 Start Your Journey
               </div>
-              <mechanicaGear size="large" color="brass" speed="reverse" />
+              <MechanicaGear size="large" color="brass" speed="reverse" />
             </div>
 
             <h2 className="text-4xl font-bold mb-6 font-serif">
@@ -409,14 +409,14 @@ export default function HomePage() {
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Link href="/signup">
-                <mechanicaButton variant="mechanical" size="lg">
+                <MechanicaButton variant="mechanical" size="lg">
                   Start Learning Now
-                </mechanicaButton>
+                </MechanicaButton>
               </Link>
               <Link href="/dashboard">
-                <mechanicaButton variant="wood" size="lg">
+                <MechanicaButton variant="wood" size="lg">
                   View Dashboard
-                </mechanicaButton>
+                </MechanicaButton>
               </Link>
             </div>
           </div>
@@ -438,18 +438,18 @@ export default function HomePage() {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-              <mechanicaInput
+              <MechanicaInput
                 type="email"
                 placeholder="Enter your email"
                 className="flex-1"
               />
-              <mechanicaButton variant="mechanical" size="md">
+              <MechanicaButton variant="mechanical" size="md">
                 Subscribe
-              </mechanicaButton>
+              </MechanicaButton>
             </div>
           </div>
         </div>
       </section>
-    </mechanicaLayout>
+    </MechanicaLayout>
   );
 }

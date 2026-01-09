@@ -1,15 +1,15 @@
 import Link from 'next/link';
-import { mechanicaLayout } from '../components/layout/mechanicaLayout';
+import { MechanicaLayout } from '../components/layout/mechanicaLayout';
 
 export default function PrivacyPolicy() {
   return (
-    <mechanicaLayout 
+    <MechanicaLayout
       title="Privacy Policy | Beginner Investor Hub"
       description="Read our Privacy Policy - Learn how we protect your personal information and data on Beginner Investor Hub."
     >
 
       <div className="min-h-screen bg-[var(--mechanica-bg-metallic)] text-[var(--mechanica-text-primary)]">
-        
+
         {/* HEADER SECTION */}
         <header className="bg-[var(--mechanica-moonlight-blue-metallic)] text-white py-16 md:py-24 shadow-lg border-b border-[var(--mechanica-moonlight-blue-dark)]">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -26,10 +26,10 @@ export default function PrivacyPolicy() {
         {/* MAIN CONTENT AREA */}
         <main className="py-16 md:py-24">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            
+
             {/* CENTRAL CARD */}
             <div className="max-w-4xl mx-auto bg-white p-6 sm:p-12 lg:p-16 rounded-lg shadow-xl border border-[var(--mechanica-moonlight-blue)] relative overflow-hidden">
-              
+
               {/* Top Accent Bar */}
               <div className="absolute top-0 left-0 right-0 h-1.5 bg-[var(--mechanica-polished-brass)]"></div>
 
@@ -519,6 +519,6 @@ export default function PrivacyPolicy() {
           </div>
         </main>
       </div>
-    </mechanicaLayout>
+    </MechanicaLayout>
   );
 }

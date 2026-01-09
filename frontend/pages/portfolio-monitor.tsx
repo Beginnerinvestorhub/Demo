@@ -1,12 +1,12 @@
 import React from 'react';
 import PortfolioMonitor from '../components/PortfolioMonitor';
-import { OrdinatusLayout } from '../components/layout/OrdinatusLayout';
-import { OrdinatusCard } from '../components/ui/OrdinatusCard';
-import { OrdinatusGear } from '../components/ui/OrdinatusGear';
+import { MechanicaLayout } from '../components/layout/mechanicaLayout';
+import { MechanicaCard } from '../components/ui/mechanicaCard';
+import { MechanicaGear } from '../components/ui/mechanicaGear';
 
 export default function PortfolioMonitorPage() {
   return (
-    <OrdinatusLayout 
+    <MechanicaLayout
       title="Portfolio Monitoring Dashboard | BeginnerInvestorHub"
       description="Track your portfolio performance and diversification over time."
     >
@@ -21,7 +21,7 @@ export default function PortfolioMonitorPage() {
           }}
         ></div>
 
-        <div className="Ordinatus-container relative z-10 py-12">
+        <div className="container mx-auto px-4 relative z-10 py-12">
           {/* Hero Section with Mechanical Elements */}
           <header className="text-center mb-12 relative">
             {/* Decorative Mechanical Gears */}
@@ -42,7 +42,7 @@ export default function PortfolioMonitorPage() {
               </h1>
               <OrdinatusGear size="xl" color="steel" speed="reverse" />
             </div>
-            
+
             <div className="w-24 h-1 bg-Ordinatus-brass-gold mx-auto mb-6"></div>
             <p className="text-lg md:text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed Ordinatus-text-body">
               <span className="font-semibold text-Ordinatus-moonlight-blue">

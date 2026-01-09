@@ -10,6 +10,7 @@ interface OnboardingProfileData {
 }
 
 interface LearningState {
+  // State
   onboardingCompleted: boolean;
   currentModule: string | null;
   completedModules: string[];
@@ -17,16 +18,32 @@ interface LearningState {
   onboardingStep: number;
   isLoading: boolean;
   error: string | null;
+
+  // Setters
   setOnboardingCompleted: (completed: boolean) => void;
-  setCurrentModule: (module: string | null) => void;
-  addCompletedModule: (module: string) => void;
+  setOnboardingStep: (step: number) => void;
+  setCurrentModule: (moduleId: string | null) => void;
   setProgress: (progress: number) => void;
+  setCompletedModules: (modules: string[]) => void;
+  setLoading: (loading: boolean) => void;
+  setError: (error: string | null) => void;
+  clearError: () => void;
+
+  // Module actions
+  addCompletedModule: (module: string) => void;
   resetProgress: () => void;
+
+  // Onboarding actions
   startOnboarding: () => void;
   completeOnboardingStep: (step: number) => void;
   submitOnboardingProfile: (data: OnboardingProfileData) => void;
-  clearError: () => void;
+
+  // Dashboard actions
+  fetchPersonalizedPath: () => Promise<void>;
+  fetchAIRecommendations: () => Promise<void>;
+  markLessonCompleted: (lessonId: string) => Promise<void>;
 }
+
 
 export const useLearningStore = create<LearningState>()(
   persist(
@@ -44,6 +61,18 @@ export const useLearningStore = create<LearningState>()(
 
       setCurrentModule: (module: string | null) =>
         set({ currentModule: module }),
+
+      setOnboardingStep: (step: number) =>
+        set({ onboardingStep: step }),
+
+      setCompletedModules: (modules: string[]) =>
+        set({ completedModules: modules }),
+
+      setLoading: (loading: boolean) =>
+        set({ isLoading: loading }),
+
+      setError: (error: string | null) =>
+        set({ error }),
 
       addCompletedModule: (module: string) =>
         set(state => ({
@@ -75,6 +104,47 @@ export const useLearningStore = create<LearningState>()(
             isLoading: false
           });
         }, 1000);
+      },
+
+      // Additional actions for learning dashboard
+      fetchPersonalizedPath: async () => {
+        set({ isLoading: true, error: null });
+        try {
+          // Simulate API call
+          await new Promise(resolve => setTimeout(resolve, 1000));
+          // In a real app, this would fetch from an API
+          set({ isLoading: false });
+        } catch (error) {
+          set({ error: 'Failed to fetch learning path', isLoading: false });
+        }
+      },
+
+      fetchAIRecommendations: async () => {
+        set({ isLoading: true, error: null });
+        try {
+          // Simulate API call
+          await new Promise(resolve => setTimeout(resolve, 1000));
+          // In a real app, this would fetch AI recommendations
+          set({ isLoading: false });
+        } catch (error) {
+          set({ error: 'Failed to fetch AI recommendations', isLoading: false });
+        }
+      },
+
+      markLessonCompleted: async (lessonId: string) => {
+        set({ isLoading: true, error: null });
+        try {
+          // Simulate API call
+          await new Promise(resolve => setTimeout(resolve, 500));
+          // In a real app, this would mark the lesson as completed
+          set(state => ({
+            completedModules: [...state.completedModules, lessonId],
+            progress: Math.min(100, state.progress + 10),
+            isLoading: false
+          }));
+        } catch (error) {
+          set({ error: 'Failed to mark lesson as completed', isLoading: false });
+        }
       },
 
       clearError: () => set({ error: null }),
@@ -114,6 +184,70 @@ export const useProgress = () => {
 
 export const useModuleProgress = (moduleId: string) => {
   const { completedModules } = useLearningStore();
-  // Return 100 if module is completed, 0 otherwise
   return completedModules.includes(moduleId) ? 100 : 0;
+};
+
+// Additional placeholder exports for missing functionality
+export const useCurrentLearningPath = () => {
+  return {
+    currentPath: {
+      name: 'Beginner Investment Fundamentals',
+      description: 'Learn the basics of investing and portfolio management',
+      estimatedDuration: '4 weeks',
+      estimatedDurationHours: 15
+    },
+    modules: [],
+    overallProgress: 65,
+    isLoading: false
+  };
+};
+
+export const useLearningContent = () => {
+  return {
+    content: [],
+    isLoading: false
+  };
+};
+
+export const useNextRecommended = () => {
+  return {
+    nextModule: {
+      id: 'intro-stocks',
+      title: 'Introduction to Stock Markets',
+      description: 'Learn the fundamentals of stock market investing',
+      contentType: 'Video Lesson',
+      difficultyLevel: 'Beginner',
+      estimatedMinutes: 25,
+      estimatedDurationMinutes: 25,
+      pointsValue: 50,
+      progressStatus: 'in_progress',
+      thumbnailUrl: '/images/stocks-intro.jpg'
+    },
+    isLoading: false
+  };
+};
+
+export const useAIRecommendations = () => {
+  return {
+    recommendations: [],
+    nudgeMessage: null,
+    confidenceScore: 0.85,
+    priorityScore: 75,
+    isLoading: false
+  };
+};
+
+export const useLearningStats = () => {
+  return {
+    stats: {
+      totalTimeSpent: 120,
+      modulesCompleted: 8,
+      averageScore: 85,
+      completedLessons: 12,
+      totalLessons: 20,
+      totalPoints: 450,
+      streakDays: 5
+    },
+    isLoading: false
+  };
 };

@@ -1,7 +1,7 @@
 import React from 'react';
-import { mechanicaCard } from '../ui/mechanicaCard';
-import { mechanicaGear } from '../ui/mechanicaGear';
-import { mechanicaButton } from '../ui/mechanicaButton';
+import { MechanicaCard } from '../ui/mechanicaCard';
+import { MechanicaGear } from '../ui/mechanicaGear';
+import { MechanicaButton } from '../ui/mechanicaButton';
 
 // Define expected structure for the assessment result (matching VarkAssessment.tsx)
 interface VarkAssessmentResult {
@@ -76,8 +76,8 @@ const VarkResultDisplay: React.FC<VarkResultDisplayProps> = ({ result, onContinu
   };
 
   return (
-    <mechanicaCard variant="mechanical" className="p-8 text-center">
-      <mechanicaGear size="xl" color="brass" speed="slow" className="mx-auto mb-6" />
+    <MechanicaCard variant="mechanical" className="p-8 text-center">
+      <MechanicaGear size="xl" color="brass" speed="slow" className="mx-auto mb-6" />
       <h2 className="text-3xl font-bold mb-4 mechanica-heading-professional text-mechanica-moonlight-blue">
         Your Learning Style Profile
       </h2>
@@ -86,7 +86,7 @@ const VarkResultDisplay: React.FC<VarkResultDisplayProps> = ({ result, onContinu
       </p>
 
       <div className="mb-8">
-        <mechanicaCard variant="wood" className="inline-block p-6">
+        <MechanicaCard variant="wood" className="inline-block p-6">
           <div className="flex items-center justify-center space-x-4">
             <span className={`text-5xl ${primaryStyle.color}`}>{primaryStyle.icon}</span>
             <div>
@@ -96,7 +96,7 @@ const VarkResultDisplay: React.FC<VarkResultDisplayProps> = ({ result, onContinu
               <p className="text-gray-600 mechanica-text-technical">{primaryStyle.description}</p>
             </div>
           </div>
-        </mechanicaCard>
+        </MechanicaCard>
       </div>
 
       <div className="mb-8 text-left">
@@ -107,13 +107,13 @@ const VarkResultDisplay: React.FC<VarkResultDisplayProps> = ({ result, onContinu
           {Object.entries(vark_profile_data).map(([style, score]) => {
             const details = getStyleDetails(style);
             return (
-              <mechanicaCard key={style} variant="mechanical" className="p-4 flex items-center space-x-4">
+              <MechanicaCard key={style} variant="mechanical" className="p-4 flex items-center space-x-4">
                 <span className={`text-3xl ${details.color}`}>{details.icon}</span>
                 <div>
                   <p className="font-semibold mechanica-text-technical">{details.label}</p>
                   <p className="text-2xl font-bold mechanica-heading-mechanical">{score}</p>
                 </div>
-              </mechanicaCard>
+              </MechanicaCard>
             );
           })}
         </div>
@@ -161,10 +161,10 @@ const VarkResultDisplay: React.FC<VarkResultDisplayProps> = ({ result, onContinu
         </ul>
       </div>
 
-      <mechanicaButton variant="mechanical" onClick={onContinue} className="w-full md:w-auto">
+      <MechanicaButton variant="mechanical" onClick={onContinue} className="w-full md:w-auto">
         Continue to Dashboard
-      </mechanicaButton>
-    </mechanicaCard>
+      </MechanicaButton>
+    </MechanicaCard>
   );
 };
 

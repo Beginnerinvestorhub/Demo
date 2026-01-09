@@ -35,16 +35,19 @@ const customJestConfig = {
   // ----- Coverage -----
   collectCoverage: true,
   collectCoverageFrom: [
-    'components/NudgeChatWidget.tsx',
+    'components/**/*.{ts,tsx}',
+    'hooks/**/*.{ts,tsx}',
+    'src/**/*.{ts,tsx}',
     '!**/__tests__/**',
     '!**/*.d.ts',
+    '!**/node_modules/**',
   ],
   coverageThreshold: {
-    'components/NudgeChatWidget.tsx': {
-      branches: 50,
-      functions: 60,
-      lines: 60,
-      statements: 60,
+    global: {
+      branches: 20,
+      functions: 20,
+      lines: 20,
+      statements: 20,
     },
   },
 

@@ -1,7 +1,7 @@
 /**
  * @jest-environment jsdom
  */
-import { render, screen } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
 describe('Basic Test Suite', () => {
@@ -10,7 +10,7 @@ describe('Basic Test Suite', () => {
   });
 
   it('should render without crashing', () => {
-    render(<div data-testid="test-element">Test</div>);
-    expect(screen.getByTestId('test-element')).toBeInTheDocument();
+    const { getByTestId } = render(<div data-testid="test-element">Test</div>);
+    expect(getByTestId('test-element')).toBeInTheDocument();
   });
 });

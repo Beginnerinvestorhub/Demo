@@ -99,7 +99,7 @@ NEXT_PUBLIC_API_BASE_URL=https://api.example.com
 
 ## 🔗 Live Demo
 
-**URL**: https://beginnerinvestorhub.vercel.app
+**URL**: [https://beginnerinvestorhub.vercel.app/](https://beginnerinvestorhub.vercel.app/)
 
 ## 🧪 Testing
 
@@ -122,10 +122,17 @@ This is an educational project created for learning purposes.
 
 ## 📄 License
 
-[Your License Here]
+MIT License - See [LICENSE](LICENSE) file for details.
 
 ## 👤 Author
 
-Kevin Ringler
-- GitHub: [Your GitHub]
-- LinkedIn: [Your LinkedIn]
+**Kevin Ringler**
+Full-Stack Software Engineer
+
+- **GitHub Repository**: [https://github.com/Beginnerinvestorhub/Demo](https://github.com/Beginnerinvestorhub/Demo)
+- **LinkedIn**: [https://www.linkedin.com/in/kevin-ringler](https://www.linkedin.com/in/kevin-ringler)
+- **Portfolio**: [kevinringler.dev](https://kevinringler.dev)
+
+---
+
+*Built with ❤️ using Next.js, TypeScript, and modern web technologies.*

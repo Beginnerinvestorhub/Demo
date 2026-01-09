@@ -13,7 +13,7 @@ import {
   useLearningStats,
   useLearningLoading,
   useLearningError,
-} from '../../store/learningStore';
+} from '../../src/store/learningStore';
 import {
   PlayIcon,
   ClockIcon,
@@ -58,14 +58,14 @@ const PersonalizedLearningDashboard: React.FC = () => {
     }
   }, [aiRecommendations]);
 
-  const handleStartLesson = async (contentId: number) => {
+  const handleStartLesson = async (contentId: string) => {
     // In a real implementation, this would navigate to the lesson
     console.log('Starting lesson:', contentId);
   };
 
-  const handleCompleteLesson = async (contentId: number) => {
+  const handleCompleteLesson = async (contentId: string) => {
     try {
-      await markLessonCompleted(contentId, 15); // Assume 15 minutes
+      await markLessonCompleted(contentId);
     } catch (err) {
       console.error('Failed to complete lesson:', err);
     }
@@ -150,9 +150,9 @@ const PersonalizedLearningDashboard: React.FC = () => {
           <div className="flex items-center justify-between mb-4">
             <div>
               <h2 className="text-2xl font-bold text-gray-900">
-                {currentPath.name}
+                {currentPath.currentPath.name}
               </h2>
-              <p className="text-gray-600 mt-1">{currentPath.description}</p>
+              <p className="text-gray-600 mt-1">{currentPath.currentPath.description}</p>
             </div>
             <div className="text-right">
               <div className="text-3xl font-bold text-indigo-600">
@@ -172,25 +172,25 @@ const PersonalizedLearningDashboard: React.FC = () => {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
             <div>
               <div className="text-2xl font-bold text-gray-900">
-                {stats.completedLessons}
+                {stats.stats.completedLessons}
               </div>
               <div className="text-sm text-gray-500">Lessons Completed</div>
             </div>
             <div>
               <div className="text-2xl font-bold text-gray-900">
-                {stats.totalLessons}
+                {stats.stats.totalLessons}
               </div>
               <div className="text-sm text-gray-500">Total Lessons</div>
             </div>
             <div>
               <div className="text-2xl font-bold text-gray-900">
-                {stats.totalPoints}
+                {stats.stats.totalPoints}
               </div>
               <div className="text-sm text-gray-500">Points Earned</div>
             </div>
             <div>
               <div className="text-2xl font-bold text-gray-900">
-                {currentPath.estimatedDurationHours}h
+                {currentPath.currentPath.estimatedDurationHours}h
               </div>
               <div className="text-sm text-gray-500">Est. Duration</div>
             </div>
@@ -213,37 +213,37 @@ const PersonalizedLearningDashboard: React.FC = () => {
                   <div className="flex-1">
                     <div className="flex items-center space-x-2 mb-2">
                       <span className="bg-indigo-100 text-indigo-800 text-xs font-medium px-2.5 py-0.5 rounded">
-                        {nextRecommended.contentType}
+                        {nextRecommended.nextModule.contentType}
                       </span>
                       <span className="bg-gray-100 text-gray-800 text-xs font-medium px-2.5 py-0.5 rounded">
-                        {nextRecommended.difficultyLevel}
+                        {nextRecommended.nextModule.difficultyLevel}
                       </span>
                     </div>
                     <h4 className="text-lg font-semibold text-gray-900 mb-2">
-                      {nextRecommended.title}
+                      {nextRecommended.nextModule.title}
                     </h4>
                     <div className="flex items-center space-x-4 text-sm text-gray-600 mb-4">
                       <span className="flex items-center">
                         <ClockIcon className="h-4 w-4 mr-1" />
-                        {nextRecommended.estimatedDurationMinutes} min
+                        {nextRecommended.nextModule.estimatedDurationMinutes} min
                       </span>
                       <span className="flex items-center">
                         <TrophyIcon className="h-4 w-4 mr-1" />
-                        {nextRecommended.pointsValue} points
+                        {nextRecommended.nextModule.pointsValue} points
                       </span>
                     </div>
                     <div className="flex space-x-3">
                       <button
-                        onClick={() => handleStartLesson(nextRecommended.id)}
+                        onClick={() => handleStartLesson(nextRecommended.nextModule.id)}
                         className="bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 transition-colors flex items-center"
                       >
                         <PlayIcon className="h-4 w-4 mr-2" />
                         Start Lesson
                       </button>
-                      {nextRecommended.progressStatus === 'in_progress' && (
+                      {nextRecommended.nextModule.progressStatus === 'in_progress' && (
                         <button
                           onClick={() =>
-                            handleCompleteLesson(nextRecommended.id)
+                            handleCompleteLesson(nextRecommended.nextModule.id)
                           }
                           className="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition-colors flex items-center"
                         >

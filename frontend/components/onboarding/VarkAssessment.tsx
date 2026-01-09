@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useApiGet, useApiPost } from '../../hooks/useApi'; // Assuming useApi is in ../../hooks/useApi
-import { mechanicaButton } from '../ui/mechanicaButton';
-import { mechanicaCard } from '../ui/mechanicaCard';
-import { mechanicaGear } from '../ui/mechanicaGear';
+import { MechanicaButton } from '../ui/mechanicaButton';
+import { MechanicaCard } from '../ui/mechanicaCard';
+import { MechanicaGear } from '../ui/mechanicaGear';
 
 // Define expected structure for a question
 interface VarkQuestion {
@@ -85,30 +85,30 @@ const VarkAssessment: React.FC<{ userId: string; onComplete: (result: VarkAssess
 
   if (questionsLoading) {
     return (
-      <mechanicaCard variant="mechanical" className="p-6 text-center">
-        <mechanicaGear size="large" color="steel" speed="slow" className="mx-auto mb-4" />
+      <MechanicaCard variant="mechanical" className="p-6 text-center">
+        <MechanicaGear size="large" color="steel" speed="slow" className="mx-auto mb-4" />
         <p className="mechanica-text-technical">Loading VARK questions...</p>
-      </mechanicaCard>
+      </MechanicaCard>
     );
   }
 
   if (questionsError) {
     return (
-      <mechanicaCard variant="mechanical" className="p-6 text-center">
-        <mechanicaGear size="large" color="copper" speed="fast" className="mx-auto mb-4" />
+      <MechanicaCard variant="mechanical" className="p-6 text-center">
+        <MechanicaGear size="large" color="copper" speed="fast" className="mx-auto mb-4" />
         <p className="text-red-600 mechanica-text-technical">Error loading questions: {(questionsError as Error).message}</p>
-        <mechanicaButton variant="mechanical" onClick={() => window.location.reload()} className="mt-4">
+        <MechanicaButton variant="mechanical" onClick={() => window.location.reload()} className="mt-4">
           Retry
-        </mechanicaButton>
-      </mechanicaCard>
+        </MechanicaButton>
+      </MechanicaCard>
     );
   }
 
   if (!questions || questions.length === 0) {
     return (
-      <mechanicaCard variant="mechanical" className="p-6 text-center">
+      <MechanicaCard variant="mechanical" className="p-6 text-center">
         <p className="mechanica-text-technical">No VARK questions available.</p>
-      </mechanicaCard>
+      </MechanicaCard>
     );
   }
 
@@ -118,16 +118,16 @@ const VarkAssessment: React.FC<{ userId: string; onComplete: (result: VarkAssess
   const hasAnsweredCurrentQuestion = answers[currentQuestion.id] !== undefined;
 
   return (
-    <mechanicaCard variant="mechanical" className="p-6">
+    <MechanicaCard variant="mechanical" className="p-6">
       <h2 className="text-2xl font-bold mb-4 mechanica-heading-professional">Discover Your Learning Style</h2>
       <p className="mb-6 text-gray-600 mechanica-text-technical">
         Answer the following questions to help us understand how you learn best. ({currentQuestionIndex + 1}/{questions.length})
       </p>
 
       {submitError && (
-        <mechanicaCard variant="wood" className="p-4 mb-4 border-red-300 bg-red-50">
+        <MechanicaCard variant="wood" className="p-4 mb-4 border-red-300 bg-red-50">
           <p className="text-red-700 mechanica-text-technical">Error submitting assessment: {(submitError as Error).message}</p>
-        </mechanicaCard>
+        </MechanicaCard>
       )}
 
       <div className="mb-6">
@@ -150,28 +150,28 @@ const VarkAssessment: React.FC<{ userId: string; onComplete: (result: VarkAssess
       </div>
 
       <div className="flex justify-between mt-6">
-        <mechanicaButton variant="wood" onClick={handlePreviousQuestion} disabled={isFirstQuestion || submitLoading}>
+        <MechanicaButton variant="wood" onClick={handlePreviousQuestion} disabled={isFirstQuestion || submitLoading}>
           Previous
-        </mechanicaButton>
+        </MechanicaButton>
         {isLastQuestion ? (
-          <mechanicaButton
+          <MechanicaButton
             variant="mechanical"
             onClick={handleSubmit}
             disabled={submitLoading || !hasAnsweredCurrentQuestion}
           >
             {submitLoading ? 'Analyzing...' : 'Submit Assessment'}
-          </mechanicaButton>
+          </MechanicaButton>
         ) : (
-          <mechanicaButton
+          <MechanicaButton
             variant="mechanical"
             onClick={handleNextQuestion}
             disabled={!hasAnsweredCurrentQuestion || submitLoading}
           >
             Next Question
-          </mechanicaButton>
+          </MechanicaButton>
         )}
       </div>
-    </mechanicaCard>
+    </MechanicaCard>
   );
 };
 
