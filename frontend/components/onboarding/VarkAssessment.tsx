@@ -96,7 +96,7 @@ const VarkAssessment: React.FC<{ userId: string; onComplete: (result: VarkAssess
     return (
       <MechanicaCard variant="mechanical" className="p-6 text-center">
         <MechanicaGear size="large" color="copper" speed="fast" className="mx-auto mb-4" />
-        <p className="text-red-600 mechanica-text-technical">Error loading questions: {(questionsError as Error).message}</p>
+        <p className="text-red-600 mechanica-text-technical">Error loading questions: {questionsError}</p>
         <MechanicaButton variant="mechanical" onClick={() => window.location.reload()} className="mt-4">
           Retry
         </MechanicaButton>
@@ -126,7 +126,7 @@ const VarkAssessment: React.FC<{ userId: string; onComplete: (result: VarkAssess
 
       {submitError && (
         <MechanicaCard variant="wood" className="p-4 mb-4 border-red-300 bg-red-50">
-          <p className="text-red-700 mechanica-text-technical">Error submitting assessment: {(submitError as Error).message}</p>
+          <p className="text-red-700 mechanica-text-technical">Error submitting assessment: {submitError}</p>
         </MechanicaCard>
       )}
 

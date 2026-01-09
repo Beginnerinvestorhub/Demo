@@ -31,7 +31,7 @@ export default function ProfileForm() {
     reset,
     formState: { errors, isSubmitting, isValid },
   } = useForm<ProfileFormData>({
-    resolver: yupResolver(profileValidationSchema),
+    resolver: yupResolver(profileValidationSchema) as any,
     mode: 'onChange', // Validate on change for immediate feedback
     defaultValues: {
       firstName: '',
@@ -86,10 +86,12 @@ export default function ProfileForm() {
       });
       // No need to reset(data) here as formState.isDirty will be reset by react-hook-form automatically
     } catch (error: unknown) {
-      const message =
-        error instanceof Error && 'response' in error && error.response?.data?.message
-          ? (error.response.data as { message: string }).message
-          : 'An unexpected error occurred.';
+      let message = 'An unexpected error occurred.';
+      if (axios.isAxiosError(error)) {
+        message = error.response?.data?.message || error.message || message;
+      } else if (error instanceof Error) {
+        message = error.message;
+      }
       setStatusMessage({ type: 'error', message });
     }
   };

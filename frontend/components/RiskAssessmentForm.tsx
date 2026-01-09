@@ -32,7 +32,30 @@ interface RiskAssessmentData {
   primary_goal: string;
 }
 
-const initialState = {
+interface RiskAssessmentFormState {
+  age: string | number;
+  gender: string;
+  marital_status: string;
+  employment_status: string;
+  is_retired: boolean;
+  region: string;
+  is_immigrant: boolean;
+  income: string | number;
+  assets: string | number;
+  liabilities: string | number;
+  expenses: string | number;
+  credit_score: string | number;
+  investment_experience: string | number;
+  risk_tolerance: string | number;
+  market_volatility: string | number;
+  industry_risk: string | number;
+  economic_outlook: string | number;
+  dependents: string | number;
+  education_level: string;
+  primary_goal: string;
+}
+
+const initialState: RiskAssessmentFormState = {
   // Step 1: Personal Details
   age: '',
   gender: '',
@@ -66,14 +89,14 @@ export default function RiskAssessmentForm({
   error,
 }: RiskAssessmentFormProps) {
   const [step, setStep] = useState(0);
-  const [form, setForm] = useState<Partial<RiskAssessmentData>>(initialState);
+  const [form, setForm] = useState<RiskAssessmentFormState>(initialState);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
     const { name, value, type } = e.target;
     const checked = (e.target as HTMLInputElement).checked;
-    setForm((prev: Partial<RiskAssessmentData>) => ({
+    setForm((prev) => ({
       ...prev,
       [name]: type === 'checkbox' ? checked : value,
     }));

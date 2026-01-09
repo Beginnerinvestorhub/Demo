@@ -4,7 +4,7 @@ declare module 'next-auth' {
   /**
    * Extend the built-in session types
    */
-  interface Session {
+  interface Session extends DefaultSession {
     user: {
       id: string;
       accessToken?: string;
@@ -27,40 +27,9 @@ declare module 'next-auth/jwt' {
   interface JWT {
     id: string;
     accessToken?: string;
-    expires: string;
-  }
-}
-
-// This ensures the file is treated as a module
-export {};
-
-declare module 'next-auth' {
-  interface Session {
-    user: {
-      id: string;
-      name?: string | null;
-      email?: string | null;
-      image?: string | null;
-      accessToken?: string;
-    };
-  }
-
-  interface User {
-    id: string;
-    name?: string | null;
-    email?: string | null;
-    image?: string | null;
-    accessToken?: string;
-  }
-}
-
-declare module 'next-auth/jwt' {
-  interface JWT {
-    id: string;
-    name?: string | null;
-    email?: string | null;
+    expires?: string;
     picture?: string | null;
-    sub?: string;
-    accessToken?: string;
   }
 }
+
+export { };

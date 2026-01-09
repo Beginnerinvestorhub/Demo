@@ -58,7 +58,7 @@ const OnboardingFlow: React.FC<OnboardingFlowProps> = ({ onComplete }) => {
     learningStyle: '',
     preferredTopics: [] as string[],
   });
-  
+
   const [varkResult, setVarkResult] = useState<VarkAssessmentResult | null>(null);
 
   // Initialize onboarding
@@ -204,11 +204,10 @@ const OnboardingFlow: React.FC<OnboardingFlowProps> = ({ onComplete }) => {
               ].map(option => (
                 <label
                   key={option.value}
-                  className={`block p-4 border-2 rounded-lg cursor-pointer transition-all ${
-                    formData.riskProfile === option.value
-                      ? 'border-indigo-500 bg-indigo-50'
-                      : 'border-gray-200 hover:border-gray-300'
-                  }`}
+                  className={`block p-4 border-2 rounded-lg cursor-pointer transition-all ${formData.riskProfile === option.value
+                    ? 'border-indigo-500 bg-indigo-50'
+                    : 'border-gray-200 hover:border-gray-300'
+                    }`}
                 >
                   <input
                     type="radio"
@@ -222,11 +221,10 @@ const OnboardingFlow: React.FC<OnboardingFlowProps> = ({ onComplete }) => {
                   />
                   <div className="flex items-center">
                     <div
-                      className={`w-4 h-4 rounded-full border-2 mr-3 ${
-                        formData.riskProfile === option.value
-                          ? 'border-indigo-500 bg-indigo-500'
-                          : 'border-gray-300'
-                      }`}
+                      className={`w-4 h-4 rounded-full border-2 mr-3 ${formData.riskProfile === option.value
+                        ? 'border-indigo-500 bg-indigo-500'
+                        : 'border-gray-300'
+                        }`}
                     >
                       {formData.riskProfile === option.value && (
                         <div className="w-2 h-2 bg-white rounded-full mx-auto mt-0.5"></div>
@@ -270,11 +268,10 @@ const OnboardingFlow: React.FC<OnboardingFlowProps> = ({ onComplete }) => {
               ].map(goal => (
                 <label
                   key={goal.value}
-                  className={`block p-4 border-2 rounded-lg cursor-pointer transition-all ${
-                    formData.investmentGoals.includes(goal.value)
-                      ? 'border-indigo-500 bg-indigo-50'
-                      : 'border-gray-200 hover:border-gray-300'
-                  }`}
+                  className={`block p-4 border-2 rounded-lg cursor-pointer transition-all ${formData.investmentGoals.includes(goal.value)
+                    ? 'border-indigo-500 bg-indigo-50'
+                    : 'border-gray-200 hover:border-gray-300'
+                    }`}
                 >
                   <input
                     type="checkbox"
@@ -286,11 +283,10 @@ const OnboardingFlow: React.FC<OnboardingFlowProps> = ({ onComplete }) => {
                   />
                   <div className="flex items-center">
                     <div
-                      className={`w-5 h-5 border-2 rounded mr-3 flex items-center justify-center ${
-                        formData.investmentGoals.includes(goal.value)
-                          ? 'border-indigo-500 bg-indigo-500'
-                          : 'border-gray-300'
-                      }`}
+                      className={`w-5 h-5 border-2 rounded mr-3 flex items-center justify-center ${formData.investmentGoals.includes(goal.value)
+                        ? 'border-indigo-500 bg-indigo-500'
+                        : 'border-gray-300'
+                        }`}
                     >
                       {formData.investmentGoals.includes(goal.value) && (
                         <CheckCircleIcon className="h-3 w-3 text-white" />
@@ -336,11 +332,10 @@ const OnboardingFlow: React.FC<OnboardingFlowProps> = ({ onComplete }) => {
               ].map(option => (
                 <label
                   key={option.value}
-                  className={`block p-4 border-2 rounded-lg cursor-pointer transition-all ${
-                    formData.timeHorizon === option.value
-                      ? 'border-indigo-500 bg-indigo-50'
-                      : 'border-gray-200 hover:border-gray-300'
-                  }`}
+                  className={`block p-4 border-2 rounded-lg cursor-pointer transition-all ${formData.timeHorizon === option.value
+                    ? 'border-indigo-500 bg-indigo-50'
+                    : 'border-gray-200 hover:border-gray-300'
+                    }`}
                 >
                   <input
                     type="radio"
@@ -354,11 +349,10 @@ const OnboardingFlow: React.FC<OnboardingFlowProps> = ({ onComplete }) => {
                   />
                   <div className="flex items-center">
                     <div
-                      className={`w-4 h-4 rounded-full border-2 mr-3 ${
-                        formData.timeHorizon === option.value
-                          ? 'border-indigo-500 bg-indigo-500'
-                          : 'border-gray-300'
-                      }`}
+                      className={`w-4 h-4 rounded-full border-2 mr-3 ${formData.timeHorizon === option.value
+                        ? 'border-indigo-500 bg-indigo-500'
+                        : 'border-gray-300'
+                        }`}
                     >
                       {formData.timeHorizon === option.value && (
                         <div className="w-2 h-2 bg-white rounded-full mx-auto mt-0.5"></div>
@@ -382,7 +376,7 @@ const OnboardingFlow: React.FC<OnboardingFlowProps> = ({ onComplete }) => {
       case 5:
         return (
           <VarkAssessment
-            userId={user.id}
+            userId={user!.uid}
             onComplete={(result) => {
               setVarkResult(result); // Store the full result
               updateFormData('learningStyle', result.primary_vark_preference); // Store primary preference
@@ -487,11 +481,10 @@ const OnboardingFlow: React.FC<OnboardingFlowProps> = ({ onComplete }) => {
           <button
             onClick={handleBack}
             disabled={onboardingStep <= 1}
-            className={`flex items-center px-6 py-3 rounded-lg font-medium transition-all ${
-              onboardingStep <= 1
-                ? 'text-gray-400 cursor-not-allowed'
-                : 'text-gray-700 hover:bg-gray-100'
-            }`}
+            className={`flex items-center px-6 py-3 rounded-lg font-medium transition-all ${onboardingStep <= 1
+              ? 'text-gray-400 cursor-not-allowed'
+              : 'text-gray-700 hover:bg-gray-100'
+              }`}
           >
             <ChevronLeftIcon className="h-5 w-5 mr-2" />
             Back
@@ -501,11 +494,10 @@ const OnboardingFlow: React.FC<OnboardingFlowProps> = ({ onComplete }) => {
             <button
               onClick={handleNext}
               disabled={!isStepValid() || isLoading}
-              className={`flex items-center px-6 py-3 rounded-lg font-medium transition-all ${
-                isStepValid() && !isLoading
-                  ? 'bg-indigo-600 text-white hover:bg-indigo-700'
-                  : 'bg-gray-300 text-gray-500 cursor-not-allowed'
-              }`}
+              className={`flex items-center px-6 py-3 rounded-lg font-medium transition-all ${isStepValid() && !isLoading
+                ? 'bg-indigo-600 text-white hover:bg-indigo-700'
+                : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                }`}
             >
               {isLoading ? 'Processing...' : 'Continue'}
               <ChevronRightIcon className="h-5 w-5 ml-2" />
@@ -514,11 +506,10 @@ const OnboardingFlow: React.FC<OnboardingFlowProps> = ({ onComplete }) => {
             <button
               onClick={handleSubmit}
               disabled={isLoading}
-              className={`flex items-center px-8 py-3 rounded-lg font-medium transition-all ${
-                !isLoading
-                  ? 'bg-green-600 text-white hover:bg-green-700'
-                  : 'bg-gray-300 text-gray-500 cursor-not-allowed'
-              }`}
+              className={`flex items-center px-8 py-3 rounded-lg font-medium transition-all ${!isLoading
+                ? 'bg-green-600 text-white hover:bg-green-700'
+                : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                }`}
             >
               {isLoading ? 'Setting up your path...' : 'Start Learning Journey'}
               <ChevronRightIcon className="h-5 w-5 ml-2" />

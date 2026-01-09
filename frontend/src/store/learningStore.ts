@@ -3,10 +3,11 @@ import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
 interface OnboardingProfileData {
-  name: string;
-  email: string;
-  experience: string;
-  goals: string[];
+  riskProfile: string;
+  investmentGoals: string[];
+  timeHorizon: string;
+  learningStyle: string;
+  preferredTopics: string[];
 }
 
 interface LearningState {
@@ -113,8 +114,9 @@ export const useLearningStore = create<LearningState>()(
 
       completeOnboardingStep: (step: number) => set({ onboardingStep: step }),
 
-      submitOnboardingProfile: () => {
+      submitOnboardingProfile: (data: OnboardingProfileData) => {
         set({ isLoading: true, error: null });
+        console.log('Submitting onboarding profile:', data);
         // Simulate API call
         setTimeout(() => {
           set({

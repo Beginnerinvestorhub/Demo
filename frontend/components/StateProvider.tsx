@@ -29,8 +29,9 @@ export const useStateProvider = () => {
 
 export const StateProvider: React.FC<StateProviderProps> = ({ children }) => {
   const cleanupRef = useRef<(() => void) | null>(null);
-  const { isAuthenticated, error: authError } = useAuth();
+  const { user, error: authError } = useAuth();
   const { showNotification } = useUI();
+  const isAuthenticated = !!user;
 
   // Initialize stores on mount
   useEffect(() => {
@@ -67,7 +68,7 @@ export const StateProvider: React.FC<StateProviderProps> = ({ children }) => {
   // Handle authentication errors
   useEffect(() => {
     if (authError) {
-      showErrorNotification('Authentication Error', authError, [
+      showErrorNotification('Authentication Error', authError.message, [
         {
           label: 'Retry',
           action: () => window.location.reload(),

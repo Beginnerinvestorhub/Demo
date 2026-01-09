@@ -2,18 +2,6 @@ import { useState, useCallback } from 'react';
 import { useSession } from 'next-auth/react';
 import { Session } from 'next-auth';
 
-// Extend the Session type to include accessToken and id
-declare module 'next-auth' {
-  interface Session {
-    user?: {
-      id?: string;
-      accessToken?: string;
-      name?: string | null;
-      email?: string | null;
-      image?: string | null;
-    };
-  }
-}
 
 // Geolocation API types
 interface GeolocationPosition {
@@ -68,19 +56,19 @@ export function useNudgeApi(): UseNudgeApiReturn {
       // However, this hook uses useSession (NextAuth). 
       // If we are migrating to Firebase Auth fully, we should use useAuth hook here instead.
       // Assuming we are sticking to the plan of using apiClient which uses Firebase Auth.
-      
+
       setLoading(true);
       setError(null);
 
       try {
         const response = await apiClient.post('/nudges', {
-            message,
-            context: {
-              ...context,
-              deviceInfo: getDeviceInfo(),
-              location: await getLocationInfo(),
-              // userId will be extracted from token in backend
-            },
+          message,
+          context: {
+            ...context,
+            deviceInfo: getDeviceInfo(),
+            location: await getLocationInfo(),
+            // userId will be extracted from token in backend
+          },
         });
 
         return response.data;
