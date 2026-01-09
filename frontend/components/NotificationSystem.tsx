@@ -12,8 +12,8 @@ import {
   XCircleIcon,
   XMarkIcon,
 } from '@heroicons/react/24/outline';
-import { useNotifications, useUI } from '../store';
-import { Notification } from '../store/types';
+import { useNotifications, useUI } from '@/store';
+import { Notification } from '@/store/types';
 
 const NotificationIcon: React.FC<{ type: Notification['type'] }> = ({
   type,

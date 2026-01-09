@@ -44,6 +44,25 @@ interface LearningState {
   markLessonCompleted: (lessonId: string) => Promise<void>;
 }
 
+export interface LearningModule {
+  id: string;
+  title: string;
+  description: string;
+  contentType: string;
+  difficultyLevel: string;
+  estimatedMinutes: number;
+  estimatedDurationMinutes: number;
+  pointsValue: number;
+  progressStatus: 'completed' | 'in_progress' | 'not_started';
+  thumbnailUrl?: string;
+}
+
+export interface AIReco {
+  id: string;
+  title: string;
+  contentType: string;
+  estimatedDurationMinutes: number;
+}
 
 export const useLearningStore = create<LearningState>()(
   persist(
@@ -196,7 +215,7 @@ export const useCurrentLearningPath = () => {
       estimatedDuration: '4 weeks',
       estimatedDurationHours: 15
     },
-    modules: [],
+    modules: [] as LearningModule[],
     overallProgress: 65,
     isLoading: false
   };
@@ -204,7 +223,7 @@ export const useCurrentLearningPath = () => {
 
 export const useLearningContent = () => {
   return {
-    content: [],
+    content: [] as LearningModule[],
     isLoading: false
   };
 };
@@ -222,17 +241,18 @@ export const useNextRecommended = () => {
       pointsValue: 50,
       progressStatus: 'in_progress',
       thumbnailUrl: '/images/stocks-intro.jpg'
-    },
+    } as LearningModule,
     isLoading: false
   };
 };
 
 export const useAIRecommendations = () => {
   return {
-    recommendations: [],
-    nudgeMessage: null,
+    recommendations: [] as AIReco[],
+    nudgeMessage: null as string | null,
     confidenceScore: 0.85,
     priorityScore: 75,
+    reasoning: 'Based on your profile',
     isLoading: false
   };
 };

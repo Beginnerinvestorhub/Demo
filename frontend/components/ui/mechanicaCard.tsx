@@ -5,6 +5,7 @@ interface MechanicaCardProps {
   className?: string;
   variant?: 'default' | 'dark' | 'light' | 'mechanical' | 'wood' | 'brass';
   animated?: boolean;
+  hover?: boolean;
   gearDecoration?: boolean;
 }
 
@@ -13,6 +14,7 @@ export const MechanicaCard: React.FC<MechanicaCardProps> = ({
   className = '',
   variant = 'default',
   animated = false,
+  hover = false,
   gearDecoration = false
 }) => {
   const baseClasses = 'rounded-lg shadow-lg p-6 transition-all duration-200';
@@ -25,10 +27,10 @@ export const MechanicaCard: React.FC<MechanicaCardProps> = ({
     brass: 'mechanica-card-brass'
   };
 
-  const animationClass = animated ? 'hover:scale-[1.02] hover:shadow-xl' : '';
+  const hoverClass = (animated || hover) ? 'hover:scale-[1.02] hover:shadow-xl' : '';
 
   return (
-    <div className={`${baseClasses} ${variantClasses[variant]} ${animationClass} ${className} relative`}>
+    <div className={`${baseClasses} ${variantClasses[variant]} ${hoverClass} ${className} relative`}>
       {gearDecoration && (
         <div className="absolute top-0 right-0 p-2 opacity-10 pointer-events-none">
           {/* Simple gear icon or similar */}

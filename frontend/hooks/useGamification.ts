@@ -54,7 +54,7 @@ export function useGamification(userId: string): UseGamificationReturn {
   const [error, setError] = useState<string | null>(null);
   const { user } = useAuth();
 
-  
+
   // --- Utility & API Functions ---
 
   const calculateLevel = useCallback((totalPoints: number): number => {
@@ -86,7 +86,7 @@ export function useGamification(userId: string): UseGamificationReturn {
       console.error('Failed to save user progress:', err);
     }
   }, [userId, user]);
-  
+
   const getProgressToNextLevel = useCallback(
     (totalPoints: number) => {
       const currentLevel = calculateLevel(totalPoints);
@@ -98,8 +98,8 @@ export function useGamification(userId: string): UseGamificationReturn {
       const progress =
         nextThreshold > currentThreshold
           ? ((totalPoints - currentThreshold) /
-              (nextThreshold - currentThreshold)) *
-            100
+            (nextThreshold - currentThreshold)) *
+          100
           : 100;
 
       return {
@@ -123,7 +123,7 @@ export function useGamification(userId: string): UseGamificationReturn {
   );
 
   // --- Action Functions (Hoisted & Memoized) ---
-  
+
   const unlockBadge = useCallback(
     async (badgeId: string) => {
       setUserProgress(currentProgress => {
@@ -137,7 +137,7 @@ export function useGamification(userId: string): UseGamificationReturn {
         const newBadge: Badge = {
           ...badgeDefinition,
           isUnlocked: true,
-          unlockedAt: new Date().toISOString(), 
+          unlockedAt: new Date().toISOString(),
         };
 
         const updatedProgress: UserProgress = {
@@ -148,7 +148,7 @@ export function useGamification(userId: string): UseGamificationReturn {
 
         saveUserData(updatedProgress);
         showNotification('badge', newBadge as unknown as Record<string, unknown>);
-        
+
         return updatedProgress;
       });
     },
@@ -201,7 +201,7 @@ export function useGamification(userId: string): UseGamificationReturn {
         if (leveledUp) {
           checkLevelAchievements(newLevel);
         }
-        
+
         return updatedProgress;
       });
     },
@@ -215,7 +215,7 @@ export function useGamification(userId: string): UseGamificationReturn {
 
         const today = getTodayDateString();
         const yesterday = getYesterdayDateString();
-        
+
         const lastDate =
           streakType === 'login'
             ? currentProgress.streaks.lastLoginDate
@@ -240,13 +240,13 @@ export function useGamification(userId: string): UseGamificationReturn {
             ...currentProgress.streaks,
             [streakType === 'login' ? 'loginStreak' : 'learningStreak']:
               newStreak,
-            [streakType === 'login' ? 'lastLoginDate' : 'lastLearningDate']: today, 
+            [streakType === 'login' ? 'lastLoginDate' : 'lastLearningDate']: today,
           },
         };
 
         saveUserData(updatedProgress);
         checkStreakAchievements(streakType, newStreak);
-        
+
         return updatedProgress;
       });
     },
@@ -257,7 +257,7 @@ export function useGamification(userId: string): UseGamificationReturn {
   const checkAchievements = useCallback(
     async (eventType: string, currentStats: UserStats): Promise<Achievement[]> => {
       if (!userProgress) return [];
-      
+
       const newAchievements: Achievement[] = [];
 
       for (const achievementDef of Object.values(ACHIEVEMENT_DEFINITIONS)) {
@@ -279,7 +279,7 @@ export function useGamification(userId: string): UseGamificationReturn {
             break;
           case 'login_streak_7':
             // Direct access is safe now because UserProgress is available via closure
-            progress = userProgress.streaks.loginStreak; 
+            progress = userProgress.streaks.loginStreak;
             break;
           case 'esg_user':
             progress = currentStats.toolsUsed.includes('esg-screener') ? 1 : 0;
@@ -289,22 +289,31 @@ export function useGamification(userId: string): UseGamificationReturn {
         }
 
         if (progress >= achievementDef.target) {
-          // Assuming achievementDef.reward is a complete definition object
-          const reward = achievementDef.reward as { badge?: Badge, points?: number };
-          const badge = reward.badge || BADGE_DEFINITIONS[achievementDef.id];
-          
-          if (!badge) {
-            console.error(`Badge not found for achievement: ${achievementDef.id}`);
+          const reward = achievementDef.reward as { points?: number; badge?: string };
+
+          // Helper to find the badge definition
+          const badgeId = reward.badge || achievementDef.id;
+          const badgeDef = BADGE_DEFINITIONS[badgeId.toUpperCase()] || BADGE_DEFINITIONS[badgeId];
+
+          if (!badgeDef) {
+            console.error(`Badge definition not found for: ${badgeId}`);
             continue;
           }
+
+          // Create a full Badge object
+          const badge: Badge = {
+            ...badgeDef,
+            isUnlocked: true,
+            unlockedAt: new Date().toISOString(),
+          };
 
           const achievement: Achievement = {
             id: achievementDef.id,
             name: achievementDef.name,
-            title: achievementDef.title,
+            title: (achievementDef as any).title || achievementDef.name,
             description: achievementDef.description,
-            points: reward.points || badge.points || 0,
-            reward: reward.points || badge.points || 0,
+            points: reward.points || badgeDef.points || 0,
+            reward: reward.points || badgeDef.points || 0,
             badge: badge,
             unlockedAt: new Date().toISOString(),
           };
@@ -316,70 +325,70 @@ export function useGamification(userId: string): UseGamificationReturn {
     },
     [userProgress]
   );
-  
+
   const trackEvent = useCallback(
     async (eventType: string, data: Record<string, unknown> = {}) => {
       if (!userProgress) return;
-      
+
       try {
         // --- 1. Synchronously Calculate Next State (Stat Updates) ---
-        
+
         const updatedStats: UserStats = {
           ...userProgress.stats,
           // Direct access is safe after UserStats is fixed
-          pageViews: { ...userProgress.stats.pageViews }, 
+          pageViews: { ...userProgress.stats.pageViews },
           events: { ...userProgress.stats.events }
         };
-        
+
         // Handle different event types
         if (eventType === 'page_view') {
           const page = (data.page as string) || 'unknown';
           updatedStats.pageViews[page] = (updatedStats.pageViews[page] || 0) + 1;
         } else {
-           // Track custom events
-           updatedStats.events[eventType] = (updatedStats.events[eventType] || 0) + 1;
+          // Track custom events
+          updatedStats.events[eventType] = (updatedStats.events[eventType] || 0) + 1;
         }
 
         let updatedProgress: UserProgress = {
           ...userProgress,
           stats: updatedStats,
-          lastActivity: new Date().toISOString(), 
+          lastActivity: new Date().toISOString(),
         };
-        
+
         // --- 2. Asynchronously Check Achievements ---
         const newAchievements = await checkAchievements(eventType, updatedStats);
-        
+
         // --- 3. Synchronously Update State and Asynchronously Save/Unlock ---
-        
+
         if (newAchievements.length > 0) {
           const totalAchievementPoints = newAchievements.reduce((sum, a) => sum + (a.points || 0), 0);
-          
+
           updatedProgress = {
             ...updatedProgress,
             totalPoints: updatedProgress.totalPoints + totalAchievementPoints
           };
-          
+
           setUserProgress(updatedProgress);
           await saveUserData(updatedProgress);
 
           for (const achievement of newAchievements) {
-              if (achievement.badge?.id) {
-                  await unlockBadge(achievement.badge.id);
-              }
+            if (achievement.badge?.id) {
+              await unlockBadge(achievement.badge.id);
+            }
 
-              // FIX: Cast to match showNotification's type (Error 2345 fix)
-              showNotification('achievement', achievement as unknown as Record<string, unknown>); 
+            // FIX: Cast to match showNotification's type (Error 2345 fix)
+            showNotification('achievement', achievement as unknown as Record<string, unknown>);
           }
         } else {
-             setUserProgress(updatedProgress);
-             await saveUserData(updatedProgress);
+          setUserProgress(updatedProgress);
+          await saveUserData(updatedProgress);
         }
 
       } catch (error) {
         console.error('Error tracking event:', error);
       }
     },
-    [userProgress, saveUserData, checkAchievements, showNotification, unlockBadge] 
+    [userProgress, saveUserData, checkAchievements, showNotification, unlockBadge]
   );
 
   // --- Data Loading Effect ---
@@ -397,7 +406,7 @@ export function useGamification(userId: string): UseGamificationReturn {
             setUserProgress(progress);
           } else {
             // Initialize new user progress (now safe with fixed UserProgress/UserStats)
-            const initialProgress: UserProgress = { 
+            const initialProgress: UserProgress = {
               userId,
               totalPoints: 0,
               level: 1,
@@ -415,7 +424,7 @@ export function useGamification(userId: string): UseGamificationReturn {
                 assessmentsCompleted: 0,
                 portfoliosCreated: 0,
                 educationModulesCompleted: 0,
-                pageViews: {}, 
+                pageViews: {},
                 events: {}
               },
               lastActivity: new Date().toISOString()

@@ -99,7 +99,7 @@ const ConfirmModal: FC<ConfirmModalProps> = ({
   confirmVariant = 'primary',
 }) => {
   // Uses the local useUI hook
-  const { closeModal } = useUI(); 
+  const { closeModal } = useUI();
 
   const handleConfirm = () => {
     onConfirm();
@@ -163,7 +163,7 @@ const ModalComponentsRegistry: Record<string, ComponentType<ModalComponentProps>
   // FIX: Cast ConfirmModal to 'unknown' first to satisfy TypeScript's strict type checker 
   // when assigning a component with required props (ConfirmModalProps) to a registry
   // with generic props (ModalComponentProps).
-  ConfirmModal: ConfirmModal as unknown as ComponentType<ModalComponentProps>, 
+  ConfirmModal: ConfirmModal as unknown as ComponentType<ModalComponentProps>,
   // Add other components here: 'OtherModal': OtherModal,
 };
 
@@ -195,13 +195,13 @@ const ModalItem: FC<{
 
   if (!ModalComponent) {
     console.error(`Modal component "${modal.component}" not found in registry.`);
-    return null; 
+    return null;
   }
 
   const modalSizeClass = modalSizes[modal.size || 'md'];
 
   return (
-    <Transition appear show={true} as={Fragment}>
+    <Transition appear show={true} as={Fragment as any}>
       <Dialog
         as="div"
         className="relative z-[1000]" // Base Z-index for modal system
@@ -210,7 +210,7 @@ const ModalItem: FC<{
         style={{ zIndex: 1000 + modalZIndexOffset }} // Apply stacking offset
       >
         <Transition.Child
-          as={Fragment}
+          as={Fragment as any}
           enter="ease-out duration-300"
           enterFrom="opacity-0"
           enterTo="opacity-100"
@@ -220,9 +220,8 @@ const ModalItem: FC<{
         >
           {/* Backdrop (visible only for the topmost modal) */}
           <div
-            className={`fixed inset-0 bg-gray-500/75 dark:bg-gray-900/80 transition-opacity backdrop-blur-sm ${
-              isTopmost ? '' : 'hidden'
-            }`}
+            className={`fixed inset-0 bg-gray-500/75 dark:bg-gray-900/80 transition-opacity backdrop-blur-sm ${isTopmost ? '' : 'hidden'
+              }`}
             aria-hidden="true"
           />
         </Transition.Child>
@@ -230,7 +229,7 @@ const ModalItem: FC<{
         <div className="fixed inset-0 overflow-y-auto">
           <div className="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
             <Transition.Child
-              as={Fragment}
+              as={Fragment as any}
               enter="ease-out duration-300"
               enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
               enterTo="opacity-100 translate-y-0 sm:scale-100"
@@ -245,9 +244,8 @@ const ModalItem: FC<{
                 {isModalClosable && (
                   <button
                     type="button"
-                    className={`absolute right-0 top-0 z-20 m-4 rounded-full p-1 text-gray-400 hover:text-gray-500 dark:text-gray-500 dark:hover:text-gray-400 ${
-                      !isTopmost ? 'pointer-events-none opacity-50' : ''
-                    }`}
+                    className={`absolute right-0 top-0 z-20 m-4 rounded-full p-1 text-gray-400 hover:text-gray-500 dark:text-gray-500 dark:hover:text-gray-400 ${!isTopmost ? 'pointer-events-none opacity-50' : ''
+                      }`}
                     onClick={() => isTopmost && closeModal(modal.id)}
                     disabled={!isTopmost}
                   >
@@ -255,7 +253,7 @@ const ModalItem: FC<{
                     <XMarkIcon className="h-6 w-6" aria-hidden="true" />
                   </button>
                 )}
-                
+
                 {/* Render the specific Modal Component, spreading its props and adding the instance ID */}
                 <ModalComponent {...modal.props} id={modal.id} />
 
@@ -272,9 +270,9 @@ const ModalItem: FC<{
 
 export const ModalSystem: FC = () => {
   // Uses the local useModals hook
-  const modals = useModals(); 
-  
-  const topIndex = modals.length - 1; 
+  const modals = useModals();
+
+  const topIndex = modals.length - 1;
 
   return (
     <>

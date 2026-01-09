@@ -266,56 +266,58 @@ const PersonalizedLearningDashboard: React.FC = () => {
             </h3>
 
             <div className="space-y-3">
-              {pathContent.slice(0, 6).map((content, index) => (
-                <div
-                  key={content.id}
-                  className={`flex items-center p-4 rounded-lg border-2 transition-all ${
-                    content.progressStatus === 'completed'
-                      ? 'border-green-200 bg-green-50'
-                      : content.progressStatus === 'in_progress'
-                        ? 'border-indigo-200 bg-indigo-50'
-                        : 'border-gray-200 bg-gray-50'
-                  }`}
-                >
-                  <div className="flex-shrink-0 mr-4">
-                    {content.progressStatus === 'completed' ? (
-                      <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
-                        <CheckCircleIcon className="h-5 w-5 text-white" />
+              {pathContent.content.slice(0, 6).map((content, index) => {
+                const statusClass = content.progressStatus === 'completed'
+                  ? 'border-green-200 bg-green-50'
+                  : content.progressStatus === 'in_progress'
+                    ? 'border-indigo-200 bg-indigo-50'
+                    : 'border-gray-200 bg-gray-50';
+
+                return (
+                  <div
+                    key={content.id}
+                    className={`flex items-center p-4 rounded-lg border-2 transition-all ${statusClass}`}
+                  >
+                    <div className="flex-shrink-0 mr-4">
+                      {content.progressStatus === 'completed' ? (
+                        <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
+                          <CheckCircleIcon className="h-5 w-5 text-white" />
+                        </div>
+                      ) : (
+                        <div className="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center text-gray-600 font-semibold">
+                          {index + 1}
+                        </div>
+                      )}
+                    </div>
+
+                    <div className="flex-1">
+                      <h4 className="font-medium text-gray-900">
+                        {content.title}
+                      </h4>
+                      <div className="flex items-center space-x-3 text-sm text-gray-600 mt-1">
+                        <span className="capitalize">{content.contentType}</span>
+                        <span>{content.estimatedDurationMinutes} min</span>
+                        <span>{content.pointsValue} pts</span>
                       </div>
-                    ) : (
-                      <div className="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center text-gray-600 font-semibold">
-                        {index + 1}
-                      </div>
+                    </div>
+
+                    {content.progressStatus !== 'completed' && (
+                      <button
+                        onClick={() => handleStartLesson(content.id)}
+                        className="text-indigo-600 hover:text-indigo-800 flex items-center"
+                      >
+                        <ArrowRightIcon className="h-4 w-4" />
+                      </button>
                     )}
                   </div>
-
-                  <div className="flex-1">
-                    <h4 className="font-medium text-gray-900">
-                      {content.title}
-                    </h4>
-                    <div className="flex items-center space-x-3 text-sm text-gray-600 mt-1">
-                      <span className="capitalize">{content.contentType}</span>
-                      <span>{content.estimatedDurationMinutes} min</span>
-                      <span>{content.pointsValue} pts</span>
-                    </div>
-                  </div>
-
-                  {content.progressStatus !== 'completed' && (
-                    <button
-                      onClick={() => handleStartLesson(content.id)}
-                      className="text-indigo-600 hover:text-indigo-800 flex items-center"
-                    >
-                      <ArrowRightIcon className="h-4 w-4" />
-                    </button>
-                  )}
-                </div>
-              ))}
+                );
+              })}
             </div>
 
-            {pathContent.length > 6 && (
+            {pathContent.content.length > 6 && (
               <div className="mt-4 text-center">
                 <button className="text-indigo-600 hover:text-indigo-800 text-sm font-medium">
-                  View All {pathContent.length} Lessons
+                  View All {pathContent.content.length} Lessons
                 </button>
               </div>
             )}
@@ -336,7 +338,7 @@ const PersonalizedLearningDashboard: React.FC = () => {
                   <span className="text-gray-700">Total Points</span>
                 </div>
                 <span className="font-bold text-gray-900">
-                  {stats.totalPoints}
+                  {stats.stats.totalPoints}
                 </span>
               </div>
 
@@ -346,7 +348,7 @@ const PersonalizedLearningDashboard: React.FC = () => {
                   <span className="text-gray-700">Current Streak</span>
                 </div>
                 <span className="font-bold text-gray-900">
-                  {stats.currentStreak} days
+                  {stats.stats.streakDays} days
                 </span>
               </div>
 
@@ -356,7 +358,7 @@ const PersonalizedLearningDashboard: React.FC = () => {
                   <span className="text-gray-700">Completion Rate</span>
                 </div>
                 <span className="font-bold text-gray-900">
-                  {stats.progressPercentage}%
+                  {Math.round((stats.stats.completedLessons / stats.stats.totalLessons) * 100)}%
                 </span>
               </div>
             </div>
@@ -364,7 +366,7 @@ const PersonalizedLearningDashboard: React.FC = () => {
 
           {/* AI Recommendations */}
           {aiRecommendations &&
-            aiRecommendations.recommendedContent.length > 0 && (
+            aiRecommendations.recommendations.length > 0 && (
               <div className="bg-white rounded-lg shadow-sm border p-6">
                 <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
                   <StarIcon className="h-5 w-5 text-yellow-500 mr-2" />
@@ -372,7 +374,7 @@ const PersonalizedLearningDashboard: React.FC = () => {
                 </h3>
 
                 <div className="space-y-3">
-                  {aiRecommendations.recommendedContent
+                  {aiRecommendations.recommendations
                     .slice(0, 3)
                     .map(content => (
                       <div

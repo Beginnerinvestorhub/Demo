@@ -316,7 +316,7 @@ export default function DashboardPage() {
                   </div>
                   {(() => {
                     // Default to visual learner since learningStyle is not available
-                    const defaultLearningStyle = 'visual';
+                    const defaultLearningStyle: string = 'visual';
                     switch (defaultLearningStyle) {
                       case 'visual':
                         return <VisualLearner />;

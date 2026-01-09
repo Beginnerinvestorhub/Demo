@@ -45,7 +45,7 @@ export default function TermsOfService() {
 
               {/* 1. Service Description */}
               <section className="mb-12">
-                <h2 className="font-serif text-2xl sm:text-3xl text-[var(--Ordinatus-professional-blue)] mb-4 pb-2 border-b-2 border-[var(--mechanica-moonlight-blue)] font-semibold">
+                <h2 className="font-serif text-2xl sm:text-3xl text-[var(--mechanica-moonlight-blue)] mb-4 pb-2 border-b-2 border-[var(--mechanica-moonlight-blue)] font-semibold">
                   1. Service Description
                 </h2>
                 <p className="text-gray-700 leading-relaxed mb-4">
@@ -57,7 +57,7 @@ export default function TermsOfService() {
                   recommendations, or professional financial planning services.
                 </p>
                 <div className="bg-[var(--mechanica-bg-mechanical)] border-l-4 border-[var(--mechanica-moonlight-blue)] p-4 rounded-md my-6 shadow-inner">
-                  <strong className="text-[var(--Ordinatus-professional-blue)]">Important:</strong> All simulations and tools are for
+                  <strong className="text-[var(--mechanica-moonlight-blue)]">Important:</strong> All simulations and tools are for
                   learning purposes. Always consult with qualified financial
                   professionals before making investment decisions.
                 </div>
@@ -65,7 +65,7 @@ export default function TermsOfService() {
 
               {/* 2. User Responsibilities */}
               <section className="mb-12">
-                <h2 className="font-serif text-2xl sm:text-3xl text-[var(--Ordinatus-professional-blue)] mb-4 pb-2 border-b-2 border-[var(--mechanica-moonlight-blue)] font-semibold">
+                <h2 className="font-serif text-2xl sm:text-3xl text-[var(--mechanica-moonlight-blue)] mb-4 pb-2 border-b-2 border-[var(--mechanica-moonlight-blue)] font-semibold">
                   2. User Responsibilities
                 </h2>
                 <p className="text-gray-700 leading-relaxed mb-4">As a user of our platform, you agree to:</p>
@@ -88,7 +88,7 @@ export default function TermsOfService() {
 
               {/* 3. Disclaimers (Using Polished Brass for status indicators) */}
               <section className="mb-12">
-                <h2 className="font-serif text-2xl sm:text-3xl text-[var(--Ordinatus-professional-blue)] mb-4 pb-2 border-b-2 border-[var(--mechanica-moonlight-blue)] font-semibold">
+                <h2 className="font-serif text-2xl sm:text-3xl text-[var(--mechanica-moonlight-blue)] mb-4 pb-2 border-b-2 border-[var(--mechanica-moonlight-blue)] font-semibold">
                   3. Educational Nature & Disclaimers
                 </h2>
                 <div className="bg-[#FAF7F0] border-l-4 border-[var(--mechanica-polished-brass)] p-4 rounded-md my-6 shadow-sm">
@@ -114,7 +114,7 @@ export default function TermsOfService() {
 
               {/* 4. Data Usage */}
               <section className="mb-12">
-                <h2 className="font-serif text-2xl sm:text-3xl text-[var(--Ordinatus-professional-blue)] mb-4 pb-2 border-b-2 border-[var(--mechanica-moonlight-blue)] font-semibold">
+                <h2 className="font-serif text-2xl sm:text-3xl text-[var(--mechanica-moonlight-blue)] mb-4 pb-2 border-b-2 border-[var(--mechanica-moonlight-blue)] font-semibold">
                   4. Data Usage & Privacy
                 </h2>
                 <p className="text-gray-700 leading-relaxed mb-4">
@@ -133,7 +133,7 @@ export default function TermsOfService() {
                 </ul>
                 <p className="italic text-sm text-gray-600 mt-6">
                   For detailed information, please review our{' '}
-                  <Link href="/privacy" className="text-[var(--Ordinatus-professional-blue)] font-semibold hover:underline">
+                  <Link href="/privacy" className="text-[var(--mechanica-moonlight-blue)] font-semibold hover:underline">
                     Privacy Policy
                   </Link>.
                 </p>
@@ -141,7 +141,7 @@ export default function TermsOfService() {
 
               {/* 5. Account Management */}
               <section className="mb-12">
-                <h2 className="font-serif text-2xl sm:text-3xl text-[var(--Ordinatus-professional-blue)] mb-4 pb-2 border-b-2 border-[var(--mechanica-moonlight-blue)] font-semibold">
+                <h2 className="font-serif text-2xl sm:text-3xl text-[var(--mechanica-moonlight-blue)] mb-4 pb-2 border-b-2 border-[var(--mechanica-moonlight-blue)] font-semibold">
                   5. Account Management
                 </h2>
                 <h3 className="text-xl text-[var(--mechanica-text-primary)] mt-6 mb-3 font-medium">Account Creation</h3>
@@ -152,7 +152,7 @@ export default function TermsOfService() {
 
               {/* 6. Limitation of Liability */}
               <section className="mb-12">
-                <h2 className="font-serif text-2xl sm:text-3xl text-[var(--Ordinatus-professional-blue)] mb-4 pb-2 border-b-2 border-[var(--mechanica-moonlight-blue)] font-semibold">
+                <h2 className="font-serif text-2xl sm:text-3xl text-[var(--mechanica-moonlight-blue)] mb-4 pb-2 border-b-2 border-[var(--mechanica-moonlight-blue)] font-semibold">
                   6. Limitation of Liability
                 </h2>
                 <div className="bg-gray-50 border border-[var(--mechanica-stainless-steel)] p-6 rounded-md my-6 mechanica-shadow-engraved">
@@ -168,7 +168,7 @@ export default function TermsOfService() {
 
               {/* 11. Contact Information */}
               <section className="mb-12 bg-[var(--mechanica-bg-mechanical)] p-6 rounded-lg border border-[var(--mechanica-moonlight-blue)] shadow-sm">
-                <h2 className="font-serif text-2xl sm:text-3xl text-[var(--Ordinatus-professional-blue)] mb-4 pb-2 border-b-2 border-[var(--mechanica-moonlight-blue)] font-semibold">
+                <h2 className="font-serif text-2xl sm:text-3xl text-[var(--mechanica-moonlight-blue)] mb-4 pb-2 border-b-2 border-[var(--mechanica-moonlight-blue)] font-semibold">
                   11. Contact Information
                 </h2>
                 <div className="mt-4 mechanica-font-technical text-sm">
@@ -182,16 +182,16 @@ export default function TermsOfService() {
               </section>
 
               {/* FOOTER NAVIGATION */}
-              <div className="flex justify-center items-center flex-wrap gap-4 pt-12 mt-12 border-t border-[var(--Ordinatus-accent-silver)]">
-                <Link href="/privacy" className="text-[var(--Ordinatus-professional-blue)] no-underline font-semibold hover:text-[var(--mechanica-moonlight-blue)] transition duration-300">
+              <div className="flex justify-center items-center flex-wrap gap-4 pt-12 mt-12 border-t border-[var(--mechanica-stainless-steel)]">
+                <Link href="/privacy" className="text-[var(--mechanica-moonlight-blue)] no-underline font-semibold hover:text-[var(--mechanica-moonlight-blue)] transition duration-300">
                   Privacy Policy
                 </Link>
-                <span className="text-[var(--Ordinatus-accent-silver)] opacity-50">•</span>
-                <Link href="/" className="text-[var(--Ordinatus-professional-blue)] no-underline font-semibold hover:text-[var(--mechanica-moonlight-blue)] transition duration-300">
+                <span className="text-[var(--mechanica-stainless-steel)] opacity-50">•</span>
+                <Link href="/" className="text-[var(--mechanica-moonlight-blue)] no-underline font-semibold hover:text-[var(--mechanica-moonlight-blue)] transition duration-300">
                   Home
                 </Link>
-                <span className="text-[var(--Ordinatus-accent-silver)] opacity-50">•</span>
-                <Link href="/contact" className="text-[var(--Ordinatus-professional-blue)] no-underline font-semibold hover:text-[var(--mechanica-moonlight-blue)] transition duration-300">
+                <span className="text-[var(--mechanica-stainless-steel)] opacity-50">•</span>
+                <Link href="/contact" className="text-[var(--mechanica-moonlight-blue)] no-underline font-semibold hover:text-[var(--mechanica-moonlight-blue)] transition duration-300">
                   Contact
                 </Link>
               </div>

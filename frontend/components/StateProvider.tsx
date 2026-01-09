@@ -4,8 +4,8 @@
  */
 
 import React, { useEffect, useRef, ReactNode } from 'react';
-import { initializeStores, resetAllStores, checkStoreHealth } from '../store';
-import { useAuth, useUI, showErrorNotification } from '../store';
+import { initializeStores, resetAllStores, checkStoreHealth } from '@/store';
+import { useAuth, useUI, showErrorNotification } from '@/store';
 
 interface StateProviderProps {
   children: ReactNode;

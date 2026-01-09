@@ -205,6 +205,7 @@ export const ACHIEVEMENT_DEFINITIONS = {
   FIRST_RISK_ASSESSMENT: {
     id: 'first_risk_assessment',
     name: 'Risk Assessment Complete',
+    title: 'Risk Assessor',
     description: 'Complete your first risk assessment',
     target: 1,
     reward: { points: 100, badge: 'FIRST_STEPS' },
@@ -213,6 +214,7 @@ export const ACHIEVEMENT_DEFINITIONS = {
   TOOLS_EXPLORER: {
     id: 'tools_explorer',
     name: 'Tools Explorer',
+    title: 'Tool Master',
     description: 'Try 5 different investment tools',
     target: 5,
     reward: { points: 250, badge: 'KNOWLEDGE_SEEKER' },
@@ -221,6 +223,7 @@ export const ACHIEVEMENT_DEFINITIONS = {
   PORTFOLIO_CREATOR: {
     id: 'portfolio_creator',
     name: 'Portfolio Creator',
+    title: 'Portfolio Architect',
     description: 'Create your first portfolio',
     target: 1,
     reward: { points: 150, badge: 'PORTFOLIO_BUILDER' },
@@ -229,6 +232,7 @@ export const ACHIEVEMENT_DEFINITIONS = {
   LOGIN_STREAK_7: {
     id: 'login_streak_7',
     name: '7-Day Streak',
+    title: 'Consistent Investor',
     description: 'Log in for 7 consecutive days',
     target: 7,
     reward: { points: 200, badge: 'DAILY_VISITOR' },
@@ -237,6 +241,7 @@ export const ACHIEVEMENT_DEFINITIONS = {
   ESG_USER: {
     id: 'esg_user',
     name: 'ESG Screening',
+    title: 'Conscious Investor',
     description: 'Use ESG screening tool',
     target: 1,
     reward: { points: 200, badge: 'ESG_CHAMPION' },

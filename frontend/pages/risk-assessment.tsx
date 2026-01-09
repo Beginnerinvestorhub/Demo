@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import RiskAssessmentForm from '../components/RiskAssessmentForm';
 import RiskAssessmentResult from '../components/RiskAssessmentResult';
-import { OrdinatusLayout } from '../components/layout/OrdinatusLayout';
-import { OrdinatusCard } from '../components/ui/OrdinatusCard';
-import { OrdinatusGear } from '../components/ui/OrdinatusGear';
+import { MechanicaLayout } from '../components/layout/mechanicaLayout';
+import { MechanicaCard } from '../components/ui/mechanicaCard';
+import { MechanicaGear } from '../components/ui/mechanicaGear';
 
 // Define interface for risk data
 interface RiskData {
@@ -22,7 +22,7 @@ export default function RiskAssessmentPage() {
   const [error, setError] = useState<string | null>(null);
 
   return (
-    <OrdinatusLayout 
+    <MechanicaLayout
       title="Risk Assessment Tool | BeginnerInvestorHub"
       description="Discover your risk profile and get a personalized investment allocation."
     >
@@ -37,28 +37,28 @@ export default function RiskAssessmentPage() {
           }}
         ></div>
 
-        <div className="Ordinatus-container relative z-10 py-12">
+        <div className="container mx-auto px-4 relative z-10 py-12">
           {/* Hero Section with Mechanical Elements */}
           <div className="text-center mb-12 relative">
             {/* Decorative Gears */}
             <div className="absolute top-0 left-0">
-              <OrdinatusGear size="lg" color="steel" speed="slow" />
+              <MechanicaGear size="lg" color="steel" speed="slow" />
             </div>
             <div className="absolute top-10 right-10">
-              <OrdinatusGear size="xl" color="brass" speed="reverse" />
+              <MechanicaGear size="xl" color="brass" speed="reverse" />
             </div>
 
             <div className="flex justify-center items-center space-x-6 mb-8">
-              <OrdinatusGear size="xl" color="copper" speed="slow" />
-              <h1 className="text-4xl md:text-5xl font-bold Ordinatus-heading-primary text-Ordinatus-moonlight-blue">
+              <MechanicaGear size="xl" color="copper" speed="slow" />
+              <h1 className="text-4xl md:text-5xl font-bold mechanica-heading-professional text-mechanica-moonlight-blue">
                 Risk Assessment Tool
               </h1>
-              <OrdinatusGear size="xl" color="copper" speed="reverse" />
+              <MechanicaGear size="xl" color="copper" speed="reverse" />
             </div>
-            
-            <div className="w-24 h-1 bg-Ordinatus-brass-gold mx-auto mb-6"></div>
-            <p className="text-lg text-gray-700 max-w-3xl mx-auto leading-relaxed Ordinatus-text-body">
-              <span className="font-semibold text-Ordinatus-moonlight-blue">
+
+            <div className="w-24 h-1 bg-mechanica-polished-brass mx-auto mb-6"></div>
+            <p className="text-lg text-gray-700 max-w-3xl mx-auto leading-relaxed mechanica-text-technical">
+              <span className="font-semibold text-mechanica-moonlight-blue">
                 Assembly Instructions:
               </span>{' '}
               Answer a few questions about your background, finances, and goals.
@@ -69,31 +69,31 @@ export default function RiskAssessmentPage() {
 
           {/* Error Display */}
           {error && (
-            <OrdinatusCard variant="default" className="mb-8 border-l-4 border-red-600 bg-red-50">
+            <MechanicaCard variant="default" className="mb-8 border-l-4 border-red-600 bg-red-50">
               <div className="p-6 flex items-start">
                 <div className="w-6 h-6 text-red-600 mr-3 flex-shrink-0 mt-0.5">✕</div>
                 <div>
-                  <h3 className="font-semibold text-red-900 mb-1 Ordinatus-heading-secondary">
+                  <h3 className="font-semibold text-red-900 mb-1 mechanica-heading-professional">
                     Assessment Error
                   </h3>
-                  <p className="text-red-800 Ordinatus-text-body">{error}</p>
+                  <p className="text-red-800 mechanica-text-technical">{error}</p>
                 </div>
               </div>
-            </OrdinatusCard>
+            </MechanicaCard>
           )}
 
           {/* Form or Result */}
           {!result ? (
-            <OrdinatusCard variant="wood" animated>
+            <MechanicaCard variant="wood" animated className="bg-gradient-to-br from-blue-50 to-white">
               <div className="p-8">
                 <div className="mb-6 pb-6 border-b border-gray-200">
                   <div className="flex items-center space-x-3 mb-4">
-                    <OrdinatusGear size="md" color="steel" speed="medium" />
-                    <h2 className="text-2xl font-bold Ordinatus-heading-secondary text-Ordinatus-moonlight-blue">
+                    <MechanicaGear size="md" color="steel" speed="medium" />
+                    <h2 className="text-2xl font-bold mechanica-heading-professional text-mechanica-moonlight-blue">
                       🔧 Build Your Risk Profile
                     </h2>
                   </div>
-                  <p className="text-gray-600 Ordinatus-text-body">
+                  <p className="text-gray-600 mechanica-text-technical">
                     Complete the component assembly below to construct your
                     personalized investment blueprint.
                   </p>
@@ -122,18 +122,18 @@ export default function RiskAssessmentPage() {
                   error={error}
                 />
               </div>
-            </OrdinatusCard>
+            </MechanicaCard>
           ) : (
-            <OrdinatusCard variant="professional" animated>
+            <MechanicaCard variant="default" animated className="bg-gray-900 border-gray-800">
               <div className="p-8">
-                <div className="mb-6 pb-6 border-b border-gray-200">
+                <div className="mb-6 pb-6 border-b border-gray-700">
                   <div className="flex items-center space-x-3 mb-4">
-                    <OrdinatusGear size="md" color="brass" speed="slow" />
-                    <h2 className="text-2xl font-bold Ordinatus-heading-secondary text-white">
+                    <MechanicaGear size="md" color="brass" speed="slow" />
+                    <h2 className="text-2xl font-bold mechanica-heading-professional text-white">
                       ⚙️ Your Constructed Risk Profile
                     </h2>
                   </div>
-                  <p className="text-blue-100 Ordinatus-text-body">
+                  <p className="text-blue-100 mechanica-text-technical">
                     Assembly complete. Review your personalized specifications
                     below.
                   </p>
@@ -146,22 +146,22 @@ export default function RiskAssessmentPage() {
                   }}
                 />
               </div>
-            </OrdinatusCard>
+            </MechanicaCard>
           )}
 
           {/* Assembly Instructions Footer */}
           <div className="mt-12 text-center">
-            <OrdinatusCard variant="metallic" className="inline-flex items-center px-6 py-3">
+            <MechanicaCard variant="mechanical" className="inline-flex items-center px-6 py-3">
               <div className="flex items-center space-x-3">
-                <OrdinatusGear size="sm" color="steel" speed="medium" />
-                <span className="text-sm text-gray-700 font-medium Ordinatus-text-technical">
+                <MechanicaGear size="sm" color="steel" speed="medium" />
+                <span className="text-sm text-gray-700 font-medium mechanica-text-technical">
                   All assessments are processed securely with enterprise-grade encryption
                 </span>
               </div>
-            </OrdinatusCard>
+            </MechanicaCard>
           </div>
         </div>
       </div>
-    </OrdinatusLayout>
+    </MechanicaLayout>
   );
 }

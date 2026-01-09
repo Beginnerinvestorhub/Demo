@@ -23,7 +23,7 @@ const tools = [
     icon: '🧠',
     description:
       'Get real-time insights on emotional patterns and decision-making biases.',
-    //href: '/ai-coach',
+    href: '/ai-coach',
     category: 'Core Tools',
     status: 'active',
     features: [

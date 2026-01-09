@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { OrdinatusLayout } from '../components/layout/OrdinatusLayout';
-import { OrdinatusCard } from '../components/ui/OrdinatusCard';
-import { OrdinatusButton } from '../components/ui/OrdinatusButton';
-import { OrdinatusGear } from '../components/ui/OrdinatusGear';
-import { OrdinatusInput } from '../components/ui/OrdinatusInput';
+import { MechanicaLayout } from '../components/layout/mechanicaLayout';
+import { MechanicaCard } from '../components/ui/mechanicaCard';
+import { MechanicaButton } from '../components/ui/mechanicaButton';
+import { MechanicaGear } from '../components/ui/mechanicaGear';
+import { MechanicaInput } from '../components/ui/mechanicaInput';
 
 interface ProfileFormData {
   firstName: string;
@@ -69,11 +69,11 @@ export default function ProfileForm() {
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value, type } = e.target as HTMLInputElement;
-    
+
     if (type === 'checkbox') {
       const checked = (e.target as HTMLInputElement).checked;
       const currentValues = [...formData[name as keyof ProfileFormData] as string[]];
-      
+
       setFormData({
         ...formData,
         [name]: checked
@@ -89,61 +89,61 @@ export default function ProfileForm() {
   };
 
   return (
-    <OrdinatusLayout 
+    <MechanicaLayout
       title="Profile Form | Beginner Investor Hub"
       description="Complete your investment profile"
     >
-      <div className="Ordinatus-section Ordinatus-section-light">
-        <div className="Ordinatus-container">
+      <div className="py-12 bg-white">
+        <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-8">
               <div className="flex justify-center items-center space-x-6 mb-6">
-                <OrdinatusGear size="xl" color="brass" speed="slow" />
-                <h1 className="text-4xl md:text-5xl font-bold Ordinatus-heading-primary text-Ordinatus-moonlight-blue">
+                <MechanicaGear size="xl" color="brass" speed="slow" />
+                <h1 className="text-4xl md:text-5xl font-bold mechanica-heading-professional text-mechanica-moonlight-blue">
                   Complete Your Profile
                 </h1>
-                <OrdinatusGear size="xl" color="brass" speed="reverse" />
+                <MechanicaGear size="xl" color="brass" speed="reverse" />
               </div>
-              <p className="text-gray-600 Ordinatus-text-body">
+              <p className="text-gray-600 mechanica-text-technical">
                 Tell us about yourself to personalize your investment experience
               </p>
             </div>
 
-            <OrdinatusCard variant="default" animated>
+            <MechanicaCard variant="default" animated>
               <div className="p-8">
                 {/* Progress Bar */}
-                <OrdinatusCard variant="wood" className="mb-8">
+                <MechanicaCard variant="wood" className="mb-8">
                   <div className="p-6">
                     <div className="flex justify-between items-center mb-4">
                       <div className="flex items-center space-x-3">
-                        <OrdinatusGear size="md" color="steel" speed="medium" />
-                        <span className="text-sm font-semibold text-gray-700 Ordinatus-text-technical">Profile Completion</span>
+                        <MechanicaGear size="md" color="steel" speed="medium" />
+                        <span className="text-sm font-semibold text-gray-700 mechanica-text-technical">Profile Completion</span>
                       </div>
-                      <span className="text-sm font-bold text-Ordinatus-moonlight-blue Ordinatus-text-technical">30%</span>
+                      <span className="text-sm font-bold text-mechanica-moonlight-blue mechanica-text-technical">30%</span>
                     </div>
                     <div className="w-full bg-gray-200 rounded-full h-3">
-                      <div 
-                        className="bg-Ordinatus-brass-gold h-3 rounded-full transition-all duration-500 ease-out" 
+                      <div
+                        className="bg-mechanica-polished-brass h-3 rounded-full transition-all duration-500 ease-out"
                         style={{ width: '30%' }}
                       ></div>
                     </div>
                   </div>
-                </OrdinatusCard>
+                </MechanicaCard>
 
                 <form onSubmit={handleSubmit} className="space-y-8">
                   {/* Personal Information Section */}
                   <section className="p-6 border border-gray-200 rounded-lg bg-gray-50/50">
                     <div className="flex items-center space-x-3 mb-6">
-                      <OrdinatusGear size="md" color="steel" speed="medium" />
-                      <h2 className="text-xl font-semibold Ordinatus-heading-secondary text-Ordinatus-moonlight-blue">
+                      <MechanicaGear size="md" color="steel" speed="medium" />
+                      <h2 className="text-xl font-semibold mechanica-heading-professional text-mechanica-moonlight-blue">
                         Personal Information
                       </h2>
                     </div>
-                    
+
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div className="form-group">
-                        <label htmlFor="firstName" className="form-label Ordinatus-text-body">First Name</label>
-                        <OrdinatusInput
+                        <label htmlFor="firstName" className="form-label mechanica-text-technical">First Name</label>
+                        <MechanicaInput
                           type="text"
                           id="firstName"
                           name="firstName"
@@ -154,8 +154,8 @@ export default function ProfileForm() {
                       </div>
 
                       <div className="form-group">
-                        <label htmlFor="lastName" className="form-label Ordinatus-text-body">Last Name</label>
-                        <OrdinatusInput
+                        <label htmlFor="lastName" className="form-label mechanica-text-technical">Last Name</label>
+                        <MechanicaInput
                           type="text"
                           id="lastName"
                           name="lastName"
@@ -168,8 +168,8 @@ export default function ProfileForm() {
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
                       <div className="form-group">
-                        <label htmlFor="email" className="form-label Ordinatus-text-body">Email</label>
-                        <OrdinatusInput
+                        <label htmlFor="email" className="form-label mechanica-text-technical">Email</label>
+                        <MechanicaInput
                           type="email"
                           id="email"
                           name="email"
@@ -180,8 +180,8 @@ export default function ProfileForm() {
                       </div>
 
                       <div className="form-group">
-                        <label htmlFor="phone" className="form-label Ordinatus-text-body">Phone</label>
-                        <OrdinatusInput
+                        <label htmlFor="phone" className="form-label mechanica-text-technical">Phone</label>
+                        <MechanicaInput
                           type="tel"
                           id="phone"
                           name="phone"
@@ -195,14 +195,14 @@ export default function ProfileForm() {
                   {/* Investment Profile Section */}
                   <section className="p-6 border border-gray-200 rounded-lg bg-gray-50/50">
                     <div className="flex items-center space-x-3 mb-6">
-                      <OrdinatusGear size="md" color="brass" speed="slow" />
-                      <h2 className="text-xl font-semibold Ordinatus-heading-secondary text-Ordinatus-moonlight-blue">
+                      <MechanicaGear size="md" color="brass" speed="slow" />
+                      <h2 className="text-xl font-semibold mechanica-heading-professional text-mechanica-moonlight-blue">
                         Investment Profile
                       </h2>
                     </div>
 
                     <div className="form-group mb-6">
-                      <label htmlFor="experienceLevel" className="form-label Ordinatus-text-body">
+                      <label htmlFor="experienceLevel" className="form-label mechanica-text-technical">
                         Investment Experience
                       </label>
                       <select
@@ -210,7 +210,7 @@ export default function ProfileForm() {
                         name="experienceLevel"
                         value={formData.experienceLevel}
                         onChange={handleInputChange}
-                        className="block w-full rounded-md border-gray-300 shadow-sm focus:border-Ordinatus-moonlight-blue focus:ring-Ordinatus-moonlight-blue sm:text-sm p-2.5 bg-white"
+                        className="block w-full rounded-md border-gray-300 shadow-sm focus:border-mechanica-moonlight-blue focus:ring-mechanica-moonlight-blue sm:text-sm p-2.5 bg-white"
                         required
                       >
                         <option value="beginner">Beginner (0-2 years)</option>
@@ -221,17 +221,17 @@ export default function ProfileForm() {
                     </div>
 
                     <div className="form-group mb-6">
-                      <label className="form-label Ordinatus-text-body">Investment Goals</label>
+                      <label className="form-label mechanica-text-technical">Investment Goals</label>
                       <div className="flex flex-wrap gap-4">
                         {['Retirement', 'Wealth Building', 'Education', 'Major Purchase', 'Other'].map((goal) => (
-                          <label key={goal} className="inline-flex items-center space-x-2 text-sm text-gray-700 cursor-pointer Ordinatus-text-body">
+                          <label key={goal} className="inline-flex items-center space-x-2 text-sm text-gray-700 cursor-pointer mechanica-text-technical">
                             <input
                               type="checkbox"
                               name="investmentGoals"
                               value={goal.toLowerCase()}
                               checked={formData.investmentGoals.includes(goal.toLowerCase())}
                               onChange={handleInputChange}
-                              className="h-4 w-4 text-Ordinatus-moonlight-blue border-gray-300 rounded focus:ring-Ordinatus-moonlight-blue"
+                              className="h-4 w-4 text-mechanica-moonlight-blue border-gray-300 rounded focus:ring-mechanica-moonlight-blue"
                             />
                             <span>{goal}</span>
                           </label>
@@ -240,7 +240,7 @@ export default function ProfileForm() {
                     </div>
 
                     <div className="form-group mb-6">
-                      <label className="form-label Ordinatus-text-body">Risk Tolerance</label>
+                      <label className="form-label mechanica-text-technical">Risk Tolerance</label>
                       <div className="flex flex-wrap gap-4">
                         {[
                           { value: 'conservative', label: 'Conservative' },
@@ -249,19 +249,18 @@ export default function ProfileForm() {
                           { value: 'growth', label: 'Growth' },
                           { value: 'aggressive', label: 'Aggressive' },
                         ].map((option) => (
-                          <label key={option.value} className="inline-flex items-center space-x-2 text-sm text-gray-700 cursor-pointer Ordinatus-text-body">
+                          <label key={option.value} className="inline-flex items-center space-x-2 text-sm text-gray-700 cursor-pointer mechanica-text-technical">
                             <input
                               type="radio"
                               name="riskTolerance"
                               value={option.value}
                               checked={formData.riskTolerance === option.value}
                               onChange={handleInputChange}
-                              className="h-4 w-4 text-Ordinatus-moonlight-blue border-gray-300 focus:ring-Ordinatus-moonlight-blue"
+                              className="h-4 w-4 text-mechanica-moonlight-blue border-gray-300 focus:ring-mechanica-moonlight-blue"
                             />
-                            <span className={`px-3 py-1 rounded-full text-xs font-medium ${
-                                formData.riskTolerance === option.value ? 'bg-Ordinatus-moonlight-blue text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-                            }`}>
-                                {option.label}
+                            <span className={`px-3 py-1 rounded-full text-xs font-medium ${formData.riskTolerance === option.value ? 'bg-mechanica-moonlight-blue text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                              }`}>
+                              {option.label}
                             </span>
                           </label>
                         ))}
@@ -270,14 +269,14 @@ export default function ProfileForm() {
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div className="form-group">
-                        <label htmlFor="initialCapital" className="form-label Ordinatus-text-body">
+                        <label htmlFor="initialCapital" className="form-label mechanica-text-technical">
                           Initial Investment Capital
                         </label>
                         <div className="relative rounded-md shadow-sm">
                           <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                             <span className="text-gray-500 sm:text-sm">$</span>
                           </div>
-                          <OrdinatusInput
+                          <MechanicaInput
                             type="number"
                             id="initialCapital"
                             name="initialCapital"
@@ -292,14 +291,14 @@ export default function ProfileForm() {
                       </div>
 
                       <div className="form-group">
-                        <label htmlFor="monthlyContribution" className="form-label Ordinatus-text-body">
+                        <label htmlFor="monthlyContribution" className="form-label mechanica-text-technical">
                           Monthly Contribution
                         </label>
                         <div className="relative rounded-md shadow-sm">
                           <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                             <span className="text-gray-500 sm:text-sm">$</span>
                           </div>
-                          <OrdinatusInput
+                          <MechanicaInput
                             type="number"
                             id="monthlyContribution"
                             name="monthlyContribution"
@@ -317,24 +316,24 @@ export default function ProfileForm() {
 
                   {/* Success/Error Messages */}
                   {success && (
-                    <OrdinatusCard variant="default" className="border-green-200 bg-green-50">
+                    <MechanicaCard variant="default" className="border-green-200 bg-green-50">
                       <div className="p-4 flex items-center justify-center">
                         <div className="w-5 h-5 mr-2 text-green-600">✓</div>
-                        <span className="text-green-700 Ordinatus-text-body">Profile updated successfully!</span>
+                        <span className="text-green-700 mechanica-text-technical">Profile updated successfully!</span>
                       </div>
-                    </OrdinatusCard>
+                    </MechanicaCard>
                   )}
                   {error && (
-                    <OrdinatusCard variant="default" className="border-red-200 bg-red-50">
+                    <MechanicaCard variant="default" className="border-red-200 bg-red-50">
                       <div className="p-4 flex items-center justify-center">
                         <div className="w-5 h-5 mr-2 text-red-600">✕</div>
-                        <span className="text-red-700 Ordinatus-text-body">{error}</span>
+                        <span className="text-red-700 mechanica-text-technical">{error}</span>
                       </div>
-                    </OrdinatusCard>
+                    </MechanicaCard>
                   )}
 
                   <div className="flex justify-between gap-4 pt-4 border-t border-gray-200">
-                    <OrdinatusButton
+                    <MechanicaButton
                       variant="secondary"
                       size="lg"
                       className="flex-1"
@@ -342,8 +341,8 @@ export default function ProfileForm() {
                       disabled={loading}
                     >
                       Cancel
-                    </OrdinatusButton>
-                    <OrdinatusButton
+                    </MechanicaButton>
+                    <MechanicaButton
                       variant="primary"
                       size="lg"
                       className="flex-1"
@@ -351,21 +350,21 @@ export default function ProfileForm() {
                       disabled={loading}
                     >
                       {loading ? (
-                          <span className="flex items-center">
-                              <OrdinatusGear size="sm" color="steel" speed="fast" className="mr-2" />
-                              Saving...
-                          </span>
+                        <span className="flex items-center">
+                          <MechanicaGear size="sm" color="steel" speed="fast" className="mr-2" />
+                          Saving...
+                        </span>
                       ) : (
-                          'Save Changes'
+                        'Save Changes'
                       )}
-                    </OrdinatusButton>
+                    </MechanicaButton>
                   </div>
                 </form>
               </div>
-            </OrdinatusCard>
+            </MechanicaCard>
           </div>
         </div>
       </div>
-    </OrdinatusLayout>
+    </MechanicaLayout>
   );
 }

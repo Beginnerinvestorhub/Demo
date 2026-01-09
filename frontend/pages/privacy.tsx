@@ -46,7 +46,7 @@ export default function PrivacyPolicy() {
 
               {/* Information We Collect */}
               <section className="mb-12">
-                <h2 className="font-serif text-2xl sm:text-3xl text-[var(--Ordinatus-professional-blue)] mb-4 pb-2 border-b-2 border-[var(--mechanica-moonlight-blue)] font-semibold">
+                <h2 className="font-serif text-2xl sm:text-3xl text-[var(--mechanica-moonlight-blue)] mb-4 pb-2 border-b-2 border-[var(--mechanica-moonlight-blue)] font-semibold">
                   1. Information We Collect
                 </h2>
 
@@ -111,7 +111,7 @@ export default function PrivacyPolicy() {
 
               {/* How We Use Your Information */}
               <section className="mb-12">
-                <h2 className="font-serif text-2xl sm:text-3xl text-[var(--Ordinatus-professional-blue)] mb-4 pb-2 border-b-2 border-[var(--mechanica-moonlight-blue)] font-semibold">
+                <h2 className="font-serif text-2xl sm:text-3xl text-[var(--mechanica-moonlight-blue)] mb-4 pb-2 border-b-2 border-[var(--mechanica-moonlight-blue)] font-semibold">
                   2. How We Use Your Information
                 </h2>
                 <ul className="space-y-3 ml-6 list-disc text-gray-700">
@@ -157,7 +157,7 @@ export default function PrivacyPolicy() {
 
               {/* Information Sharing */}
               <section className="mb-12">
-                <h2 className="font-serif text-2xl sm:text-3xl text-[var(--Ordinatus-professional-blue)] mb-4 pb-2 border-b-2 border-[var(--mechanica-moonlight-blue)] font-semibold">
+                <h2 className="font-serif text-2xl sm:text-3xl text-[var(--mechanica-moonlight-blue)] mb-4 pb-2 border-b-2 border-[var(--mechanica-moonlight-blue)] font-semibold">
                   3. Information Sharing and Disclosure
                 </h2>
                 <div className="bg-[var(--mechanica-bg-wood)] border-l-4 border-[var(--mechanica-polished-brass)] p-4 mb-4 rounded">
