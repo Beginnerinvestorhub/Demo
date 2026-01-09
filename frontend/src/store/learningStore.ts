@@ -90,3 +90,30 @@ export const useOnboardingCompleted = () => {
   const { onboardingCompleted } = useLearningStore();
   return onboardingCompleted;
 };
+
+// Additional exports that components might need
+export const useLearningLoading = () => {
+  const { isLoading } = useLearningStore();
+  return isLoading;
+};
+
+export const useLearningError = () => {
+  const { error } = useLearningStore();
+  return error;
+};
+
+export const useCurrentModule = () => {
+  const { currentModule } = useLearningStore();
+  return currentModule;
+};
+
+export const useProgress = () => {
+  const { progress } = useLearningStore();
+  return progress;
+};
+
+export const useModuleProgress = (moduleId: string) => {
+  const { completedModules } = useLearningStore();
+  // Return 100 if module is completed, 0 otherwise
+  return completedModules.includes(moduleId) ? 100 : 0;
+};
