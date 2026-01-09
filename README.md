@@ -8,10 +8,13 @@ This is a **demo deployment** showcasing the frontend architecture and user expe
 
 ## 🛠️ Tech Stack
 
-- **Framework**: Next.js 14+ (App Router)
+- **Framework**: Next.js 14+ (Pages Router)
 - **Language**: TypeScript
 - **Styling**: Tailwind CSS
-- **UI Components**: shadcn/ui
+- **UI Components**: Custom components with Headless UI
+- **State Management**: Zustand
+- **Authentication**: NextAuth.js (mocked in demo)
+- **Testing**: Jest + Playwright
 - **Deployment**: Vercel
 
 ## ✨ Features
@@ -19,6 +22,9 @@ This is a **demo deployment** showcasing the frontend architecture and user expe
 - Portfolio simulation interface
 - Interactive learning dashboards
 - Behavioral finance concepts
+- ESG screening tools
+- Risk assessment forms
+- Fractional share calculator
 - Responsive, accessible design
 - Mock API integration (demo mode)
 
@@ -38,14 +44,10 @@ This Vercel deployment runs in **demo mode** with mocked APIs:
 - Redis caching
 - Vertex AI integration
 
-## 🔗 Live Demo
-
-**URL**: https://beginnerinvestorhub.vercel.app
-
 ## 📦 Local Development
 
 ```bash
-# Install dependencies
+# Install dependencies (from root)
 npm install
 
 # Run development server
@@ -53,9 +55,18 @@ npm run dev
 
 # Build for production
 npm run build
+
+# Run tests
+npm test
+
+# Validate code quality
+npm run validate
+
+# Health check
+npm run health-check
 ```
 
-Visit `http://localhost:3000` 
+Visit `http://localhost:3000`
 
 ## 🔐 Environment Variables
 
@@ -70,9 +81,38 @@ NEXT_PUBLIC_APP_MODE=production
 NEXT_PUBLIC_API_BASE_URL=https://api.example.com
 ```
 
-## 🏗️ Related Repositories
+## 📁 Project Structure
 
-**Backend & Infrastructure**: [Link to main repository]
+```
+├── frontend/           # Main Next.js application
+│   ├── components/     # React components
+│   ├── pages/          # Next.js pages
+│   ├── hooks/          # Custom React hooks
+│   ├── lib/            # Utility libraries
+│   ├── styles/         # CSS/styling
+│   ├── public/         # Static assets
+│   └── scripts/        # Build/deployment scripts
+├── .gitignore          # Git ignore rules
+├── package.json        # Root package.json (workspace config)
+└── README.md          # This file
+```
+
+## 🔗 Live Demo
+
+**URL**: https://beginnerinvestorhub.vercel.app
+
+## 🧪 Testing
+
+- **Unit Tests**: Jest
+- **Integration Tests**: Playwright (E2E)
+
+```bash
+# Run unit tests
+npm test
+
+# Run E2E tests
+npm run e2e
+```
 
 ## ⚠️ Disclaimer
 

@@ -1,0 +1,386 @@
+import Head from 'next/head';
+import { useAuth } from '../hooks/useAuth';
+import { useGamification } from '../hooks/useGamification';
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
+import { mechanicaLayout } from '../components/layout/mechanicaLayout';
+import { mechanicaCard } from '../components/ui/mechanicaCard';
+import { mechanicaButton } from '../components/ui/mechanicaButton';
+import { mechanicaGear } from '../components/ui/mechanicaGear';
+import VisualLearner from '../components/learning/VisualLearner';
+import AuralLearner from '../components/learning/AuralLearner';
+import ReadWriteLearner from '../components/learning/ReadWriteLearner';
+import KinestheticLearner from '../components/learning/KinestheticLearner';
+import Link from 'next/link';
+
+export default function DashboardPage() {
+  const { user, loading } = useAuth();
+  const router = useRouter();
+  const [isRedirecting, setIsRedirecting] = useState(false);
+  const [activeTab, setActiveTab] = useState<'overview' | 'tools' | 'learning'>(
+    'overview'
+  );
+
+  // Get gamification data - call hook unconditionally
+  const { userProgress, loading: gamificationLoading, trackEvent } = useGamification(user?.uid || '');
+
+  useEffect(() => {
+    if (!loading && !user) {
+      setIsRedirecting(true);
+      router.replace('/login');
+    } else if (user) {
+      // Track dashboard view
+      trackEvent('page_view', { page: 'dashboard' }).catch(console.error);
+    }
+  }, [user, loading, router, trackEvent]);
+
+  if (loading || isRedirecting || gamificationLoading) {
+    return (
+      <>
+        <Head>
+          <title>Loading Dashboard | Beginner Investor Hub</title>
+          <meta name="robots" content="noindex, nofollow" />
+        </Head>
+        <div className="mechanica-loading-container flex flex-col items-center justify-center min-h-screen">
+          <div className="mechanica-spinner w-12 h-12 border-4 border-mechanica-moonlight-blue border-t-transparent rounded-full animate-spin mb-4"></div>
+          <p className="mechanica-loading-text text-gray-600 font-mono">
+            {isRedirecting ? 'Redirecting...' : 'Loading your dashboard...'}
+          </p>
+        </div>
+      </>
+    );
+  }
+
+  if (!user) {
+    return null;
+  }
+
+  return (
+    <mechanicaLayout 
+      title="My Dashboard | Beginner Investor Hub"
+      description="Your personalized investment dashboard and learning journey."
+    >
+
+      <div className="Ordinatus-section Ordinatus-section-light py-12 bg-white">
+        <div className="container mx-auto px-4">
+          {/* Welcome Header */}
+          <div className="text-center mb-12">
+            <div className="flex justify-center items-center space-x-6 mb-6">
+              <mechanicaGear size="lg" color="brass" speed="slow" />
+              <h1 className="text-4xl md:text-5xl font-bold mechanica-heading-professional text-mechanica-moonlight-blue">
+                Welcome back, {user.displayName || 'Investor'}!
+              </h1>
+              <mechanicaGear size="lg" color="brass" speed="reverse" />
+            </div>
+            <p className="text-xl text-gray-600 mechanica-text-technical mb-8">
+              Ready to continue your precision investment learning journey?
+            </p>
+
+            {/* Quick Stats */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+              <mechanicaCard variant="mechanical" animated gearDecoration>
+                <div className="text-center">
+                  <div className="flex justify-center mb-4">
+                    <mechanicaGear size="medium" color="steel" speed="medium" />
+                  </div>
+                  <div className="text-3xl font-bold text-mechanica-moonlight-blue mb-2 font-mono">
+                    {userProgress?.level || 1}
+                  </div>
+                  <div className="text-sm mechanica-text-technical text-gray-600 uppercase tracking-wide">
+                    Engineering Level
+                  </div>
+                </div>
+              </mechanicaCard>
+
+              <mechanicaCard variant="wood" animated gearDecoration>
+                <div className="text-center">
+                  <div className="flex justify-center mb-4">
+                    <mechanicaGear size="medium" color="brass" speed="slow" />
+                  </div>
+                  <div className="text-3xl font-bold text-mechanica-moonlight-blue mb-2 font-mono">
+                    {userProgress?.totalPoints || 0}
+                  </div>
+                  <div className="text-sm mechanica-text-technical text-gray-600 uppercase tracking-wide">
+                    Precision Points
+                  </div>
+                </div>
+              </mechanicaCard>
+
+              <mechanicaCard variant="brass" animated gearDecoration>
+                <div className="text-center">
+                  <div className="flex justify-center mb-4">
+                    <mechanicaGear size="medium" color="copper" speed="fast" />
+                  </div>
+                  <div className="text-3xl font-bold text-mechanica-moonlight-blue mb-2 font-mono">
+                    {userProgress?.streaks.loginStreak || 0}
+                  </div>
+                  <div className="text-sm mechanica-text-technical text-gray-600 uppercase tracking-wide">
+                    Day Streak
+                  </div>
+                </div>
+              </mechanicaCard>
+            </div>
+          </div>
+
+          {/* Navigation Tabs */}
+          <div className="mb-8">
+            <div className="flex justify-center">
+              <div className="inline-flex rounded-lg border border-mechanica-polished-brass/20 bg-white p-1">
+                <button
+                  className={`px-6 py-3 rounded-md font-medium transition-all ${
+                    activeTab === 'overview'
+                      ? 'bg-mechanica-moonlight-blue text-white shadow-lg'
+                      : 'text-gray-600 hover:text-mechanica-moonlight-blue mechanica-text-technical'
+                  }`}
+                  onClick={() => setActiveTab('overview')}
+                >
+                  📊 Overview
+                </button>
+                <button
+                  className={`px-6 py-3 rounded-md font-medium transition-all ${
+                    activeTab === 'tools'
+                      ? 'bg-mechanica-moonlight-blue text-white shadow-lg'
+                      : 'text-gray-600 hover:text-mechanica-moonlight-blue mechanica-text-technical'
+                  }`}
+                  onClick={() => setActiveTab('tools')}
+                >
+                  🛠️ Tools
+                </button>
+                <button
+                  className={`px-6 py-3 rounded-md font-medium transition-all ${
+                    activeTab === 'learning'
+                      ? 'bg-mechanica-moonlight-blue text-white shadow-lg'
+                      : 'text-gray-600 hover:text-mechanica-moonlight-blue mechanica-text-technical'
+                  }`}
+                  onClick={() => setActiveTab('learning')}
+                >
+                  📚 Learning
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* Tab Content */}
+          <div className="mb-12">
+            {activeTab === 'overview' && (
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                {/* Recent Activity */}
+                <mechanicaCard variant="mechanical" animated>
+                  <div className="p-6">
+                    <div className="flex items-center space-x-3 mb-6">
+                      <mechanicaGear size="medium" color="steel" speed="medium" />
+                      <h3 className="text-2xl font-bold mechanica-heading-professional">
+                        Recent Activity
+                      </h3>
+                    </div>
+                    <div className="space-y-4">
+                      <div className="flex items-start space-x-3">
+                        <div className="flex-shrink-0 w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
+                          <span className="text-green-600">✅</span>
+                        </div>
+                        <div className="flex-1">
+                          <div className="font-medium text-gray-900 mechanica-text-technical">
+                            Completed &ldquo;Risk Assessment&rdquo; module
+                          </div>
+                          <div className="text-sm text-gray-500">2 hours ago</div>
+                        </div>
+                      </div>
+                      <div className="flex items-start space-x-3">
+                        <div className="flex-shrink-0 w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
+                          <span className="text-blue-600">📈</span>
+                        </div>
+                        <div className="flex-1">
+                          <div className="font-medium text-gray-900 mechanica-text-technical">
+                            Updated portfolio simulation
+                          </div>
+                          <div className="text-sm text-gray-500">1 day ago</div>
+                        </div>
+                      </div>
+                      <div className="flex items-start space-x-3">
+                        <div className="flex-shrink-0 w-8 h-8 bg-yellow-100 rounded-full flex items-center justify-center">
+                          <span className="text-yellow-600">🏆</span>
+                        </div>
+                        <div className="flex-1">
+                          <div className="font-medium text-gray-900 mechanica-text-technical">
+                            Earned &ldquo;First Investment&rdquo; badge
+                          </div>
+                          <div className="text-sm text-gray-500">3 days ago</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </mechanicaCard>
+
+                {/* Progress Overview */}
+                <mechanicaCard variant="wood" animated>
+                  <div className="p-6">
+                    <div className="flex items-center space-x-3 mb-6">
+                      <mechanicaGear size="medium" color="brass" speed="slow" />
+                      <h3 className="text-2xl font-bold mechanica-heading-professional">
+                        Learning Progress
+                      </h3>
+                    </div>
+                    <div className="space-y-6">
+                      <div>
+                        <div className="flex justify-between items-center mb-2">
+                          <span className="text-sm font-medium text-gray-700 mechanica-text-technical">Modules Completed</span>
+                          <span className="text-sm font-bold text-mechanica-moonlight-blue mechanica-text-technical">13/20</span>
+                        </div>
+                        <div className="w-full bg-gray-200 rounded-full h-3">
+                          <div className="bg-mechanica-moonlight-blue h-3 rounded-full" style={{ width: '65%' }}></div>
+                        </div>
+                      </div>
+                      <div>
+                        <div className="flex justify-between items-center mb-2">
+                          <span className="text-sm font-medium text-gray-700 mechanica-text-technical">Tools Mastered</span>
+                          <span className="text-sm font-bold text-mechanica-moonlight-blue mechanica-text-technical">4/10</span>
+                        </div>
+                        <div className="w-full bg-gray-200 rounded-full h-3">
+                          <div className="bg-mechanica-polished-brass h-3 rounded-full" style={{ width: '40%' }}></div>
+                        </div>
+                      </div>
+                      <div>
+                        <div className="flex justify-between items-center mb-2">
+                          <span className="text-sm font-medium text-gray-700 mechanica-text-technical">Portfolio Simulations</span>
+                          <span className="text-sm font-bold text-mechanica-moonlight-blue mechanica-text-technical">8/10</span>
+                        </div>
+                        <div className="w-full bg-gray-200 rounded-full h-3">
+                          <div className="bg-mechanica-brushed-copper h-3 rounded-full" style={{ width: '80%' }}></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </mechanicaCard>
+              </div>
+            )}
+
+            {activeTab === 'tools' && (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <Link href="/portfolio-monitor">
+                  <mechanicaCard variant="mechanical" animated className="cursor-pointer h-full">
+                    <div className="p-6 text-center">
+                      <div className="flex justify-center mb-4">
+                        <mechanicaGear size="large" color="steel" speed="medium" />
+                      </div>
+                      <h3 className="text-xl font-bold mb-3 mechanica-heading-professional">Portfolio Monitor</h3>
+                      <p className="text-gray-600 mb-4 mechanica-text-technical">Track your virtual investments</p>
+                      <mechanicaButton variant="mechanical" size="sm">Open Tool</mechanicaButton>
+                    </div>
+                  </mechanicaCard>
+                </Link>
+
+                <Link href="/risk-assessment">
+                  <mechanicaCard variant="wood" animated className="cursor-pointer h-full">
+                    <div className="p-6 text-center">
+                      <div className="flex justify-center mb-4">
+                        <mechanicaGear size="large" color="brass" speed="slow" />
+                      </div>
+                      <h3 className="text-xl font-bold mb-3 mechanica-heading-professional">Risk Assessment</h3>
+                      <p className="text-gray-600 mb-4 mechanica-text-technical">Evaluate your risk tolerance</p>
+                      <mechanicaButton variant="wood" size="sm">Open Tool</mechanicaButton>
+                    </div>
+                  </mechanicaCard>
+                </Link>
+
+                <Link href="/esg-screener">
+                  <mechanicaCard variant="brass" animated className="cursor-pointer h-full">
+                    <div className="p-6 text-center">
+                      <div className="flex justify-center mb-4">
+                        <mechanicaGear size="large" color="copper" speed="fast" />
+                      </div>
+                      <h3 className="text-xl font-bold mb-3 mechanica-heading-professional">ESG Screener</h3>
+                      <p className="text-gray-600 mb-4 mechanica-text-technical">Find sustainable investments</p>
+                      <mechanicaButton variant="brass" size="sm">Open Tool</mechanicaButton>
+                    </div>
+                  </mechanicaCard>
+                </Link>
+
+                <Link href="/fractional-share-calculator">
+                  <mechanicaCard variant="mechanical" animated className="cursor-pointer h-full">
+                    <div className="p-6 text-center">
+                      <div className="flex justify-center mb-4">
+                        <mechanicaGear size="large" color="steel" speed="reverse" />
+                      </div>
+                      <h3 className="text-xl font-bold mb-3 mechanica-heading-professional">Fractional Calculator</h3>
+                      <p className="text-gray-600 mb-4 mechanica-text-technical">Calculate fractional share values</p>
+                      <mechanicaButton variant="mechanical" size="sm">Open Tool</mechanicaButton>
+                    </div>
+                  </mechanicaCard>
+                </Link>
+              </div>
+            )}
+
+            {activeTab === 'learning' && (
+              <mechanicaCard variant="mechanical" animated>
+                <div className="p-8">
+                  <div className="flex items-center space-x-3 mb-8">
+                    <mechanicaGear size="large" color="brass" speed="slow" />
+                    <h3 className="text-3xl font-bold mechanica-heading-professional">Your Learning Path</h3>
+                  </div>
+                  {(() => {
+                    // Default to visual learner since learningStyle is not available
+                    const defaultLearningStyle = 'visual';
+                    switch (defaultLearningStyle) {
+                      case 'visual':
+                        return <VisualLearner />;
+                      case 'aural':
+                        return <AuralLearner />;
+                      case 'read_write':
+                        return <ReadWriteLearner />;
+                      case 'kinesthetic':
+                        return <KinestheticLearner />;
+                      default:
+                        return (
+                          <div className="space-y-6">
+                            <mechanicaCard variant="wood" className="border-green-200 bg-green-50">
+                              <div className="p-6 flex items-start space-x-4">
+                                <div className="flex-shrink-0">
+                                  <div className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center">
+                                    <span className="text-white text-xl">✅</span>
+                                  </div>
+                                </div>
+                                <div className="flex-1">
+                                  <h4 className="text-xl font-bold mb-2 mechanica-heading-professional">Investment Basics</h4>
+                                  <p className="text-gray-600 mechanica-text-technical">Learn fundamental investment concepts</p>
+                                </div>
+                              </div>
+                            </mechanicaCard>
+
+                            <mechanicaCard variant="mechanical" className="border-blue-200 bg-blue-50">
+                              <div className="p-6 flex items-start space-x-4">
+                                <div className="flex-shrink-0">
+                                  <mechanicaGear size="medium" color="steel" speed="medium" />
+                                </div>
+                                <div className="flex-1">
+                                  <h4 className="text-xl font-bold mb-2 mechanica-heading-professional">Portfolio Management</h4>
+                                  <p className="text-gray-600 mechanica-text-technical">Master portfolio construction and rebalancing</p>
+                                </div>
+                              </div>
+                            </mechanicaCard>
+
+                            <mechanicaCard variant="mechanical" className="border-gray-200 bg-gray-50 opacity-75">
+                              <div className="p-6 flex items-start space-x-4">
+                                <div className="flex-shrink-0">
+                                  <div className="w-12 h-12 bg-gray-400 rounded-full flex items-center justify-center">
+                                    <span className="text-white text-xl">🔒</span>
+                                  </div>
+                                </div>
+                                <div className="flex-1">
+                                  <h4 className="text-xl font-bold mb-2 mechanica-heading-professional">Advanced Strategies</h4>
+                                  <p className="text-gray-600 mechanica-text-technical">Explore advanced investment techniques</p>
+                                </div>
+                              </div>
+                            </mechanicaCard>
+                          </div>
+                        );
+                    }
+                  })()}
+                </div>
+              </mechanicaCard>
+            )}
+          </div>
+        </div>
+      </div>
+    </mechanicaLayout>
+  );
+}
