@@ -1,39 +1,52 @@
 # Beginner Investor Hub (Demo)
 
 ![Dashboard Preview](./public/dashboard-preview.png)
-*A precision-engineered educational platform for mastering investment strategies.*
 
-An educational investment platform helping new investors understand portfolios, markets, and investing behavior through interactive simulations and guided content.
+A precision-engineered educational platform for mastering investment strategies. This repository contains the frontend demo application.
 
-## 🎯 Purpose
+Badges: [add CI / tests / Vercel badges as appropriate]
 
-This is a **demo deployment** showcasing the frontend architecture and user experience. Backend services are mocked to allow evaluation without requiring paid cloud infrastructure.
+Table of contents
+- [Purpose](#purpose)
+- [Tech stack](#tech-stack)
+- [Core capabilities](#core-capabilities)
+- [Architecture](#architecture)
+- [Demo mode](#demo-mode)
+- [Local development](#local-development)
+- [Environment variables](#environment-variables)
+- [Testing](#testing)
+- [Deployment](#deployment)
+- [Disclaimer](#disclaimer)
+- [License](#license)
+- [Author](#author)
 
-## 🛠️ Tech Stack
+## Purpose
 
-- **Framework**: Next.js 14+ (Pages Router)
-- **Language**: TypeScript
-- **Styling**: Tailwind CSS
-- **Design System**: Mechanica (Custom Design Tokens)
-- **UI Components**: Custom components with Headless UI
-- **State Management**: Zustand
-- **Authentication**: NextAuth.js (mocked in demo)
-- **Testing**: Jest + Playwright
-- **Deployment**: Vercel
+This is a demo deployment showcasing the frontend architecture and user experience. Backend services are mocked so the demo can be evaluated without paid cloud infrastructure.
 
-## ✨ Core Capabilities
+## Tech stack
+
+- Framework: Next.js (Pages Router)
+- Language: TypeScript
+- Styling: Tailwind CSS
+- Design tokens: Mechanica
+- UI: Headless UI + custom components
+- State: Zustand
+- Auth: NextAuth.js (mocked in demo)
+- Tests: Jest (unit), Playwright (E2E)
+- Deployment: Vercel
+
+## Core capabilities
 
 | Feature | Description | Status |
-| :--- | :--- | :--- |
-| **Portfolio Simulator** | Build and test strategies with virtual capital in a risk-free environment. | ✅ Active |
-| **AI Behavioral Coach** | Get insights on emotional decision-making patterns and biases. | ✅ Active |
-| **Risk Analytics** | Engineering-grade metrics including Sharpe ratio and volatility analysis. | ✅ Active |
-| **ESG Screener** | Screen investments for Environmental, Social, and Governance factors. | 🚧 Coming Soon |
-| **Fractional Calculator** | Precise calculation engine for fractional share purchasing power. | ✅ Active |
+| --- | --- | --- |
+| Portfolio Simulator | Build and test strategies with virtual capital | ✅ Active |
+| AI Behavioral Coach | Insights on emotional decision-making patterns | ✅ Active |
+| Risk Analytics | Metrics such as Sharpe ratio and volatility | ✅ Active |
+| ESG Screener | Environmental / Social / Governance screening | 🚧 Coming Soon |
+| Fractional Calculator | Fractional share purchasing calculations | ✅ Active |
 
-## 🏗️ Architecture
-
-The application is designed to switch seamlessly between a lightweight **Demo Mode** (current) and a scalable **Production Mode**.
+## Architecture
 
 ```mermaid
 graph TD
@@ -58,85 +71,80 @@ graph TD
     style Frontend fill:#fff9c4,stroke:#fbc02d
 ```
 
-## 🚀 Demo Mode
+## Demo mode
 
-This Vercel deployment runs in **demo mode** with mocked APIs:
-
+This Vercel deployment runs in demo mode with mocked APIs:
 - Authentication is bypassed (pre-filled credentials available)
-- Data is simulated locally for instant feedback
+- Data is simulated locally
 - No external services required
-- Full UI/UX functionality preserved
+- Full UI/UX preserved
 
-## 📦 Local Development
+## Local development
+
+All frontend code is inside the `frontend/` folder.
+From repository root:
 
 ```bash
-# Install dependencies
-npm install
+# install dependencies
+cd frontend
+npm ci
 
-# Run development server
+# start dev server
 npm run dev
 
-# Build for production
+# build
 npm run build
 
-# Run tests
+# run unit tests
 npm test
 
-# Validate code quality
-npm run validate
-```
-
-Visit `http://localhost:3000`
-
-## 🔐 Environment Variables
-
-For demo mode (default):
-```env
-NEXT_PUBLIC_APP_MODE=demo
-```
-
-For production mode:
-```env
-NEXT_PUBLIC_APP_MODE=production
-NEXT_PUBLIC_API_BASE_URL=https://api.example.com
-```
-
-## 🔗 Live Demo
-
-**URL**: [https://beginnerinvestorhub.vercel.app/](https://beginnerinvestorhub.vercel.app/)
-
-## 🧪 Testing
-
-- **Unit Tests**: Jest
-- **Integration Tests**: Playwright (E2E)
-
-```bash
-# Run unit tests
-npm test
-
-# Run E2E tests
+# run E2E tests (Playwright)
 npm run e2e
 ```
 
-## ⚠️ Disclaimer
+Open http://localhost:3000 after starting the dev server.
 
-This is an educational project created for learning purposes. 
+Notes:
+- The project requires Node 20+ per the frontend package engine. Use nvm or similar to set node: `nvm use 20`.
 
-**Not financial advice.** Always consult with qualified financial advisors before making investment decisions.
+## Environment variables
 
-## 📄 License
+Copy `.env.example` to `.env.local` and set values.
 
-MIT License - See [LICENSE](LICENSE) file for details.
+Demo mode (default):
+```bash
+NEXT_PUBLIC_APP_MODE=demo
+```
 
-## 👤 Author
+Production:
+```bash
+NEXT_PUBLIC_APP_MODE=production
+NEXT_PUBLIC_API_BASE_URL=https://api.example.com
+```
+(Other variables are listed in `frontend/.env.example`.)
 
-**Kevin Ringler**
-Full-Stack Software Engineer
+## Testing
 
-- **GitHub Repository**: [https://github.com/Beginnerinvestorhub/Demo](https://github.com/Beginnerinvestorhub/Demo)
-- **LinkedIn**: [https://www.linkedin.com/in/kevin-ringler](https://www.linkedin.com/in/kevin-ringler)
-- **Portfolio**: [kevinringler.dev](https://kevinringler.dev)
+- Unit: Jest. To run locally: `npm test` 
+- CI: The current workflow disables coverage enforcement in CI. To run Jest without coverage checks locally: `npm test -- --coverage=false` 
 
----
+If you want CI to enforce coverage, update the Jest config `coverageThreshold` to realistic values and add tests iteratively.
 
-*Built with ❤️ using Next.js, TypeScript, and modern web technologies.*
+## Deployment
+
+Deployed to Vercel. The workflow is at `.github/workflows/deploy-vercel.yml` (ref: 11776c20bae6183e207ce9c6469a534fa73f05da). The action deploys the `frontend` working-directory.
+
+## Disclaimer
+
+This is an educational project. Not financial advice.
+
+## License
+
+MIT — see [LICENSE](LICENSE)
+
+## Author
+
+Kevin Ringler — Full-Stack Software Engineer  
+- Repo: https://github.com/Beginnerinvestorhub/Demo (ref: 11776c20bae6183e207ce9c6469a534fa73f05da)  
+- LinkedIn: https://www.linkedin.com/in/kevin-ringler  
+- Portfolio: https://kevinringler.dev
