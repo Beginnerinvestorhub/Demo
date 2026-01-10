@@ -9,6 +9,14 @@ jest.mock('next-auth/react', () => ({
   }),
 }));
 
+// Mock the useAuth hook
+jest.mock('../hooks/useAuth', () => ({
+  useAuth: () => ({
+    user: { displayName: 'Test User', email: 'test@example.com' },
+    loading: false,
+  }),
+}));
+
 // Mock the ChatInterface component
 jest.mock('../ChatInterface', () => {
   const ChatInterface = ({ onClose }: { onClose: () => void }) => (
