@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { MechanicaGear } from './mechanicaGear';
+import { MechanicaGear } from '../ui/mechanicaGear';
 
 export const MechanicaFooter: React.FC = () => {
   return (
