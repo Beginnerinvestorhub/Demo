@@ -39,3 +39,7 @@ Copy `.env.example` to `.env.local` and configure.
 ## Documentation
 
 See the root README.md for high-level project information.
+
+## Deployment
+
+Deployed to Vercel with automatic GitHub integration.
