@@ -1,6 +1,4 @@
 import { useState, useCallback } from 'react';
-import { useSession } from 'next-auth/react';
-import { Session } from 'next-auth';
 
 
 // Geolocation API types
@@ -45,7 +43,6 @@ import { apiClient } from '@/services/apiClient';
 export function useNudgeApi(): UseNudgeApiReturn {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const { data: session } = useSession();
 
   const sendNudge = useCallback(
     async (

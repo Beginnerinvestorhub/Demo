@@ -1,8 +1,3 @@
-/**
- * Firebase Configuration Module
- * Production-ready setup using Vercel environment variables.
- */
-
 import {
   initializeApp,
   getApps,
@@ -29,17 +24,6 @@ const firebaseConfig: FirebaseOptions = {
   measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
 };
 
-// --- Environment Validation ---
-const missingEnvVars = REQUIRED_ENV_VARS.filter((key) => !process.env[key]);
-const initializationError = missingEnvVars.length
-  ? `Missing environment variables: ${missingEnvVars.join(', ')}`
-  : null;
-
-if (initializationError) {
-  console.error('❌ Firebase not initialized:', initializationError);
-  console.error('Ensure these are set in your Vercel dashboard under Production environment.');
-}
-
 // --- Initialization State ---
 let appInstance: FirebaseApp | null = null;
 let authInstance: Auth | null = null;
@@ -53,8 +37,14 @@ const initializeFirebase = async (): Promise<void> => {
     // If already initializing, wait for it to complete
     return initializationPromise || Promise.resolve();
   }
-  if (initializationError) {
-    throw new Error(initializationError);
+
+  // Perform environment variable check only when actual initialization is requested
+  const missingEnvVars = REQUIRED_ENV_VARS.filter((key) => !process.env[key]);
+  if (missingEnvVars.length > 0) {
+    const errorMsg = `Missing environment variables: ${missingEnvVars.join(', ')}. Firebase will not be initialized.`;
+    console.error('❌ Firebase not initialized:', errorMsg);
+    console.error('Ensure these are set in your Vercel dashboard under Production environment.');
+    throw new Error(errorMsg);
   }
 
   isInitializing = true;
@@ -100,42 +90,53 @@ const initializeFirebase = async (): Promise<void> => {
 };
 
 // --- Client-Safe Initialization ---
-if (typeof window !== 'undefined') {
-  // Initialize when DOM is ready
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', async () => {
-      try {
-        await initializeFirebase();
-      } catch (error) {
-        console.error('Failed to initialize Firebase:', error);
-      }
-    });
-  } else {
-    initializeFirebase().catch(console.error);
-  }
-}
+// Remove global initialization attempt. `ensureFirebaseInitialized` will be the entry point.
+// if (typeof window !== 'undefined') {
+//   if (document.readyState === 'loading') {
+//     document.addEventListener('DOMContentLoaded', async () => {
+//       try {
+//         await initializeFirebase();
+//       } catch (error) {
+//         console.error('Failed to initialize Firebase:', error);
+//       }
+//     });
+//   } else {
+//     initializeFirebase().catch(console.error);
+//   }
+// }
 
 // --- Public API ---
 
 // 1. Ensures Firebase initialization is complete (used for waiting)
 export const ensureFirebaseInitialized = async (): Promise<void> => {
+  // Only initialize Firebase if not in demo mode (default to demo if undefined)
+  const appMode = process.env.NEXT_PUBLIC_APP_MODE;
+  if (!appMode || appMode === 'demo') {
+    console.log('Firebase initialization skipped in DEMO mode.');
+    return;
+  }
   await initializeFirebase();
 };
 
 // 2. Returns the Auth instance (used for sign in/up/out)
-export const getFirebaseAuth = (): Auth => { // <-- FIX: New export
+export const getFirebaseAuth = (): Auth => {
+  const appMode = process.env.NEXT_PUBLIC_APP_MODE;
   if (!authInstance) {
-    // Attempt initialization synchronously if possible, or throw
-    if (getApps().length === 0) {
-        throw new Error('Firebase Auth not available. Call ensureFirebaseInitialized first.');
+    // If in demo mode (or undefined), authInstance won't exist, which is expected.
+    // If not in demo mode, but authInstance is null, it means ensureFirebaseInitialized was not called.
+    if (!appMode || appMode === 'demo') {
+      throw new Error('Firebase Auth is not available in DEMO mode. Use mock auth from useAuth hook.');
     }
-    // If app exists but auth doesn't, try getting it (for cases where initializeFirebase was bypassed)
-    authInstance = getAuth(getApps()[0]);
+    throw new Error('Firebase Auth not available. Ensure Firebase is initialized (ensureFirebaseInitialized).');
   }
   return authInstance;
 };
 
 // 3. Checks if the Firebase application is available (used for conditional rendering/logic)
-export const isFirebaseInitialized = (): boolean => { // <-- FIX: New export
+export const isFirebaseInitialized = (): boolean => {
+  const appMode = process.env.NEXT_PUBLIC_APP_MODE;
+  if (!appMode || appMode === 'demo') {
+    return false; // Firebase is not "truly" initialized in demo mode
+  }
     return getApps().length > 0 && !!authInstance;
 };

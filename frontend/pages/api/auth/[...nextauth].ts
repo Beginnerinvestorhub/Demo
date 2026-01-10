@@ -14,7 +14,7 @@ export default NextAuth({
                 username: { label: "Username", type: "text", placeholder: "jsmith" },
                 password: { label: "Password", type: "password" }
             },
-            async authorize(credentials, _req) {
+            async authorize(credentials) {
                 // Mock authorization for now to prevent startup errors
                 if (credentials?.username === "user" && credentials?.password === "password") {
                     return { id: "1", name: "J Smith", email: "jsmith@example.com" }

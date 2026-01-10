@@ -2,18 +2,18 @@
 'use client';
 
 import React, { useState } from 'react';
-import { useSession } from 'next-auth/react';
+import { useAuth } from '../hooks/useAuth';
 
 const NudgeChatWidget: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { data: session, status } = useSession();
+  const { user, loading } = useAuth();
 
   // Only show widget if user is authenticated
-  if (status === 'loading') {
+  if (loading) {
     return null; // Still loading, don't show anything
   }
 
-  if (status === 'unauthenticated' || !session) {
+  if (!user) {
     return null; // User not authenticated, don't show widget
   }
 
@@ -21,7 +21,7 @@ const NudgeChatWidget: React.FC = () => {
     <div className="fixed bottom-8 right-8 z-50">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="bg-indigo-600 hover:bg-indigo-700 text-white rounded-full p-4 shadow-lg transition-all duration-300 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+        className="bg-mechanica-moonlight-blue hover:bg-mechanica-moonlight-blue-dark text-white rounded-full p-4 shadow-lg transition-all duration-300 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-mechanica-moonlight-blue focus:ring-offset-2"
         aria-label={isOpen ? 'Close chat' : 'Open chat'}
         aria-expanded={isOpen}
       >
@@ -42,15 +42,15 @@ const NudgeChatWidget: React.FC = () => {
       </button>
 
       {isOpen && (
-        <div className="fixed bottom-24 right-8 w-80 h-96 bg-white rounded-xl shadow-2xl z-50 border border-gray-200">
-          <div className="p-4 border-b border-gray-200">
+        <div className="fixed bottom-24 right-8 w-80 h-96 bg-white rounded-xl shadow-2xl z-50 border border-gray-200 flex flex-col">
+          <div className="p-4 border-b border-gray-200 bg-mechanica-moonlight-blue text-white rounded-t-xl">
             <div className="flex items-center justify-between">
-              <h3 className="text-lg font-semibold text-gray-900">
-                Nudge Chat
+              <h3 className="text-lg font-semibold">
+                Nudge Coach
               </h3>
               <button
                 onClick={() => setIsOpen(false)}
-                className="text-gray-400 hover:text-gray-600"
+                className="text-white/80 hover:text-white"
                 aria-label="Close chat"
               >
                 <svg
@@ -70,18 +70,17 @@ const NudgeChatWidget: React.FC = () => {
             </div>
           </div>
 
-          <div className="p-4 h-80 overflow-y-auto">
+          <div className="p-4 h-80 overflow-y-auto flex-1">
             <div className="mb-4">
               <p className="text-sm text-gray-600">
                 Welcome back,{' '}
-                <span className="font-medium text-indigo-600">
-                  {session.user?.name || session.user?.email || 'User'}
+                <span className="font-medium text-mechanica-moonlight-blue">
+                  {user.displayName || user.email || 'Investor'}
                 </span>
                 !
               </p>
               <p className="text-sm text-gray-500 mt-1">
-                This is your personal nudge assistant. Ask me anything about
-                your investments!
+                I am your personal behavioral coach.
               </p>
             </div>
 
@@ -89,21 +88,20 @@ const NudgeChatWidget: React.FC = () => {
             <div className="space-y-3">
               <div className="bg-gray-100 rounded-lg p-3 max-w-xs">
                 <p className="text-sm text-gray-700">
-                  Hi! I&apos;m here to help you with your investment questions. What
-                  would you like to know?
+                  Ready to analyze your latest portfolio moves?
                 </p>
               </div>
             </div>
           </div>
 
-          <div className="p-4 border-t border-gray-200">
+          <div className="p-4 border-t border-gray-200 bg-gray-50 rounded-b-xl">
             <div className="flex space-x-2">
               <input
                 type="text"
-                placeholder="Type your message..."
-                className="flex-1 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                placeholder="Ask me anything..."
+                className="flex-1 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-mechanica-moonlight-blue focus:border-transparent"
               />
-              <button className="bg-indigo-600 text-white px-4 py-2 rounded-lg text-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+              <button className="bg-mechanica-moonlight-blue text-white px-4 py-2 rounded-lg text-sm hover:bg-mechanica-moonlight-blue-dark focus:outline-none focus:ring-2 focus:ring-mechanica-moonlight-blue focus:ring-offset-2">
                 Send
               </button>
             </div>

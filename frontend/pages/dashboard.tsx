@@ -56,28 +56,46 @@ export default function DashboardPage() {
   }
 
   return (
-    <MechanicaLayout
-      title="My Dashboard | Beginner Investor Hub"
-      description="Your personalized investment dashboard and learning journey."
-    >
-
-      <div className="py-12 bg-white">
+    <MechanicaLayout>
+      <div className="py-12 bg-gray-50 min-h-screen">
         <div className="container mx-auto px-4">
           {/* Welcome Header */}
-          <div className="text-center mb-12">
-            <div className="flex justify-center items-center space-x-6 mb-6">
-              <MechanicaGear size="lg" color="brass" speed="slow" />
-              <h1 className="text-4xl md:text-5xl font-bold mechanica-heading-professional text-mechanica-moonlight-blue">
-                Welcome back, {user.displayName || 'Investor'}!
-              </h1>
-              <MechanicaGear size="lg" color="brass" speed="reverse" />
+          <div className="text-center mb-12 relative overflow-hidden rounded-lg p-8 bg-gradient-to-br from-white to-gray-50 shadow-xl border border-gray-200">
+             {/* Subtle background pattern */}
+            <div
+              className="absolute inset-0 opacity-10"
+              style={{
+                backgroundImage: `
+                  repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(0,0,0,0.02) 10px, rgba(0,0,0,0.02) 20px),
+                  repeating-linear-gradient(-45deg, transparent, transparent 10px, rgba(0,0,0,0.01) 10px, rgba(0,0,0,0.01) 20px)
+                `
+              }}
+            ></div>
+
+            {/* Decorative Mechanical Gears */}
+            <div className="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 opacity-10">
+              <MechanicaGear size="xxl" color="steel" speed="slow" />
             </div>
-            <p className="text-xl text-gray-600 mechanica-text-technical mb-8">
-              Ready to continue your precision investment learning journey?
-            </p>
+            <div className="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 opacity-10">
+              <MechanicaGear size="xxl" color="brass" speed="reverse" />
+            </div>
+
+            <div className="relative z-10">
+              <div className="flex justify-center items-center space-x-6 mb-6">
+                <MechanicaGear size="xl" color="brass" speed="slow" />
+                <h1 className="text-4xl md:text-5xl font-bold mechanica-heading-professional text-mechanica-moonlight-blue">
+                  Welcome back, {user.displayName || 'Investor'}!
+                </h1>
+                <MechanicaGear size="xl" color="brass" speed="reverse" />
+              </div>
+              <div className="w-24 h-1 bg-mechanica-polished-brass mx-auto mb-6"></div>
+              <p className="text-xl text-gray-600 mechanica-text-technical mb-8">
+                Ready to continue your precision investment learning journey?
+              </p>
+            </div>
 
             {/* Quick Stats */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto relative z-10">
               <MechanicaCard variant="mechanical" animated gearDecoration>
                 <div className="text-center">
                   <div className="flex justify-center mb-4">

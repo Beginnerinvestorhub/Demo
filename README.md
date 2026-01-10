@@ -1,5 +1,8 @@
 # Beginner Investor Hub (Demo)
 
+![Dashboard Preview](./public/dashboard-preview.png)
+*A precision-engineered educational platform for mastering investment strategies.*
+
 An educational investment platform helping new investors understand portfolios, markets, and investing behavior through interactive simulations and guided content.
 
 ## 🎯 Purpose
@@ -11,43 +14,63 @@ This is a **demo deployment** showcasing the frontend architecture and user expe
 - **Framework**: Next.js 14+ (Pages Router)
 - **Language**: TypeScript
 - **Styling**: Tailwind CSS
+- **Design System**: Mechanica (Custom Design Tokens)
 - **UI Components**: Custom components with Headless UI
 - **State Management**: Zustand
 - **Authentication**: NextAuth.js (mocked in demo)
 - **Testing**: Jest + Playwright
 - **Deployment**: Vercel
 
-## ✨ Features
+## ✨ Core Capabilities
 
-- Portfolio simulation interface
-- Interactive learning dashboards
-- Behavioral finance concepts
-- ESG screening tools
-- Risk assessment forms
-- Fractional share calculator
-- Responsive, accessible design
-- Mock API integration (demo mode)
+| Feature | Description | Status |
+| :--- | :--- | :--- |
+| **Portfolio Simulator** | Build and test strategies with virtual capital in a risk-free environment. | ✅ Active |
+| **AI Behavioral Coach** | Get insights on emotional decision-making patterns and biases. | ✅ Active |
+| **Risk Analytics** | Engineering-grade metrics including Sharpe ratio and volatility analysis. | ✅ Active |
+| **ESG Screener** | Screen investments for Environmental, Social, and Governance factors. | 🚧 Coming Soon |
+| **Fractional Calculator** | Precise calculation engine for fractional share purchasing power. | ✅ Active |
+
+## 🏗️ Architecture
+
+The application is designed to switch seamlessly between a lightweight **Demo Mode** (current) and a scalable **Production Mode**.
+
+```mermaid
+graph TD
+    User[User / Client] --> Frontend[Next.js Frontend]
+    
+    subgraph "Demo Architecture"
+        Frontend -- "Mock Data" --> LocalMocks[Local API Routes]
+        LocalMocks --> MockAuth[Mock Auth Provider]
+    end
+    
+    subgraph "Production Architecture"
+        Frontend -. "API Calls" .-> Gateway[API Gateway]
+        Gateway -.-> Auth[Firebase Auth]
+        Gateway -.-> CoreAPI[Core Service (Node.js)]
+        Gateway -.-> Analytics[Analytics Engine (Python)]
+        CoreAPI -.-> DB[(PostgreSQL)]
+        Analytics -.-> Cache[(Redis)]
+    end
+    
+    style LocalMocks fill:#e1f5fe,stroke:#01579b
+    style MockAuth fill:#e1f5fe,stroke:#01579b
+    style Frontend fill:#fff9c4,stroke:#fbc02d
+```
 
 ## 🚀 Demo Mode
 
 This Vercel deployment runs in **demo mode** with mocked APIs:
 
-- Authentication is bypassed
-- Data is simulated locally
+- Authentication is bypassed (pre-filled credentials available)
+- Data is simulated locally for instant feedback
 - No external services required
 - Full UI/UX functionality preserved
-
-**Production architecture** includes:
-- Microservices backend (Node.js, Python)
-- Cloud infrastructure (Google Cloud Run)
-- PostgreSQL database
-- Redis caching
-- Vertex AI integration
 
 ## 📦 Local Development
 
 ```bash
-# Install dependencies (from root)
+# Install dependencies
 npm install
 
 # Run development server
@@ -61,9 +84,6 @@ npm test
 
 # Validate code quality
 npm run validate
-
-# Health check
-npm run health-check
 ```
 
 Visit `http://localhost:3000`
@@ -79,22 +99,6 @@ For production mode:
 ```env
 NEXT_PUBLIC_APP_MODE=production
 NEXT_PUBLIC_API_BASE_URL=https://api.example.com
-```
-
-## 📁 Project Structure
-
-```
-├── frontend/           # Main Next.js application
-│   ├── components/     # React components
-│   ├── pages/          # Next.js pages
-│   ├── hooks/          # Custom React hooks
-│   ├── lib/            # Utility libraries
-│   ├── styles/         # CSS/styling
-│   ├── public/         # Static assets
-│   └── scripts/        # Build/deployment scripts
-├── .gitignore          # Git ignore rules
-├── package.json        # Root package.json (workspace config)
-└── README.md          # This file
 ```
 
 ## 🔗 Live Demo

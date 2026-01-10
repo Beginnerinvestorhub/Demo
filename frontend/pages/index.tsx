@@ -66,7 +66,7 @@ export default function HomePage() {
       // Updated Description: Focus on learning and testing strategies
       description: 'Learn and test investment strategies using our algorithmically validated simulation system, featuring real-time market data and advanced analytics.',
       icon: '⚙️',
-      href: '/portfolio-simulation',
+      href: '/portfolio-monitor',
       gearColor: 'steel' as const,
     },
     {
@@ -75,7 +75,7 @@ export default function HomePage() {
       // Updated Description: Focus on learning from patterns
       description: 'Get personalized insights from our AI-powered coaching system that analyzes your investment patterns and provides personalized, data-backed guidance for skill improvement.',
       icon: '🧠',
-      href: '/ai-coach',
+      href: '/dashboard',
       gearColor: 'brass' as const,
     },
     {
@@ -84,7 +84,7 @@ export default function HomePage() {
       // Updated Description: Focus on understanding risk with data science
       description: 'Master risk assessment with our engineering-grade analytics powered by advanced algorithms and predictive modeling.',
       icon: '📊',
-      href: '/risk-analysis',
+      href: '/risk-assessment',
       gearColor: 'copper' as const,
     },
     {
@@ -93,7 +93,7 @@ export default function HomePage() {
       // Updated Description: Focus on research and historical analysis
       description: 'Access high-fidelity market data for research and historical analysis, utilizing our high-speed data processing system.',
       icon: '📈',
-      href: '/market-data',
+      href: '/portfolio-monitor',
       gearColor: 'steel' as const,
     },
   ];
@@ -129,14 +129,7 @@ export default function HomePage() {
   ];
 
   return (
-    <MechanicaLayout
-      // Updated Title
-      title="Beginner Investor Hub - Financial Education & Strategy"
-      // Updated Description
-      description="Master investing with our structured, data-driven platform featuring real-time simulations and AI-powered coaching"
-    >
-      <MechanicaHeader />
-
+    <MechanicaLayout>
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-mechanica-moonlight-blue via-mechanica-moonlight-blue-light to-mechanica-moonlight-blue-dark text-white overflow-hidden">
         {/* Mechanical background */}
@@ -191,17 +184,24 @@ export default function HomePage() {
               AI-powered coaching, and a focus on strategic learning.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <Link href="/signup">
-                <MechanicaButton variant="mechanical" size="lg">
-                  Start Your Investment Journey
-                </MechanicaButton>
-              </Link>
-              <Link href="/tools">
-                <MechanicaButton variant="wood" size="lg">
-                  Explore Learning Tools
-                </MechanicaButton>
-              </Link>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
+               <div className="bg-white/10 p-2 rounded-lg backdrop-blur-sm flex flex-col sm:flex-row gap-2 w-full max-w-md">
+                <input 
+                  type="email" 
+                  placeholder="Enter your email address" 
+                  className="px-4 py-3 rounded-md bg-white text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-yellow-400 flex-grow mechanica-text-technical"
+                />
+                <Link href="/signup">
+                  <MechanicaButton variant="mechanical" size="md" className="w-full sm:w-auto whitespace-nowrap">
+                    Get Started
+                  </MechanicaButton>
+                </Link>
+              </div>
+            </div>
+             <div className="flex justify-center gap-4 text-sm text-blue-200">
+                <Link href="/login" className="hover:text-white underline decoration-yellow-400/50">Already have an account? Sign in</Link>
+                <span>•</span>
+                <Link href="/tools" className="hover:text-white underline decoration-yellow-400/50">Explore Tools</Link>
             </div>
           </div>
         </div>

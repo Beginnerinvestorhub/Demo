@@ -1,4 +1,5 @@
 import React from 'react';
+import NudgeChatWidget from '../NudgeChatWidget';
 
 interface MechanicaLayoutProps {
   children: React.ReactNode;
@@ -28,6 +29,7 @@ export const MechanicaLayout: React.FC<MechanicaLayoutProps> = ({
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {children}
       </main>
+      <NudgeChatWidget />
     </div>
   );
 };

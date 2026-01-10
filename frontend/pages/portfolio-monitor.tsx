@@ -6,10 +6,7 @@ import { MechanicaGear } from '../components/ui/mechanicaGear';
 
 export default function PortfolioMonitorPage() {
   return (
-    <MechanicaLayout
-      title="Portfolio Monitoring Dashboard | BeginnerInvestorHub"
-      description="Track your portfolio performance and diversification over time."
-    >
+    <MechanicaLayout>
       <div className="min-h-screen bg-gradient-to-br from-gray-50 to-amber-50">
         {/* Technical Grid Overlay - Blueprint Pattern */}
         <div
@@ -23,35 +20,51 @@ export default function PortfolioMonitorPage() {
 
         <div className="container mx-auto px-4 relative z-10 py-12">
           {/* Hero Section with Mechanical Elements */}
-          <header className="text-center mb-12 relative">
+          <header className="text-center mb-12 relative overflow-hidden rounded-lg p-6 bg-gradient-to-br from-gray-100 to-white shadow-xl border border-gray-200">
+            {/* Subtle background pattern */}
+            <div
+              className="absolute inset-0 opacity-10"
+              style={{
+                backgroundImage: `
+                  repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(0,0,0,0.02) 10px, rgba(0,0,0,0.02) 20px),
+                  repeating-linear-gradient(-45deg, transparent, transparent 10px, rgba(0,0,0,0.01) 10px, rgba(0,0,0,0.01) 20px)
+                `
+              }}
+            ></div>
+
             {/* Decorative Mechanical Gears */}
-            <div className="absolute -top-8 left-0">
-              <MechanicaGear size="lg" color="steel" speed="slow" />
+            <div className="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 opacity-20">
+              <MechanicaGear size="xxl" color="steel" speed="slow" />
             </div>
-            <div className="absolute -top-4 right-4">
-              <MechanicaGear size="md" color="brass" speed="reverse" />
+            <div className="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 opacity-20">
+              <MechanicaGear size="xxl" color="brass" speed="reverse" />
             </div>
-            <div className="absolute top-20 right-16">
-              <MechanicaGear size="sm" color="copper" speed="medium" />
+            <div className="absolute top-1/4 right-1/4 opacity-30">
+              <MechanicaGear size="lg" color="copper" speed="medium" />
             </div>
-
-            <div className="flex justify-center items-center space-x-6 mb-8">
-              <MechanicaGear size="xl" color="steel" speed="slow" />
-              <h1 className="text-4xl md:text-5xl font-bold mechanica-heading-professional text-mechanica-moonlight-blue">
-                Portfolio Monitoring Dashboard
-              </h1>
-              <MechanicaGear size="xl" color="steel" speed="reverse" />
+            <div className="absolute bottom-1/4 left-1/4 opacity-30">
+              <MechanicaGear size="md" color="steel" speed="fast" />
             </div>
 
-            <div className="w-24 h-1 bg-mechanica-polished-brass mx-auto mb-6"></div>
-            <p className="text-lg md:text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed mechanica-text-technical">
-              <span className="font-semibold text-mechanica-moonlight-blue">
-                Real-Time Assembly Monitor:
-              </span>{' '}
-              Visualize your portfolio allocation, performance metrics, and
-              component details. Deploy alerts and track your investment
-              architecture in real time.
-            </p>
+            <div className="relative z-10"> {/* Ensure content is above gears */}
+              <div className="flex justify-center items-center space-x-6 mb-8">
+                <MechanicaGear size="xl" color="steel" speed="slow" />
+                <h1 className="text-4xl md:text-5xl font-bold mechanica-heading-professional text-mechanica-moonlight-blue text-center">
+                  Portfolio Monitoring Dashboard
+                </h1>
+                <MechanicaGear size="xl" color="steel" speed="reverse" />
+              </div>
+
+              <div className="w-24 h-1 bg-mechanica-polished-brass mx-auto mb-6"></div>
+              <p className="text-lg md:text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed mechanica-text-technical">
+                <span className="font-semibold text-mechanica-moonlight-blue">
+                  Real-Time Assembly Monitor:
+                </span>{' '}
+                Visualize your portfolio allocation, performance metrics, and
+                component details. Deploy alerts and track your investment
+                architecture in real time.
+              </p>
+            </div>
           </header>
 
           {/* Dashboard Status Bar */}

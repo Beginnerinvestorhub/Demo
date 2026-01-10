@@ -122,7 +122,7 @@ export default function ToolsOverview() {
       description="Explore our comprehensive suite of investment tools: portfolio simulation, AI coaching, risk analysis, market data, and more."
     >
       {/* Header */}
-      <section className="mechanica-header relative bg-gradient-to-br from-mechanica-moonlight-blue via-mechanica-moonlight-blue-light to-mechanica-moonlight-blue-dark text-white overflow-hidden py-16">
+      <section className="mechanica-header relative bg-blue-900 bg-gradient-to-br from-mechanica-moonlight-blue via-mechanica-moonlight-blue-light to-mechanica-moonlight-blue-dark text-white overflow-hidden py-16">
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center">
             <Link href="/" className="inline-block text-blue-100 hover:text-white mb-6 transition-colors mechanica-text-technical">
@@ -211,17 +211,23 @@ export default function ToolsOverview() {
                   <div className="mt-auto">
                     {tool.status === 'active' ? (
                       user ? (
-                        <Link href={tool.href}>
-                          <MechanicaButton variant="mechanical" size="lg" className="w-full">
-                            Launch Tool
-                          </MechanicaButton>
-                        </Link>
+                        <MechanicaButton 
+                          variant="mechanical" 
+                          size="lg" 
+                          className="w-full"
+                          href={tool.href}
+                        >
+                          Launch Tool
+                        </MechanicaButton>
                       ) : (
-                        <Link href="/signup">
-                          <MechanicaButton variant="wood" size="lg" className="w-full">
-                            Sign Up to Access
-                          </MechanicaButton>
-                        </Link>
+                        <MechanicaButton 
+                          variant="wood" 
+                          size="lg" 
+                          className="w-full"
+                          href="/signup"
+                        >
+                          Sign Up to Access
+                        </MechanicaButton>
                       )
                     ) : (
                       <MechanicaButton variant="wood" size="lg" className="w-full" disabled>
@@ -252,16 +258,20 @@ export default function ToolsOverview() {
                 </p>
 
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Link href="/signup">
-                    <MechanicaButton variant="mechanical" size="lg">
-                      Create Free Account
-                    </MechanicaButton>
-                  </Link>
-                  <Link href="/login">
-                    <MechanicaButton variant="wood" size="lg">
-                      Sign In
-                    </MechanicaButton>
-                  </Link>
+                  <MechanicaButton 
+                    variant="mechanical" 
+                    size="lg" 
+                    href="/signup"
+                  >
+                    Create Free Account
+                  </MechanicaButton>
+                  <MechanicaButton 
+                    variant="wood" 
+                    size="lg" 
+                    href="/login"
+                  >
+                    Sign In
+                  </MechanicaButton>
                 </div>
               </div>
             </MechanicaCard>
