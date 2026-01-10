@@ -89,11 +89,11 @@ export default function HomePage() {
     },
     {
       // Updated Title
-      title: 'Financial Data Explorer',
-      // Updated Description: Focus on research and historical analysis
-      description: 'Access high-fidelity market data for research and historical analysis, utilizing our high-speed data processing system.',
+      title: 'Fractional Share Calculator',
+      // Updated Description: Focus on precision calculation and broker comparison
+      description: 'Calculate fractional shares with any investment amount, compare broker fees, and visualize your purchase blueprint with precision engineering.',
       icon: '📈',
-      href: '/portfolio-monitor',
+      href: '/fractional-share-calculator',
       gearColor: 'steel' as const,
     },
   ];

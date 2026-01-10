@@ -81,14 +81,18 @@ export default function Contact() {
 
             <div className="flex justify-center items-center space-x-6 mb-8">
               <MechanicaGear size="xl" color="steel" speed="slow" />
-              <h1 className="text-4xl md:text-5xl font-bold mechanica-heading-mechanical text-mechanica-moonlight-blue">
-                Contact Us
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 font-serif">
+                <span className="relative inline-block">
+                  Contact
+                  <span className="absolute bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-400 rounded-full" />
+                </span>
+                <br />
+                <span className="text-yellow-400">Us</span>
               </h1>
               <MechanicaGear size="xl" color="steel" speed="reverse" />
             </div>
 
-            <div className="w-24 h-1 bg-mechanica-polished-brass mx-auto mb-6"></div>
-            <p className="text-lg text-gray-700 max-w-3xl mx-auto leading-relaxed mechanica-text-technical">
+            <p className="text-xl md:text-2xl text-white mb-8 max-w-3xl mx-auto font-normal">
               Have questions? We are here to help you master investing with precision
               engineering and expert guidance.
             </p>
@@ -98,11 +102,11 @@ export default function Contact() {
             <div className="space-y-8">
               <div className="flex items-center space-x-3 mb-6">
                 <MechanicaGear size="medium" color="brass" speed="slow" />
-                <h2 className="text-2xl font-bold mechanica-heading-professional text-mechanica-moonlight-blue">
+                <h2 className="text-2xl font-bold text-mechanica-moonlight-blue font-serif">
                   Get in Touch
                 </h2>
               </div>
-              <p className="text-gray-600 mechanica-text-technical">
+              <p className="text-gray-600">
                 Choose the best way to reach us. We typically respond within
                 24 hours during business days.
               </p>
@@ -113,11 +117,11 @@ export default function Contact() {
                   <div className="p-6 flex items-start space-x-4">
                     <div className="text-2xl">📧</div>
                     <div>
-                      <h3 className="font-semibold text-lg mechanica-heading-professional text-gray-900">Email Support</h3>
-                      <p className="text-gray-600 mechanica-text-technical">For general inquiries and support</p>
+                      <h3 className="font-semibold text-lg text-gray-900">Email Support</h3>
+                      <p className="text-gray-600">For general inquiries and support</p>
                       <a
                         href="mailto:info@beginnerinvestorhub.com"
-                        className="text-mechanica-moonlight-blue hover:underline mechanica-text-technical"
+                        className="text-mechanica-moonlight-blue hover:underline"
                       >
                         info@beginnerinvestorhub.com
                       </a>
@@ -129,11 +133,11 @@ export default function Contact() {
                   <div className="p-6 flex items-start space-x-4">
                     <div className="text-2xl">🔒</div>
                     <div>
-                      <h3 className="font-semibold text-lg mechanica-heading-professional text-gray-900">Privacy Inquiries</h3>
-                      <p className="text-gray-600 mechanica-text-technical">Data requests and privacy concerns</p>
+                      <h3 className="font-semibold text-lg text-gray-900">Privacy Inquiries</h3>
+                      <p className="text-gray-600">Data requests and privacy concerns</p>
                       <a
                         href="mailto:info@beginnerinvestorhub.com"
-                        className="text-mechanica-moonlight-blue hover:underline mechanica-text-technical"
+                        className="text-mechanica-moonlight-blue hover:underline"
                       >
                         info@beginnerinvestorhub.com
                       </a>
@@ -145,11 +149,11 @@ export default function Contact() {
                   <div className="p-6 flex items-start space-x-4">
                     <div className="text-2xl">💼</div>
                     <div>
-                      <h3 className="font-semibold text-lg mechanica-heading-professional text-gray-900">Business Partnerships</h3>
-                      <p className="text-gray-600 mechanica-text-technical">Affiliate program and collaborations</p>
+                      <h3 className="font-semibold text-lg text-gray-900">Business Partnerships</h3>
+                      <p className="text-gray-600">Affiliate program and collaborations</p>
                       <a
                         href="mailto:info@beginnerinvestorhub.com"
-                        className="text-mechanica-moonlight-blue hover:underline mechanica-text-technical"
+                        className="text-mechanica-moonlight-blue hover:underline"
                       >
                         info@beginnerinvestorhub.com
                       </a>
@@ -161,9 +165,9 @@ export default function Contact() {
                   <div className="p-6 flex items-start space-x-4">
                     <div className="text-2xl">📍</div>
                     <div>
-                      <h3 className="font-semibold text-lg mechanica-heading-professional text-gray-900">Location</h3>
-                      <p className="text-gray-700 mechanica-text-technical">Raleigh, North Carolina</p>
-                      <p className="text-gray-600 mechanica-text-technical">United States</p>
+                      <h3 className="font-semibold text-lg text-gray-900">Location</h3>
+                      <p className="text-gray-700">Raleigh, North Carolina</p>
+                      <p className="text-gray-600">United States</p>
                     </div>
                   </div>
                 </MechanicaCard>
@@ -174,9 +178,9 @@ export default function Contact() {
                 <div className="p-6">
                   <div className="flex items-center space-x-3 mb-4">
                     <MechanicaGear size="small" color="steel" speed="medium" />
-                    <h3 className="font-semibold text-lg mechanica-heading-professional text-gray-900">Response Time</h3>
+                    <h3 className="font-semibold text-lg text-gray-900">Response Time</h3>
                   </div>
-                  <ul className="space-y-2 text-gray-700 mechanica-text-technical">
+                  <ul className="space-y-2 text-gray-700">
                     <li>• General inquiries: Within 24 hours</li>
                     <li>• Technical support: Within 12 hours</li>
                     <li>• Privacy requests: Within 30 days</li>
@@ -190,13 +194,13 @@ export default function Contact() {
                 <div className="p-6">
                   <div className="flex items-center space-x-3 mb-3">
                     <MechanicaGear size="small" color="brass" speed="slow" />
-                    <h4 className="font-semibold text-lg mechanica-heading-professional text-mechanica-moonlight-blue">Looking for quick answers?</h4>
+                    <h4 className="font-semibold text-lg text-mechanica-moonlight-blue">Looking for quick answers?</h4>
                   </div>
-                  <p className="text-gray-600 mechanica-text-technical mb-4">
+                  <p className="text-gray-600 mb-4">
                     Check our FAQ section for common questions about portfolio
                     simulation, risk analysis, and platform features.
                   </p>
-                  <Link href="/faq" className="text-mechanica-moonlight-blue hover:underline font-medium inline-flex items-center mechanica-text-technical">
+                  <Link href="/faq" className="text-mechanica-moonlight-blue hover:underline font-medium inline-flex items-center">
                     Visit FAQ <span className="ml-1">→</span>
                   </Link>
                 </div>
@@ -209,11 +213,11 @@ export default function Contact() {
                 <div className="p-8">
                   <div className="flex items-center space-x-3 mb-6">
                     <MechanicaGear size="medium" color="brass" speed="slow" />
-                    <h2 className="text-2xl font-bold mechanica-heading-professional text-gray-900">
+                    <h2 className="text-2xl font-bold text-gray-900">
                       Send Us a Message
                     </h2>
                   </div>
-                  <p className="text-gray-700 mechanica-text-technical mb-6">
+                  <p className="text-gray-700 mb-6">
                     Fill out the form below and we will get back to you as soon as
                     possible.
                   </p>
@@ -243,7 +247,7 @@ export default function Contact() {
                     </div>
 
                     <div>
-                      <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-1 mechanica-text-technical uppercase">
+                      <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-1 uppercase">
                         Subject <span className="text-red-400">*</span>
                       </label>
                       <select
@@ -251,7 +255,7 @@ export default function Contact() {
                         name="subject"
                         value={formData.subject}
                         onChange={handleChange}
-                        className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-mechanica-polished-brass focus:border-transparent bg-white mechanica-text-technical"
+                        className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-yellow-500 focus:border-transparent bg-white"
                         required
                       >
                         <option value="general">General Inquiry</option>
@@ -265,7 +269,7 @@ export default function Contact() {
                     </div>
 
                     <div>
-                      <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1 mechanica-text-technical uppercase">
+                      <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1 uppercase">
                         Message <span className="text-red-400">*</span>
                       </label>
                       <textarea
@@ -273,7 +277,7 @@ export default function Contact() {
                         name="message"
                         value={formData.message}
                         onChange={handleChange}
-                        className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-mechanica-polished-brass focus:border-transparent mechanica-text-technical"
+                        className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
                         rows={6}
                         required
                         placeholder="Tell us how we can help..."
@@ -281,13 +285,13 @@ export default function Contact() {
                     </div>
 
                     {status === 'success' && (
-                      <div className="p-4 bg-green-50 text-green-800 rounded-md border border-green-200 mechanica-text-technical">
+                      <div className="p-4 bg-green-50 text-green-800 rounded-md border border-green-200">
                         ✓ Message sent successfully! We will respond within 24 hours.
                       </div>
                     )}
 
                     {status === 'error' && (
-                      <div className="p-4 bg-red-50 text-red-800 rounded-md border border-red-200 mechanica-text-technical">
+                      <div className="p-4 bg-red-50 text-red-800 rounded-md border border-red-200">
                         ✕ {errorMessage}
                       </div>
                     )}

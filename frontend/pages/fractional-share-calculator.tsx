@@ -10,20 +10,24 @@ export default function FractionalShareCalculatorPage() {
       title="Fractional Share Calculator | BeginnerInvestorHub"
       description="Calculate how much of a stock you can buy with any amount."
     >
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-amber-50">
-        {/* Blueprint Grid Overlay */}
-        <div
-          className="fixed inset-0 pointer-events-none opacity-5"
-          style={{
-            backgroundImage:
-              'linear-gradient(rgba(0, 61, 122, 0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 61, 122, 0.3) 1px, transparent 1px)',
-            backgroundSize: '40px 40px',
-          }}
-        ></div>
+      <div className="min-h-screen bg-gradient-to-br from-mechanica-moonlight-blue via-mechanica-moonlight-blue-light to-mechanica-moonlight-blue-dark text-white overflow-hidden">
+        {/* Mechanical background */}
+        <div className="absolute inset-0 opacity-10">
+          <div
+            className="w-full h-full"
+            style={{
+              backgroundImage: `
+                repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(255, 255, 255, 0.1) 40px, rgba(255, 255, 255, 0.1) 80px),
+                repeating-linear-gradient(-45deg, transparent, transparent 40px, rgba(255, 255, 255, 0.05) 40px, rgba(255, 255, 255, 0.05) 80px)
+              `
+            }}
+          />
+        </div>
 
-        <div className="container mx-auto px-4 relative z-10 max-w-5xl mx-auto py-12">
-          {/* Hero Section with Mechanical Elements */}
-          <div className="text-center mb-12 relative">
+        <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8">
+          <div className="max-w-4xl mx-auto">
+            {/* Hero Section with Mechanical Elements */}
+            <div className="text-center mb-12 relative">
             {/* Decorative Mechanical Gears */}
             <div className="absolute -top-6 left-8">
               <MechanicaGear size="lg" color="steel" speed="slow" />
@@ -37,15 +41,20 @@ export default function FractionalShareCalculatorPage() {
 
             <div className="flex justify-center items-center space-x-6 mb-8">
               <MechanicaGear size="xl" color="steel" speed="slow" />
-              <h1 className="text-4xl md:text-5xl font-bold mechanica-heading-professional text-mechanica-moonlight-blue">
-                Fractional Share Calculator
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 font-serif">
+                <span className="relative inline-block">
+                  Fractional Share
+                  <span className="absolute bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-400 rounded-full" />
+                </span>
+                <br />
+                <span className="text-yellow-400">Calculator</span>
               </h1>
               <MechanicaGear size="xl" color="steel" speed="reverse" />
             </div>
 
             <div className="w-24 h-1 bg-mechanica-polished-brass mx-auto mb-6"></div>
-            <p className="text-lg text-gray-700 max-w-3xl mx-auto leading-relaxed mechanica-text-technical">
-              <span className="font-semibold text-mechanica-moonlight-blue">
+            <p className="text-xl md:text-2xl text-white mb-8 max-w-3xl mx-auto font-normal">
+              <span className="font-semibold text-yellow-400">
                 Precision Engineering Tool:
               </span>{' '}
               Enter an investment amount and stock price to construct your
@@ -172,6 +181,10 @@ export default function FractionalShareCalculatorPage() {
             </MechanicaCard>
           </div>
         </div>
+        </div>
+
+        {/* Mechanical decorative elements */}
+        <div className="absolute bottom-0 left-0 right-0 h-2 bg-gradient-to-r from-transparent via-yellow-500 to-transparent opacity-50" />
       </div>
     </MechanicaLayout>
   );
