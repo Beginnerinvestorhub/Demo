@@ -13,7 +13,7 @@ export default function TermsOfService() {
       <div className="min-h-screen bg-gradient-to-br from-gray-50 to-amber-50">
         {/* Hero Section */}
         <section className="relative bg-gradient-to-br from-mechanica-moonlight-blue via-mechanica-moonlight-blue-light to-mechanica-moonlight-blue-dark text-white overflow-hidden">
-          {/* Mechanical background */}
+          {/* Mechanical background decoration */}
           <div className="absolute inset-0 opacity-10">
             <div
               className="w-full h-full"
@@ -52,14 +52,12 @@ export default function TermsOfService() {
               </div>
             </div>
           </div>
-
-          {/* Mechanical decorative elements */}
           <div className="absolute bottom-0 left-0 right-0 h-2 bg-gradient-to-r from-transparent via-yellow-500 to-transparent opacity-50" />
         </section>
 
         {/* Main Content */}
         <main className="py-16">
-          <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8">
+          <div className="relative z-10 px-4 sm:px-6 lg:px-8">
             <div className="max-w-4xl mx-auto">
               <MechanicaCard variant="default" animated className="bg-white border-gray-200">
                 <div className="p-8">
@@ -80,13 +78,10 @@ export default function TermsOfService() {
                     <p className="text-gray-700 leading-relaxed mb-4">
                       BeginnerInvestorHub.com provides educational financial tools
                       including risk assessment, portfolio simulation, AI-powered
-                      behavioral coaching, and investment monitoring. These tools
-                      are designed for educational and informational purposes only
-                      and do not constitute financial advice, investment
-                      recommendations, or professional financial planning services.
+                      behavioral coaching, and investment monitoring.
                     </p>
                     <div className="bg-blue-50 border-l-4 border-mechanica-moonlight-blue p-4 rounded-md my-6">
-                      <strong className="text-mechanica-moonlight-blue">Important:</strong> All simulations and tools are for
+                      <strong className="text-mechanica-moonlight-blue">Important:</strong> All simulations are for
                       learning purposes. Always consult with qualified financial
                       professionals before making investment decisions.
                     </div>
@@ -97,121 +92,98 @@ export default function TermsOfService() {
                     <h2 className="text-2xl font-bold text-mechanica-moonlight-blue mb-4 pb-2 border-b-2 border-mechanica-moonlight-blue font-serif">
                       2. User Responsibilities
                     </h2>
-                    <p className="text-gray-700 leading-relaxed mb-4">As a user of our platform, you agree to:</p>
                     <ul className="list-none pl-0 my-4 space-y-2">
-                  </h2>
-                  <div className="bg-amber-50 border-l-4 border-yellow-500 p-4 rounded-md my-6">
-                    <h3 className="text-yellow-600 mt-0 mb-3 text-lg font-bold">
-                      ⚙️ Important Disclaimers
-                    </h3>
-                    <ul className="list-none pl-0 space-y-2">
                       {[
-                        { label: "No Financial Advice", text: "Nothing on this platform constitutes professional financial, investment, tax, or legal advice" },
-                        { label: "Past Performance", text: "Past performance does not guarantee future results or investment success" },
-                        { label: "Simulation Limitations", text: "Portfolio simulations are based on historical data and mathematical models that may not reflect real market conditions" },
-                        { label: "Market Data", text: "Market data may be delayed, subject to provider limitations, and may contain errors" },
-                        { label: "Estimates Only", text: "All results, projections, and calculations are estimates and may not reflect actual investment outcomes" },
-                        { label: "AI Limitations", text: "AI-generated insights are based on algorithms and may not account for all variables or personal circumstances" }
+                        "Provide accurate information for results",
+                        "Understand tools are educational only",
+                        "Consult professionals for real decisions",
+                        "Maintain account security",
+                        "Comply with applicable laws",
+                        "No reverse engineering of the platform"
                       ].map((item, i) => (
-                        <li key={i} className="relative pl-6 text-gray-700 leading-relaxed before:content-['▸'] before:absolute before:left-0 before:text-yellow-500 before:font-bold">
-                          <strong className="text-gray-900">{item.label}:</strong> {item.text}
+                        <li key={i} className="relative pl-6 text-gray-700 leading-relaxed before:content-['▸'] before:absolute before:left-0 before:text-mechanica-moonlight-blue before:font-bold">
+                          {item}
                         </li>
                       ))}
                     </ul>
-                  </div>
-                </section>
+                  </section>
 
-                {/* 4. Data Usage */}
-                <section className="mb-12">
-                  <h2 className="text-2xl font-bold text-mechanica-moonlight-blue mb-4 pb-2 border-b-2 border-mechanica-moonlight-blue font-serif">
-                    4. Data Usage & Privacy
-                  </h2>
-                  <p className="text-gray-700 leading-relaxed mb-4">
-                    We take your privacy seriously and handle your data with care:
-                  </p>
-                  <ul className="list-none pl-0 my-4 space-y-2">
-                    <li className="relative pl-6 text-gray-700 leading-relaxed before:content-['▸'] before:absolute before:left-0 before:text-mechanica-moonlight-blue before:font-bold">
-                      Personal information is encrypted and stored securely using industry-standard practices
-                    </li>
-                    <li className="relative pl-6 text-gray-700 leading-relaxed before:content-['▸'] before:absolute before:left-0 before:text-mechanica-moonlight-blue before:font-bold">
-                      Market data is provided by licensed third-party providers (Alpha Vantage, Finnhub)
-                    </li>
-                    <li className="relative pl-6 text-gray-700 leading-relaxed before:content-['▸'] before:absolute before:left-0 before:text-mechanica-moonlight-blue before:font-bold">
-                      User data is not shared with unauthorized third parties without your consent
-                    </li>
-                  </ul>
-                  <p className="italic text-sm text-gray-600 mt-6">
-                    For detailed information, please review our{' '}
-                    <Link href="/privacy" className="text-mechanica-moonlight-blue font-semibold hover:underline">
-                      Privacy Policy
-                    </Link>.
-                  </p>
-                </section>
+                  {/* 3. Important Disclaimers */}
+                  <section className="mb-12">
+                    <h2 className="text-2xl font-bold text-mechanica-moonlight-blue mb-4 pb-2 border-b-2 border-mechanica-moonlight-blue font-serif">
+                      3. Important Disclaimers
+                    </h2>
+                    <div className="bg-amber-50 border-l-4 border-yellow-500 p-4 rounded-md my-6">
+                      <h3 className="text-yellow-600 mt-0 mb-3 text-lg font-bold">⚙️ Limitations</h3>
+                      <ul className="list-none pl-0 space-y-2">
+                        {[
+                          { label: "No Financial Advice", text: "Nothing here is professional advice" },
+                          { label: "Past Performance", text: "Does not guarantee future success" },
+                          { label: "AI Limitations", text: "Insights are algorithmic" }
+                        ].map((item, i) => (
+                          <li key={i} className="relative pl-6 text-gray-700 leading-relaxed before:content-['▸'] before:absolute before:left-0 before:text-yellow-500 before:font-bold">
+                            <strong className="text-gray-900">{item.label}:</strong> {item.text}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </section>
 
-                {/* 5. Account Management */}
-                <section className="mb-12">
-                  <h2 className="text-2xl font-bold text-mechanica-moonlight-blue mb-4 pb-2 border-b-2 border-mechanica-moonlight-blue font-serif">
-                    5. Account Management
-                  </h2>
-                  <h3 className="text-xl text-gray-900 mt-6 mb-3 font-medium">Account Creation</h3>
-                  <p className="text-gray-700 leading-relaxed mb-4">
-                    You must provide accurate information when creating an account. You are responsible for maintaining credentials.
-                  </p>
-                </section>
-
-                {/* 6. Limitation of Liability */}
-                <section className="mb-12">
-                  <h2 className="text-2xl font-bold text-mechanica-moonlight-blue mb-4 pb-2 border-b-2 border-mechanica-moonlight-blue font-serif">
-                    6. Limitation of Liability
-                  </h2>
-                  <div className="bg-gray-50 border border-gray-300 p-6 rounded-md my-6">
+                  {/* 4. Data Usage */}
+                  <section className="mb-12">
+                    <h2 className="text-2xl font-bold text-mechanica-moonlight-blue mb-4 pb-2 border-b-2 border-mechanica-moonlight-blue font-serif">
+                      4. Data Usage & Privacy
+                    </h2>
                     <p className="text-gray-700 leading-relaxed mb-4">
-                      <strong className="text-red-700 uppercase tracking-widest text-xs">To the maximum extent permitted by law:</strong>
+                      We take your privacy seriously and handle your data with care.
                     </p>
-                    <p className="text-gray-700 leading-relaxed">
-                      The platform, its operators, and affiliates are not liable for investment losses or inaccuracies in data.
-                      You acknowledge that investing involves risk and you are solely responsible for your decisions.
+                    <p className="italic text-sm text-gray-600 mt-6">
+                      Review our{' '}
+                      <Link href="/privacy" className="text-mechanica-moonlight-blue font-semibold hover:underline">
+                        Privacy Policy
+                      </Link>.
                     </p>
-                  </div>
-                </section>
+                  </section>
 
-                {/* 7. Contact Information */}
-                <section className="mb-12 bg-blue-50 p-6 rounded-lg border border-mechanica-moonlight-blue">
-                  <h2 className="text-2xl font-bold text-mechanica-moonlight-blue mb-4 pb-2 border-b-2 border-mechanica-moonlight-blue font-serif">
-                    7. Contact Information
-                  </h2>
-                  <div className="mt-4 text-sm">
-                    <p className="mb-2 text-gray-700">
-                      <strong className="font-semibold text-gray-900">Email:</strong> info@beginnerinvestorhub.com
-                    </p>
-                    <p className="mb-2 text-gray-700">
-                      <strong className="font-semibold text-gray-900">Address:</strong> Charlotte, North Carolina, United States
-                    </p>
-                  </div>
-                </section>
+                  {/* 5. Limitation of Liability */}
+                  <section className="mb-12">
+                    <h2 className="text-2xl font-bold text-mechanica-moonlight-blue mb-4 pb-2 border-b-2 border-mechanica-moonlight-blue font-serif">
+                      5. Limitation of Liability
+                    </h2>
+                    <div className="bg-gray-50 border border-gray-300 p-6 rounded-md">
+                      <p className="text-gray-700 leading-relaxed">
+                        The platform and its operators are not liable for investment losses or data inaccuracies.
+                      </p>
+                    </div>
+                  </section>
 
-                {/* Footer Navigation */}
-                <div className="flex justify-center items-center flex-wrap gap-4 pt-12 mt-12 border-t border-gray-300">
-                  <Link href="/privacy" className="text-mechanica-moonlight-blue font-semibold hover:text-mechanica-moonlight-blue transition duration-300">
-                    Privacy Policy
-                  </Link>
-                  <span className="text-gray-400">•</span>
-                  <Link href="/" className="text-mechanica-moonlight-blue font-semibold hover:text-mechanica-moonlight-blue transition duration-300">
-                    Home
-                  </Link>
-                  <span className="text-gray-400">•</span>
-                  <Link href="/contact" className="text-mechanica-moonlight-blue font-semibold hover:text-mechanica-moonlight-blue transition duration-300">
-                    Contact
-                  </Link>
+                  {/* 6. Contact Information */}
+                  <section className="mb-12 bg-blue-50 p-6 rounded-lg border border-mechanica-moonlight-blue">
+                    <h2 className="text-2xl font-bold text-mechanica-moonlight-blue mb-4 pb-2 border-b-2 border-mechanica-moonlight-blue font-serif">
+                      6. Contact Information
+                    </h2>
+                    <div className="mt-4 text-sm text-gray-700">
+                      <p><strong>Email:</strong> info@beginnerinvestorhub.com</p>
+                      <p><strong>Address:</strong> Charlotte, North Carolina, US</p>
+                    </div>
+                  </section>
+
+                  {/* Footer Navigation */}
+                  <div className="flex justify-center items-center flex-wrap gap-4 pt-12 mt-12 border-t border-gray-300">
+                    <Link href="/privacy" className="text-mechanica-moonlight-blue font-semibold hover:opacity-80 transition duration-300">
+                      Privacy Policy
+                    </Link>
+                    <span className="text-gray-400">•</span>
+                    <Link href="/" className="text-mechanica-moonlight-blue font-semibold hover:opacity-80 transition duration-300">
+                      Home
+                    </Link>
+                  </div>
                 </div>
-              </div>
-            </MechanicaCard>
+              </MechanicaCard>
+            </div>
           </div>
-        </div>
-      </main>
+        </main>
       </div>
     </MechanicaLayout>
   );
-};
-
-export default Terms;
+}

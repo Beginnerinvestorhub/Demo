@@ -1,7 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
 import Link from 'next/link';
 import { MechanicaLayout } from '../components/layout/mechanicaLayout';
-import { MechanicaHeader } from '../components/layout/mechanicaHeader';
 import { MechanicaCard } from '../components/ui/mechanicaCard';
 import { MechanicaButton } from '../components/ui/mechanicaButton';
 import { MechanicaGear } from '../components/ui/mechanicaGear';
