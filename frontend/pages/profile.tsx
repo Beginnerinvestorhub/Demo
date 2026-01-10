@@ -222,7 +222,7 @@ export default function ProfileForm() {
           <MechanicaCard variant="mechanical" className="p-8 text-center">
             <MechanicaGear size="xl" color="copper" speed="fast" className="mx-auto mb-4" />
             <h2 className="text-xl font-bold text-red-600 mechanica-heading-professional">Error Loading Profile</h2>
-            <p className="text-red-600 mechanica-text-technical">{(initialLoadError as Error).message}</p>
+            <p className="text-red-600 mechanica-text-technical">{initialLoadError}</p>
             <MechanicaButton variant="mechanical" onClick={() => window.location.reload()} className="mt-4">
               Retry
             </MechanicaButton>
