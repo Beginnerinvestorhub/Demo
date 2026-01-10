@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { profileValidationSchema } from '../lib/validationSchemas';
+import { profileValidationSchema } from '@/lib/validationSchemas';
 import { useAuth } from '../hooks/useAuth'; // Assuming a hook that provides the Firebase user
 import axios from 'axios'; // Using axios as in the original component
 

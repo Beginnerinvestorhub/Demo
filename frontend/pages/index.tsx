@@ -311,13 +311,6 @@ export default function HomePage() {
                     <h3 className="text-2xl font-bold mb-3 text-mechanica-moonlight-blue font-serif">
                       {feature.title}
                     </h3>
-                    {/* Assuming initialLoadError is a variable that might exist in the component's scope */}
-                    {/* This change interprets the user's instruction to add an error message display */}
-                    {/* and places it before the feature description for syntactic correctness. */}
-                    {/* If initialLoadError is not defined, this line will be ignored. */}
-                    {typeof initialLoadError === 'string' && initialLoadError && (
-                      <p className="text-red-600 mechanica-text-technical mb-2">{initialLoadError}</p>
-                    )}
                     <p className="text-gray-600 mb-4 leading-relaxed">
                       {feature.description}
                     </p>

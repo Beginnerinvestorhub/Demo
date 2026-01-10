@@ -7,13 +7,9 @@ import { MechanicaGear } from '../components/ui/mechanicaGear';
 
 // Define interface for risk data
 interface RiskData {
-  riskScore: number;
-  riskLevel: 'low' | 'medium' | 'high';
-  recommendations: string[];
-  portfolioMetrics: {
-    volatility: number;
-    diversification: number;
-  };
+  risk_score: number;
+  risk_label: string;
+  recommended_allocation: Record<string, number>;
 }
 
 export default function RiskAssessmentPage() {

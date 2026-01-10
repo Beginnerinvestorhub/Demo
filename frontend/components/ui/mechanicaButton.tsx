@@ -7,6 +7,7 @@ interface MechanicaButtonProps {
   size?: 'sm' | 'md' | 'lg';
   className?: string;
   disabled?: boolean;
+  type?: 'button' | 'submit' | 'reset';
 }
 
 export const MechanicaButton: React.FC<MechanicaButtonProps> = ({
@@ -15,7 +16,8 @@ export const MechanicaButton: React.FC<MechanicaButtonProps> = ({
   variant = 'primary',
   size = 'md',
   className = '',
-  disabled = false
+  disabled = false,
+  type = 'button'
 }) => {
   const baseClasses = 'font-medium rounded-md transition-all duration-200 focus:outline-none focus:ring-2';
 
@@ -40,6 +42,7 @@ export const MechanicaButton: React.FC<MechanicaButtonProps> = ({
     <button
       onClick={onClick}
       disabled={disabled}
+      type={type}
       className={`${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]} ${disabledClasses} ${className}`}
     >
       {children}

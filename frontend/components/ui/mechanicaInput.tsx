@@ -3,7 +3,7 @@ import React from 'react';
 interface MechanicaInputProps {
     type?: 'text' | 'email' | 'password' | 'number' | 'tel';
     placeholder?: string;
-    value?: string;
+    value?: string | number;
     onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
     label?: string;
     error?: string;
@@ -15,6 +15,8 @@ interface MechanicaInputProps {
     style?: React.CSSProperties;
     id?: string;
     name?: string;
+    min?: string | number;
+    step?: string | number;
 }
 
 export const MechanicaInput: React.FC<MechanicaInputProps> = ({
@@ -31,7 +33,9 @@ export const MechanicaInput: React.FC<MechanicaInputProps> = ({
     className = '',
     style = {},
     id,
-    name
+    name,
+    min,
+    step
 }) => {
     const inputId = id || name || `input-${Math.random().toString(36).substr(2, 9)}`;
 
@@ -72,6 +76,8 @@ export const MechanicaInput: React.FC<MechanicaInputProps> = ({
                     required={required}
                     className={combinedClasses}
                     style={style}
+                    min={min}
+                    step={step}
                 />
 
                 {loading && (
