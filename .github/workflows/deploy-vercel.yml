@@ -27,8 +27,8 @@ jobs:
         working-directory: frontend
         
       - name: Run tests
-        run: npm test --if-present
         working-directory: frontend
+        run: npm test --if-present -- --coverage=false
         
       - name: Build project
         run: npm run build
