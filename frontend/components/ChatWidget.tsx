@@ -1,10 +1,4 @@
 import React, { useState } from 'react';
-import { OpenAI } from 'openai';
-
-const openai = new OpenAI({
-  apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY, // Note: This exposes the key to the client - use with caution
-  dangerouslyAllowBrowser: true, // Required for client-side usage
-});
 
 interface Message {
   role: 'user' | 'assistant';
@@ -25,24 +19,27 @@ const ChatWidget: React.FC = () => {
     setIsLoading(true);
 
     try {
-      const response = await openai.chat.completions.create({
-        model: 'gpt-3.5-turbo',
-        messages: [...messages, userMessage].map(msg => ({
-          role: msg.role,
-          content: msg.content,
-        })),
-        max_tokens: 150,
-        temperature: 0.7,
-      });
-
+      // Mock AI response for demo mode
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      const mockResponses = [
+        "That's a great question about investing! Remember to always diversify your portfolio.",
+        "I recommend researching companies thoroughly before making any investment decisions.",
+        "Consider your risk tolerance and financial goals when choosing investments.",
+        "It's wise to start with index funds if you're new to investing.",
+        "Always consult with a qualified financial advisor for personalized advice."
+      ];
+      
+      const randomResponse = mockResponses[Math.floor(Math.random() * mockResponses.length)];
+      
       const assistantMessage: Message = {
         role: 'assistant',
-        content: response.choices[0].message.content || 'Sorry, I couldn\'t generate a response.',
+        content: randomResponse,
       };
 
       setMessages(prev => [...prev, assistantMessage]);
     } catch (error) {
-      console.error('Error calling OpenAI:', error);
+      console.error('Error in chat widget:', error);
       const errorMessage: Message = {
         role: 'assistant',
         content: 'Sorry, there was an error. Please try again.',
