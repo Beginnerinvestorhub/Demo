@@ -34,10 +34,10 @@ export default function PortfolioMonitorPage() {
 
             {/* Decorative Mechanical Gears */}
             <div className="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 opacity-20">
-              <MechanicaGear size="xxl" color="steel" speed="slow" />
+              <MechanicaGear size="xl" color="steel" speed="slow" />
             </div>
             <div className="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 opacity-20">
-              <MechanicaGear size="xxl" color="brass" speed="reverse" />
+              <MechanicaGear size="xl" color="brass" speed="reverse" />
             </div>
             <div className="absolute top-1/4 right-1/4 opacity-30">
               <MechanicaGear size="lg" color="copper" speed="medium" />
