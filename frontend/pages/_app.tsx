@@ -105,7 +105,7 @@ function MyApp({
 }
 
 // Fetch feature flags server-side using getInitialProps
-MyApp.getInitialProps = async (appContext) => {
+MyApp.getInitialProps = async ({ ctx }) => {
   try {
     // Use absolute URL in production, localhost in development
     const baseUrl = process.env.NODE_ENV === 'production' 
@@ -113,7 +113,7 @@ MyApp.getInitialProps = async (appContext) => {
       : 'http://localhost:3000';
     
     const res = await fetch(`${baseUrl}/api/feature-flags`, {
-      headers: appContext.ctx?.req?.headers || {}
+      headers: ctx?.req?.headers || {}
     });
     
     if (!res.ok) {
