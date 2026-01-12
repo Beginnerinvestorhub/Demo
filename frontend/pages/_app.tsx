@@ -4,7 +4,6 @@ import type { AppProps } from 'next/app'
 import { useRouter } from 'next/router'
 import { createContext, useContext, useEffect, useState } from 'react'
 import Head from 'next/head'
-import dynamic from 'next/dynamic'
 // Import Google Font Inter
 import { Inter } from 'next/font/google';
 
@@ -20,13 +19,19 @@ const fontVariables = {
   '--font-inter': inter.style.fontFamily,
 };
 
-// Define Feature Flags type
+// Feature Flags Interface
 interface FeatureFlags {
-  [key: string]: boolean;
+  newFeature: boolean;
+  betaAccess: boolean;
+  enableTrading: boolean;
 }
 
 // Create Feature Flag Context
-const FeatureFlagContext = createContext<FeatureFlags>({});
+const FeatureFlagContext = createContext<FeatureFlags>({
+  newFeature: false,
+  betaAccess: false,
+  enableTrading: false,
+});
 
 // Custom hook to use feature flags
 export const useFeatureFlags = () => useContext(FeatureFlagContext);
@@ -64,35 +69,11 @@ function MyApp({
     }
   }, [router])
 
-  const [featureFlags, setFeatureFlags] = useState<FeatureFlags>({});
-  const [flagsLoading, setFlagsLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchFeatureFlags = async () => {
-      try {
-        const response = await fetch('/api/feature-flags');
-        if (response.ok) {
-          const data = await response.json();
-          setFeatureFlags(data);
-        } else {
-          console.error('Failed to fetch feature flags:', response.statusText);
-        }
-      } catch (error) {
-        console.error('Error fetching feature flags:', error);
-      } finally {
-        setFlagsLoading(false);
-      }
-    };
-
-    fetchFeatureFlags();
-  }, []);
-
-  if (flagsLoading) {
-    return (
-      <div className="global-loading">
-        <div className="loading-spinner">Loading Feature Flags...</div>
-      </div>
-    );
+  // Feature flags are now passed via pageProps from server-side
+  const featureFlags = pageProps.featureFlags || {
+    newFeature: false,
+    betaAccess: false,
+    enableTrading: false,
   }
 
   return (
@@ -106,25 +87,67 @@ function MyApp({
       {/* Wrap with FeatureFlagContext.Provider */}
       <div style={fontVariables as React.CSSProperties}>
         <FeatureFlagContext.Provider value={featureFlags}>
-          {/* Global loading indicator */}
-          {pageLoading && (
-            <div className="global-loading">
-              <div className="loading-spinner">Loading...</div>
-            </div>
-          )}
-
-          {/* Main app content */}
-          <div className={`app-wrapper ${pageLoading ? 'page-transitioning' : ''}`}>
-            <Component {...pageProps} />
-          </div>
-
-          {/* Portal containers for modals/notifications */}
-          <div id="modal-root" />
-          <div id="notification-root" />
+          <Component {...pageProps} />
         </FeatureFlagContext.Provider>
       </div>
+
+      {/* Loading overlay for route changes */}
+      {pageLoading && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white p-4 rounded-lg shadow-xl">
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-mechanica-moonlight-blue"></div>
+            <span className="ml-2 text-gray-600">Loading...</span>
+          </div>
+        </div>
+      )}
     </>
   )
 }
+
+// Fetch feature flags server-side using getInitialProps
+MyApp.getInitialProps = async (appContext) => {
+  try {
+    // Use absolute URL in production, localhost in development
+    const baseUrl = process.env.NODE_ENV === 'production' 
+      ? 'https://beginnerinvestorhub-demo.vercel.app' 
+      : 'http://localhost:3000';
+    
+    const res = await fetch(`${baseUrl}/api/feature-flags`, {
+      headers: appContext.ctx?.req?.headers || {}
+    });
+    
+    if (!res.ok) {
+      console.error('Failed to fetch feature flags:', res.statusText);
+      return {
+        pageProps: {
+          featureFlags: {
+            newFeature: false,
+            betaAccess: false,
+            enableTrading: false,
+          }
+        }
+      };
+    }
+
+    const featureFlags = await res.json();
+    
+    return {
+      pageProps: {
+        featureFlags
+      }
+    };
+  } catch (error) {
+    console.error('Error fetching feature flags:', error);
+    return {
+      pageProps: {
+        featureFlags: {
+          newFeature: false,
+          betaAccess: false,
+          enableTrading: false,
+        }
+      }
+    };
+  }
+};
 
 export default MyApp
