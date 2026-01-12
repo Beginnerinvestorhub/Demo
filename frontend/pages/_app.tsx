@@ -105,16 +105,14 @@ function MyApp({
 }
 
 // Fetch feature flags server-side using getInitialProps
-MyApp.getInitialProps = async ({ ctx }) => {
+MyApp.getInitialProps = async () => {
   try {
     // Use absolute URL in production, localhost in development
     const baseUrl = process.env.NODE_ENV === 'production' 
       ? 'https://beginnerinvestorhub-demo.vercel.app' 
       : 'http://localhost:3000';
     
-    const res = await fetch(`${baseUrl}/api/feature-flags`, {
-      headers: ctx?.req?.headers || {}
-    });
+    const res = await fetch(`${baseUrl}/api/feature-flags`);
     
     if (!res.ok) {
       console.error('Failed to fetch feature flags:', res.statusText);
